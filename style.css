@@ -4,6 +4,27 @@ body {
   background-color: white;
 }
 
+.container {
+  display: flex;
+  background-color: rgba(0, 74, 173, 0.8);
+  padding: 1rem;
+  height: 40vh;
+}
+
+.InlineCenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+hr {
+  border: none;
+  height: 4px;
+  background-color: #004aad;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 body.no-scroll {
   overflow: hidden;
   height: 100vh;
@@ -136,11 +157,141 @@ nav .ham-menu span:nth-child(3) {
   color: #004aad;
 }
 #firstPage #firstRight h2 {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
-#firstPage #firstRight p {
+#firstPage #firstRight #insideFirstRight {
+  background-color: rgba(0, 74, 173, 0.8);
+  margin-right: -20%;
+  padding: 0%;
+  margin-left: 15%;
+  margin-top: 10%;
+}
+#firstPage #firstRight #insideFirstRight p {
   font-size: 0.5rem;
-  color: #004aad;
+  color: #fff;
+  font-size: 1rem;
   font-family: "Arial", " Helvetica ", sans-serif;
   margin-top: -1rem;
+  padding: 8%;
+  text-align: right;
+  margin-right: 10%;
+}
+#firstPage #firstRight #SecondInsideFirstRight {
+  margin-top: 2%;
+}
+#firstPage #firstRight #SecondInsideFirstRight p {
+  color: #004aad;
+  font-size: 1rem;
+  font-family: "Arial", " Helvetica ", sans-serif;
+}
+#firstPage #firstRight #SecondInsideFirstRight img {
+  height: 8vh;
+  width: auto;
+  margin-top: 1rem;
+}
+#firstPage hr {
+  margin-right: 0%;
+  margin-left: 0%;
+  padding: 0%;
+  width: 100%;
+}
+
+/*Second page section 
+section about us*/
+.SecondPage {
+  margin-top: -15%;
+  border: solid 2px #004aad;
+}
+.SecondPage #titleDiv {
+  padding: 0;
+}
+.SecondPage #titleDiv hr {
+  flex: 1;
+  margin: 0 20px;
+}
+.SecondPage #titleDiv h1 {
+  color: #004aad;
+  font-family: "Lucida Sans", " Lucida Sans Regular", " Lucida Grande", " Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.SecondPage .container-aboutus {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding-top: 3rem;
+  padding: 0;
+  align-items: flex-start;
+}
+.SecondPage .container-aboutus .container:first-child {
+  margin-top: 10px;
+}
+.SecondPage .container-aboutus .container:nth-child(2) {
+  margin-top: 30px;
+}
+.SecondPage .container-aboutus .container:nth-child(3) {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.SecondPage .container-aboutus .container p {
+  color: #fff;
+}
+.SecondPage .container-aboutus .container p:first-child {
+  text-align: left;
+  margin-right: 10%;
+}
+.SecondPage .container-aboutus .container p:last-child {
+  text-align: right;
+  margin-left: 10%;
+}
+.SecondPage .container-aboutus #handsImg,
+.SecondPage .container-aboutus #girlRead {
+  width: 25vh;
+  height: auto;
+}
+
+/*last page section*/
+#thirtPage {
+  margin-top: 2px;
+  padding: 0%;
+  height: 100vh;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#thirtPage h1 {
+  color: #004aad;
+  font-family: "Lucida Sans", " Lucida Sans Regular", " Lucida Grande", " Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 2.5rem;
+}
+#thirtPage #title-thirtPage {
+  margin-top: 5%;
+  justify-content: space-around;
+}
+#thirtPage #title-thirtPage h3 {
+  color: #004aad;
+  font-family: "Arial", " Helvetica ", sans-serif;
+  font-size: 1.8rem;
+}
+#thirtPage #title-thirtPage img {
+  height: 10vh;
+}
+#thirtPage .InlineCenter {
+  gap: 30px;
+}
+#thirtPage .InlineCenter .Sectionh3 {
+  gap: 1px;
+  margin-left: -8%;
+}
+#thirtPage .InlineCenter p {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #fff;
+  font-size: 1rem;
+  text-align: left;
+}
+#thirtPage .InlineCenter a {
+  color: #fff;
+  text-align: end;
+}
+#thirtPage .InlineCenter a:hover {
+  color: rgba(0, 74, 173, 0.8);
 }/*# sourceMappingURL=style.css.map */
