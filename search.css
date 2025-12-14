@@ -16,6 +16,18 @@ body {
 body #cerca {
   background-color: rgba(0, 74, 173, 0.8);
 }
+body #cerca:hover {
+  transform: scale(1.05);
+}
+body #filters {
+  background-color: rgba(0, 74, 173, 0.8);
+  color: white;
+  border-color: white;
+  margin-left: -4px;
+}
+body #filters:hover {
+  transform: scale(1.05);
+}
 body #risultati {
   background-color: rgba(231, 234, 237, 0.8);
   margin: 10px;
@@ -23,6 +35,42 @@ body #risultati {
   flex-direction: column;
   border-radius: 0.5%;
   border: 5px solid #004aad;
+  position: relative;
+}
+body #risultati #delete_bt {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+body #risultati #delete_bt:hover {
+  color: #004aad;
+}
+body #risultati #info_icon {
+  position: absolute;
+  top: 8px;
+  right: 45px;
+  font-size: 1.2rem;
+  color: rgba(0, 74, 173, 0.8);
+}
+body #risultati #info_icon:hover {
+  color: black;
+  transform: scale(1.2);
+}
+body #risultati #info_box {
+  position: absolute;
+  top: 30px;
+  right: 45px;
+  background-color: #004aad;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 200px;
+}
+body #risultati .div_description {
+  display: flex;
 }
 body .book-row {
   display: flex;
