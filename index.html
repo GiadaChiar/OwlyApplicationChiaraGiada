@@ -78,23 +78,24 @@
     </section>
     <section id="thirtPage">
         <h1 id="Servizi">Servizi</h1>
-        <div id="title-thirtPage" class="InlineCenter">
+        <div id="title-thirtPage" class="title-row">
             <h3>Programmi ministeriali</h3>
-            <div class="InlineCenter Sectionh3">
+
+            <div class="img-title">
             <h3>Libreria</h3>
             <img src="img/girlShadow.jpeg" alt="there is a girl, she is reading a book i can see her shadow">
             </div>
             <h3>LIS</h3>
         </div>
-        <div class="InlineCenter">
-            <div class="container">
+        <div class="content-row">
+            <div class="box">
                 <p>
                     Grazie alla collaborazione con il Ministero dell’istruzione dispone di materiali didattici con approfondimenti ed
                     esercitazioni interattive per supportare il programma educativo
                 </p>
             </div>
-            <div class="InlineCenter">
-                <div class="container">
+            
+                <div class="box">
                     <div>
                     <p>
                         Ricerca intergrata per la lettura e l’acquisto dei libri come supporto allo studio degli studenti in base al programma
@@ -104,25 +105,79 @@
                     <a href="#libreria">Trova il tuo libro</a>
                     </div>
                 </div>
-            </div>
-            <div class="InlineCenter">
-                <div class="container">
+                <div class="box">
                     <p>
                         Canale visivo-gestuale LIS (lingua dei segni italiana) per aiutare gli studenti con difficoltà uditive.
                     </p>
                 </div>
             </div>
+        
         </div>
     </section>
+
     <section id="fourthPage">
         <hr>
         <div id="titleDiv" class="InlineCenter">
             <h1 id="contact">Vuoi avere più informazioni su owly?</h1>
             <img src="img/childrenRead.jpeg" alt="Shadows Children reading books">
         </div>
-        <div id="formBlue">
-            <p>Compila il nostro form e ti risponderemo al più presto</p>
-        </div>
+        <form>
+            <div id="formBlue">
+                <p>Compila il nostro form e ti risponderemo al più presto</p>
+        
+                <div class="row">
+        
+                    <div class="col-md-6">
+        
+                        <div class="row mb-3">
+                            <label for="nome" class="col-sm-3 col-form-label">Nome*</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="nome" placeholder="Mario">
+                            </div>
+                        </div>
+        
+                        <div class="row mb-3">
+                            <label for="cognome" class="col-sm-3 col-form-label">Cognome*</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="cognome" placeholder="Rossi">
+                            </div>
+                        </div>
+        
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-3 col-form-label">Email*</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="email" placeholder="nomecognome@gmail.com">
+                            </div>
+                        </div>
+        
+                        <div class="row mb-3">
+                            <label for="cellulare" class="col-sm-3 col-form-label">Cellulare</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="cellulare" placeholder="+39 333 1234567">
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <p>Testo della richiesta:</p>
+                            <textarea class="form-control" id="floatingTextarea" placeholder="Inserisci qui la tua richiesta..."
+                                style="height: 220px"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" id="submit">Invia</button>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </form>
+
+
+
+
+        
     </section>
     <script src="logic.js"></script>
 </body>

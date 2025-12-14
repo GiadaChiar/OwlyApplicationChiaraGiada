@@ -1,9 +1,16 @@
 @use 'variables' as vars;
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;  // elimina qualunque scroll orizzontale
+}
+
+
 body{
     margin: 0;
     padding: 0;
     background-color: vars.$background1;
+    max-width: 100%;
 }
 
 .container {
@@ -32,7 +39,7 @@ hr{
 body.no-scroll {
     overflow: hidden; // blocca lo scroll verticale e orizzontale
     height: 100vh; // assicura che il body non scrolli
-    margin-right: 2.2%; // evita il salto orizzontale quando la barra di scorrimento scompare
+    margin-right: 1rem; // evita il salto orizzontale quando la barra di scorrimento scompare
 }
 
 .top-page {
@@ -55,11 +62,13 @@ body.no-scroll {
 
 nav {
     padding: 1rem;
+    width: 100%;
     display: flex;
     background-color: vars.$background2;
-    margin: 2px;
-
+    
     .ham-menu {
+        margin-top: 20px;
+        margin-left: 10px;;
         height: 30px;
         width: 30px;
         position: relative;
@@ -162,16 +171,19 @@ nav {
     margin: 0%;
     padding: 0%;
     height: 100vh;
-    display: flex;
-    justify-content:space-between;
+    //display: flex;
+    //justify-content:space-between;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    
     gap: 30px;
 
     #firstLeft{
         img{
             margin-top: -0.5%;
             height: 75vh;
-            width: 45vh;
-            margin-left: 2rem;
+            width: 50vh;
+            margin-left: 2.3rem;
             margin-left:0%;
         }
     }
@@ -186,6 +198,8 @@ nav {
                 font-size: vars.$font-sizeh1;
                 text-decoration: underline;
                 color: vars.$font-color2;
+                margin-bottom: 10px;
+                margin-top: 10px;
 
             }
         h2 {
@@ -194,7 +208,6 @@ nav {
 
         #insideFirstRight{
             background-color: vars.$background2-transparent;
-            margin-right:-20%;
             padding: 0%;
             margin-left: 15%;
             margin-top: 10%;
@@ -211,7 +224,8 @@ nav {
                 }
         }   
         #SecondInsideFirstRight{
-            margin-top:2%;
+            margin-top:60px;
+            margin-bottom: 21px;
             p{
                 color: vars.$font-color2;
                 font-size: vars.$font-sizeh3;
@@ -234,8 +248,9 @@ nav {
 /*Second page section 
 section about us*/
 .SecondPage{
-    margin-top: -15%;
     border: solid 2px vars.$background2;
+    display: grid;
+    height: 100vh;
 
     #titleDiv {
             padding: 0;
@@ -255,24 +270,33 @@ section about us*/
             display: flex;
             justify-content: space-around;
             gap: 20px;
-            padding-top: 3rem;
+            padding-top: 5rem;
             padding: 0;
             //to move the children without compress them
             align-items: flex-start;
     
             .container {
+                        padding-top: 30px;
+                        padding-bottom: 30px;
 
                 &:first-child {
                         margin-top: 10px;
+                        justify-content: center;
+                        
+                        
                 }
                 
                 &:nth-child(2) {
                         margin-top: 30px;
+                        justify-content: center;
+                        
+                        
                 }
 
                 &:nth-child(3) {
-                        margin-top: 60px;
+                        margin-top: 50px;
                         margin-bottom: 30px;
+                        justify-content: center;
                 }
     
                 p {
@@ -300,39 +324,55 @@ section about us*/
 }
 
 
-/*last page section*/
+/*THIRTH page section*/
 #thirtPage{
-    margin-top: 2px;
+    margin-top: 20px;
     padding: 0%;
     height: 100vh;
     margin-left: 10px;
     margin-right: 10px;
+    
     h1{
         color: vars.$font-color2;
         font-family: vars.$font-text1;
         text-align: center;
         font-size: vars.$font-sizeh1;
+        margin-bottom: 40px;
     }
-    #title-thirtPage{
+    /* #title-thirtPage{
         margin-top: 5%;
-        justify-content: space-around;
-
+        justify-content: space-around;*/
+    .title-row{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        align-items: center;
+        text-align: center;
         h3{
             color: vars.$font-color2;
             font-family: vars.$font-text2;
             font-size: vars.$font-sizeh2;
         }
-        img{
+    
+        .img-title{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            img{
             height: 10vh;
         }
-    }
-    .InlineCenter{
-        gap: 30px;
-
-        .Sectionh3{
-            gap:1px;
-            margin-left:-8%;
         }
+        
+    }
+    .content-row{
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        .box {
+            background: vars.$background2;
+            padding: 20px;
+            border-radius: 8px;
 
         p{
             margin-right:10px;
@@ -346,10 +386,113 @@ section about us*/
             color:vars.$font-color1;
             text-align: end;
             &:hover{
-                color: vars.$background2-transparent;
+                color: black;
             }
         }
 
 
     }
+}
+}
+
+
+//fourth page section
+#fourthPage{
+    margin-top:-15%;
+    padding-top:0%;
+    
+    
+    #titleDiv{
+        gap: 1px;
+        margin-left: 5%;
+        margin-right: 5%;
+
+        h1 {
+                color: vars.$font-color2;
+                font-family: vars.$font-text1;
+                text-align: center;
+                font-size: vars.$font-sizeh1;
+            }
+        
+            img {
+                height: 10vh;
+            }
+    }
+    #formBlue{
+        background-color: vars.$background2;
+        & input, & textarea{
+            margin-left: 20px;
+            width: 90%;
+        }
+
+
+        p,label{
+            margin-left: 5%;
+            margin-right: 5%;
+            color: vars.$font-color1;
+            font-family: vars.$font-text2;
+            font-size: vars.$font-sizeh3;
+            padding: 2%;
+        }
+
+        #submit{
+            color: vars.$background2;
+            background-color: vars.$background1;
+            border-color: vars.$background2;
+            display: block;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            margin-bottom: 20px;
+            &:hover{
+                border-color:vars.$background1;
+                color:vars.$background2-transparent
+            }
+        }
+
+        
+        
+    }
+    /* ----- RESPONSIVE: THIRD PAGE (SERVIZI) ----- */
+
+/* Tablet → 2 colonne */
+@media (max-width: 1024px) {
+    #thirtPage {
+
+        .title-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+}
+
+/* Telefono → 1 colonna */
+@media (max-width: 768px) {
+    #thirtPage {
+
+        .title-row {
+            grid-template-columns: 1fr;
+            text-align: center;
+
+            .img-title {
+                flex-direction: column; /* titolo sopra, immagine sotto */
+            }
+        }
+
+        .content-row {
+            grid-template-columns: 1fr;
+        }
+
+        .box {
+            width: 100%;
+            padding: 15px;
+        }
+    }
+}
+
+    
 }
