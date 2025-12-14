@@ -3,6 +3,7 @@
 html, body {
     width: 100%;
     overflow-x: hidden;  // elimina qualunque scroll orizzontale
+    scrollbar-gutter: stable;
 }
 
 
@@ -39,7 +40,6 @@ hr{
 body.no-scroll {
     overflow: hidden; // blocca lo scroll verticale e orizzontale
     height: 100vh; // assicura che il body non scrolli
-    margin-right: 1rem; // evita il salto orizzontale quando la barra di scorrimento scompare
 }
 
 .top-page {
@@ -155,6 +155,13 @@ nav {
 
         &:hover {
             border-bottom: 2px solid vars.$background1;
+        }
+
+    }
+    .disable{
+        color: blue;
+        &:hover {
+            border-bottom: none;
         }
 
     }

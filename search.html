@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="img/Logo_owly.png" href="favicon.png">
+    <link rel="stylesheet" href="search.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>OWLY</title>
+    
+</head>
+<body>
+    <header>
+        <div class="off-screen-menu">
+            <link rel="icon magic book with a castle on it and the write owly" href="img/Scritta_logo.png" type="image/x-icon">
+            <h3><a href="index.html">Home</a></h3>
+            <h3><a href="index.html#about us">Chi Siamo</a></h3>
+            <h3><a href="index.html#Servizi">Servizi</a></h3>
+            <h3><a class="disable" href="search.html">Trova il libro</a></h3>
+
+            <h3><a href="index.html#contact">Contatti</a></h3>
+        </div>
+    </header>
+    <nav>
+        <div class="top-page">
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <img src="img/Logo_owly.png" alt="Logo Owly">
+        </div>
+    </nav>
+    <div class="input-group mb-3">
+        <input type="text" id="category" class="form-control" placeholder="Categoria" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" id="cerca" type="button">Cerca</button>
+        </div>
+    </div>
+
+    <div id="risultati">
+        <!--interactive with js-->
+    </div>
+</body>
+<script src="search.js"></script>
+</html>

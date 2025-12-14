@@ -2,6 +2,7 @@
 html, body {
   width: 100%;
   overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -35,7 +36,6 @@ hr {
 body.no-scroll {
   overflow: hidden;
   height: 100vh;
-  margin-right: 1rem;
 }
 
 .top-page {
@@ -130,6 +130,12 @@ nav .ham-menu span:nth-child(3) {
 }
 .off-screen-menu h3 a:hover {
   border-bottom: 2px solid white;
+}
+.off-screen-menu .disable {
+  color: blue;
+}
+.off-screen-menu .disable:hover {
+  border-bottom: none;
 }
 
 .off-screen-menu.active {
