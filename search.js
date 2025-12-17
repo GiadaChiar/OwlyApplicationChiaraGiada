@@ -75,8 +75,17 @@ searchButton.addEventListener("click", async () => {
 
             const titleElement = document.createElement('a');
             titleElement.textContent = doc.title ?? "Titolo non disponibile";
-            titleElement.classList.add('book-title');
             titleElement.id = doc.key;
+            titleElement.classList.add('book-title', 'btn', 'btn-primary');
+            titleElement.setAttribute('data-bs-toggle', 'collapse');
+            titleElement.setAttribute('href', '#collapseExample');
+            titleElement.setAttribute('role', 'button');
+            titleElement.setAttribute('aria-expanded', 'false');
+            titleElement.setAttribute('aria-controls', 'collapseExample');
+
+        /*   <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+    </a>*/
 
             const authorElement = document.createElement('h3');
             authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Autore sconosciuto";
@@ -126,31 +135,95 @@ searchButton.addEventListener("click", async () => {
 
             //if I click I pass hover mouse  get other informations info
             bookTitles= document.querySelectorAll(".book-title")
+    
+
+        bookTitles.forEach(title => {
+        title.addEventListener("click", async() => {
             
+            const row = title.closest(".book-row");
+            //call another API 
+            //donm't usen encodeURIComponent bacause it trasform / in %
+            const url =`https://openlibrary.org${title.id}.json`;
+            console.log("Url richiesta desc:", url)
+            console.log("stampo id:", title.id)
 
-            bookTitles.forEach(title =>{
-                title.addEventListener("mouseover",()=>{
-                    console.log("elemento trovato")
-                    console.log(title.id)
 
-                    const row = title.closest(".book-row");
-                    //to resaile to the first element with that class from title
-                    if (!row) return;
+            /* try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Errore API " + response.status);
 
-                    if (row.querySelector(".description-box")) return;
+        const data = await response.json();
+        console.log("Risultati API:", data.docs);*/
 
-                        console.log("Sezione trovata")
-                        const divDescription= document.createElement("div");
-                        divDescription.classList.add="div_description"
-                        descriptH3= document.createElement("h3")
-                        descriptH3.textContent="Trovato L'elemeto" + title.id
+        try{
+            const response = await fetch(url);
+            if(!response.ok) throw new Error("Errore caricamento descrizione")
+            const data = await response.json();
+            console.log("Risultati descrizione API:",data.description)
 
-                        divDescription.appendChild(descriptH3)
-                        row.appendChild(divDescription)
 
-                })
 
+            if (!row) return;
+
+            // controlla se c'è già una descrizione sotto questa riga
+            if (row.nextElementSibling?.classList.contains("description-box")) {
+                return; // evita duplicati
+            }
+
+            //check data if it is an object or a string or it is empty
+            let descriptionText = "Descrizione non disponibile";
+
+            if (typeof data.description === "string") {
+                descriptionText = data.description;
+            } else if (
+                typeof data.description === "object" &&
+                data.description?.value
+            ) {
+                descriptionText = data.description.value;
+            }
+            // crea il div descrizione
+            const divPlace = document.createElement("div");
+            divPlace.classList.add("description-box");
+            const titleDesc= document.createElement("h5")
+            titleDesc.classList.add="desc_title"
+            titleDesc.textContent=" Description:"
+
+            const pDesc= document.createElement("p");
+            pDesc.classList.add="desc_p"
+            pDesc.textContent = descriptionText;
+            
+            divPlace.appendChild(titleDesc)
+            divPlace.appendChild(pDesc);
+            
+            // inserisce subito sotto la riga del libro
+            row.after(divPlace);
+
+             //create button for delete 
+            const deleteBt=document.createElement("button");
+                deleteBt.id = "delete_bt-des";
+                deleteBt.type = "button";
+                deleteBt.classList.add("btn-close");
+                deleteBt.setAttribute("aria-label", "Close");
+                divPlace.appendChild(deleteBt);
+
+            deleteBt.addEventListener("click",()=>{
+                
+                divPlace.remove();
+                deleteBt.remove();
             })
+
+        }catch(error){
+            console.log("Errore caricamento descrizione")
+        }
+
+            
+        });
+    });
+
+
+
+
+
             
     } catch (error) {
         console.error("Errore durante il recupero dei dati:", error);

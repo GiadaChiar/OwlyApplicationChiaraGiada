@@ -71,6 +71,7 @@ body #risultati #info_box {
 }
 body #risultati .div_description {
   display: flex;
+  position: relative;
 }
 body .book-row {
   display: flex;
@@ -88,13 +89,39 @@ body .book-row .inner-row {
 body .book-row .inner-row a {
   color: #004aad;
   font-size: 1rem;
+  background-color: transparent;
+  text-decoration: underline;
+  border: 0px;
 }
 body .book-row .inner-row a:hover {
   color: rgb(2, 2, 31);
+  background-color: transparent;
 }
 body .book-row .inner-row h3 {
   font-family: "Arial", " Helvetica ", sans-serif;
   font-size: 1rem;
+}
+body .description-box {
+  width: 100%;
+  margin-top: 0px;
+  padding: 8px;
+  padding-top: 20px;
+  background-color: rgb(221, 231, 237);
+  border-bottom: 1px solid #004aad;
+  position: relative;
+}
+body .description-box .desc_title {
+  color: white;
+}
+body .description-box .desc_p {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: "Arial", " Helvetica ", sans-serif;
+}
+body .description-box #delete_bt-des {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 body.no-scroll {

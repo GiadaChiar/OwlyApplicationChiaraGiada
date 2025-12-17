@@ -73,6 +73,7 @@ body{
         }
         .div_description{
             display: flex;
+            position: relative;
         }
 
     }
@@ -94,8 +95,12 @@ body{
             a{
                 color: vars.$font-color2;
                 font-size: vars.$font-sizeh3;
+                background-color: transparent;
+                text-decoration: underline;
+                border: 0px;
                 &:hover{
                     color: rgb(2, 2, 31);
+                    background-color: transparent;
                 }
             }
 
@@ -106,6 +111,28 @@ body{
             }
             
         }
+    }
+    .description-box{
+    width: 100%;
+    margin-top: 0px;
+    padding: 8px;
+    padding-top: 20px;
+    background-color:vars.$background3;
+    border-bottom: 1px solid vars.$background2;
+    position: relative;
+    .desc_title{
+        color: vars.$background1;
+    }
+    .desc_p{
+        margin-left: 5px;
+        margin-right: 5px;
+        font-family: vars.$font-text2;
+    }
+    #delete_bt-des{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
     }
 }
 
