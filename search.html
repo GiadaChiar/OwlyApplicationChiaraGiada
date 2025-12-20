@@ -45,20 +45,53 @@
         <!--interactive with js-->
     </div>
 
+    
+<!--div hidden-->
+<div id="more-filters" class="card" style="width: 18rem; "><!--add display:none;-->
 
-<!--
-  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-  </a>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  </div>
+    <!--delete button-->
+    <button type="button" id="delete_html_filter" class="btn-close" aria-label="Close"></button>
+
+    <h5 class="card-title">Filtri Aggiuntivi</h5>
+    <!--I will do the same dinamic in js-->
+    <!--Search by author name and title -->
+    <div class="in-line">
+        <div class="mb-3">
+            <label for="author" class="form-label">Nome autore:</label>
+            <input type="text" id="author" class="form-control" placeholder="Stephen King" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+        <!--title-->
+        <div class="mb-3">
+            <label for="title" class="form-label">Titolo del libro:</label>
+            <input type="text" id="title" class="form-control" placeholder="Mistero" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        </div>
+    </div>
+
+    
+    <!--language selection-->
+    <div class="in-line">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Lingua
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" id="italiano" href="italiano">Italiano</a></li>
+                <li><a class="dropdown-item" id="inglese" href="inglese">Inglese</a></li>
+                <li><a class="dropdown-item" id="francese" href="francese">Francese</a></li>
+                <li><a class="dropdown-item" id="spagnolo" href="spagnolo">Spagnolo</a></li>
+            </ul>
+        </div>
+        <!--dinamic button -->
+        <div class="input-group-append">
+                <button class="btn btn-outline-secondary" id="cerca_filer" type="button">Cerca</button>
+        </div>
+    </div>
+
 </div>
--->
+
+
 <script src="search.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

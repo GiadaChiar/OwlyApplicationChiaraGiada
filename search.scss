@@ -244,6 +244,8 @@ nav {
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    z-index: 9999;
 
 
     h3 a {
@@ -267,12 +269,102 @@ nav {
     }
 }
 
+/*section to add-filter*/
+
+#more-filters{
+    margin-top: 20px;
+    margin: 20px auto; //center horizontally
+    margin-bottom: 20px;
+    border: 2px solid vars.$background2;
+    border-radius: 5px;
+    background-color: vars.$background2-transparent;
+    color: vars.$background1;
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    #delete_html_filter{
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        
+    }
+
+    .in-line {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    gap:10px;
+
+    .btn ,.btn-secondary.dropdown-toggle{
+        background-color: vars.$background2 !important;
+        color: vars.$background1 !important;
+        border: 2px solid vars.$background1 !important;
+    }
+            #italiano{
+            background: linear-gradient(90deg,
+                rgb(32, 122, 32),rgb(244, 243, 243),rgb(220, 88, 88)
+            );
+            margin-bottom:0.2px;
+            margin-top:-10px;
+            text-align: center;
+            &:hover{
+                background: linear-gradient(90deg,
+                rgb(11, 94, 11),rgb(175, 172, 172),rgb(135, 12, 12));
+                }
+            }
+            #francese{
+            background: linear-gradient(90deg,
+                rgb(14, 34, 112),rgb(244, 243, 243),rgb(220, 88, 88)
+            );
+            margin-bottom:0.2px;
+            text-align: center;
+            &:hover{
+                background: linear-gradient(90deg,
+                rgb(4, 17, 68),rgb(175, 172, 172),rgb(135, 12, 12)
+            );
+            }
+        }
+        #spagnolo{
+            background: linear-gradient(
+                rgb(220, 88, 88),rgb(238, 238, 44),rgb(220, 88, 88)
+            );
+            text-align: center;
+            
+            &:hover{
+                background: linear-gradient(
+                rgb(135, 12, 12),rgb(222, 222, 9),rgb(135, 12, 12)
+            );
+            }
+        }
+        #inglese{
+            background: linear-gradient(90deg,
+                rgb(10, 36, 106),rgb(255, 255, 255),rgb(200, 16, 46)
+            );
+            margin-top:-10px;
+            margin-bottom:0.2px;
+            text-align: center;
+            &:hover{
+                background: linear-gradient(90deg,
+                rgb(3, 18, 53),rgb(222, 222, 222),rgb(135, 12, 12)
+            );
+            }
+    }
+    
+        
+
+
+}
+
 
 .off-screen-menu.active {
     left: 0;
 }
 
-
+}
 
 
 @media (min-width: 1600px) {

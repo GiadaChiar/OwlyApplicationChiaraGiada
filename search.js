@@ -5,6 +5,14 @@
 const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');
 const elencMenu= document.querySelectorAll('.off-screen-menu h3 a')//qualsiasi all
+const menu_filters= document.getElementById("more-filters");
+//const delete_html_filter= document.getElementById("delete_html_filter");
+const button_filters = document.getElementById("filters");
+
+
+
+//default hide menu filters
+menu_filters.style.display="none";
 
 
 hamMenu.addEventListener('click', () => {
@@ -220,14 +228,24 @@ searchButton.addEventListener("click", async () => {
         });
     });
 
-
-
-
-
             
     } catch (error) {
         console.error("Errore durante il recupero dei dati:", error);
     }
 
 
+});
+
+
+const delete_html_filter= document.getElementById("delete_html_filter");
+
+//if I click on more filters show menu filter
+button_filters.addEventListener("click",()=>{
+    menu_filters.style.display="block";
+})
+
+//add x to close menu filter (part in html)
+
+delete_html_filter.addEventListener("click",()=>{
+    menu_filters.style.display="none";
 });

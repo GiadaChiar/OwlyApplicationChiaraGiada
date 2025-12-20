@@ -211,6 +211,8 @@ nav .ham-menu span:nth-child(3) {
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  z-index: 9999;
 }
 .off-screen-menu h3 a {
   color: white;
@@ -229,7 +231,73 @@ nav .ham-menu span:nth-child(3) {
   border-bottom: none;
 }
 
-.off-screen-menu.active {
+/*section to add-filter*/
+#more-filters {
+  margin-top: 20px;
+  margin: 20px auto;
+  margin-bottom: 20px;
+  border: 2px solid #004aad;
+  border-radius: 5px;
+  background-color: rgba(0, 74, 173, 0.8);
+  color: white;
+  max-width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+#more-filters #delete_html_filter {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+#more-filters .in-line {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+  gap: 10px;
+}
+#more-filters .in-line .btn, #more-filters .in-line .btn-secondary.dropdown-toggle {
+  background-color: #004aad !important;
+  color: white !important;
+  border: 2px solid white !important;
+}
+#more-filters .in-line #italiano {
+  background: linear-gradient(90deg, rgb(32, 122, 32), rgb(244, 243, 243), rgb(220, 88, 88));
+  margin-bottom: 0.2px;
+  margin-top: -10px;
+  text-align: center;
+}
+#more-filters .in-line #italiano:hover {
+  background: linear-gradient(90deg, rgb(11, 94, 11), rgb(175, 172, 172), rgb(135, 12, 12));
+}
+#more-filters .in-line #francese {
+  background: linear-gradient(90deg, rgb(14, 34, 112), rgb(244, 243, 243), rgb(220, 88, 88));
+  margin-bottom: 0.2px;
+  text-align: center;
+}
+#more-filters .in-line #francese:hover {
+  background: linear-gradient(90deg, rgb(4, 17, 68), rgb(175, 172, 172), rgb(135, 12, 12));
+}
+#more-filters .in-line #spagnolo {
+  background: linear-gradient(rgb(220, 88, 88), rgb(238, 238, 44), rgb(220, 88, 88));
+  text-align: center;
+}
+#more-filters .in-line #spagnolo:hover {
+  background: linear-gradient(rgb(135, 12, 12), rgb(222, 222, 9), rgb(135, 12, 12));
+}
+#more-filters .in-line #inglese {
+  background: linear-gradient(90deg, rgb(10, 36, 106), rgb(255, 255, 255), rgb(200, 16, 46));
+  margin-top: -10px;
+  margin-bottom: 0.2px;
+  text-align: center;
+}
+#more-filters .in-line #inglese:hover {
+  background: linear-gradient(90deg, rgb(3, 18, 53), rgb(222, 222, 222), rgb(135, 12, 12));
+}
+#more-filters .off-screen-menu.active {
   left: 0;
 }
 
