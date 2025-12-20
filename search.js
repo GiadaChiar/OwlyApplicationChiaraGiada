@@ -246,6 +246,87 @@ button_filters.addEventListener("click",()=>{
 
 //add x to close menu filter (part in html)
 
-delete_html_filter.addEventListener("click",()=>{
+delete_html_filter.addEventListener("click",async()=>{
     menu_filters.style.display="none";
 });
+
+
+/*search with author and title and language if there is also category,
+everything will be work also if there insn't one or more selections.*/
+
+/*first step get category and all the other choosen*/
+//const categoryInput = document.getElementById('category'); get value
+const searchButtonFilter= document.getElementById("search_filter")
+searchButtonFilter.addEventListener("click",async()=>{
+    const authorInput= document.getElementById("author");
+    const titleInput = document.getElementById("title");
+    const languageSelecte = document.getElementsByClassName("dropdown-item")
+    //late language but l have to add it 
+   /* if(authorInput.value) {
+        console.log(authorInput.value);
+    }else {
+        console.log("autore non selezionato")
+    }*/
+   //same 
+    console.log(authorInput.value ? authorInput.value : "autore non selezionato");
+    console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
+    console.log (categoryInput.value ? categoryInput.value : "categoria non selezionata");
+    console.log(languageSelecte.value ? languageSelecte.value : "linguaggio non selezionato");
+
+   
+//author_name
+   //language
+   //title
+
+   //fetch more filters
+   /* const url = `https://openlibrary.org/search.json?subject=${categoryInput.value}&author_name=${encodeURIComponent(authorInput.value)}`+"&limit=20";
+
+    if(categoryInput.value){
+        const catUrl= + `subject=${categoryInput.value}`
+    } 
+
+    if(authorInput.value){
+        const authUrl= + `author_name=${encodeURIComponent(authorInput.value)}`
+        if(categoryInput.value){
+            const authorInput = + `&author_name=${encodeURIComponent(authorInput.value)}`
+        }
+    }
+    
+    console.log("URL richiesta:", url); */
+
+    const baseUrl= `https://openlibrary.org/search.json`
+    
+    //object for create dynamic url, fantastic!
+    const params = new URLSearchParams();
+
+    //category
+    if (categoryInput.value) {
+    params.append("subject", categoryInput.value);
+    }
+
+    //author
+    if(authorInput.value){
+        params.append("author_name",authorInput.value);
+    }
+
+    //title
+    if(titleInput.value){
+        params.append("title",titleInput.value);
+    }
+    //limit 
+    params.append("limit", "5");
+
+    const url = `${baseUrl}?${params.toString()}`;
+    console.log(url);
+
+    try{
+        response = await fetch(url);
+        if(!response.ok) throw new Error("Errore caricamento descrizione")
+            const data = await response.json();
+        console.log(data);
+    }catch(error){
+        console.log("Errore fetch dei filtri aggiuntivi")
+    }
+
+
+})

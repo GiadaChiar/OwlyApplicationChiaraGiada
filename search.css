@@ -270,38 +270,41 @@ nav .ham-menu span:nth-child(3) {
   color: white !important;
   border: 2px solid white !important;
 }
+#more-filters .in-line li {
+  margin-bottom: 1px;
+  text-align: center;
+}
 #more-filters .in-line #italiano {
   background: linear-gradient(90deg, rgb(32, 122, 32), rgb(244, 243, 243), rgb(220, 88, 88));
-  margin-bottom: 0.2px;
-  margin-top: -10px;
-  text-align: center;
+  margin-top: -6px;
 }
 #more-filters .in-line #italiano:hover {
   background: linear-gradient(90deg, rgb(11, 94, 11), rgb(175, 172, 172), rgb(135, 12, 12));
 }
 #more-filters .in-line #francese {
   background: linear-gradient(90deg, rgb(14, 34, 112), rgb(244, 243, 243), rgb(220, 88, 88));
-  margin-bottom: 0.2px;
-  text-align: center;
 }
 #more-filters .in-line #francese:hover {
   background: linear-gradient(90deg, rgb(4, 17, 68), rgb(175, 172, 172), rgb(135, 12, 12));
 }
 #more-filters .in-line #spagnolo {
   background: linear-gradient(rgb(220, 88, 88), rgb(238, 238, 44), rgb(220, 88, 88));
-  text-align: center;
 }
 #more-filters .in-line #spagnolo:hover {
   background: linear-gradient(rgb(135, 12, 12), rgb(222, 222, 9), rgb(135, 12, 12));
 }
 #more-filters .in-line #inglese {
-  background: linear-gradient(90deg, rgb(10, 36, 106), rgb(255, 255, 255), rgb(200, 16, 46));
-  margin-top: -10px;
-  margin-bottom: 0.2px;
-  text-align: center;
+  background: linear-gradient(90deg, rgb(14, 34, 112), rgb(220, 88, 88), rgb(244, 243, 243));
 }
 #more-filters .in-line #inglese:hover {
-  background: linear-gradient(90deg, rgb(3, 18, 53), rgb(222, 222, 222), rgb(135, 12, 12));
+  background: linear-gradient(90deg, rgb(4, 17, 68), rgb(135, 12, 12), rgb(175, 172, 172));
+}
+#more-filters .in-line #tutte {
+  background: rgb(244, 243, 243);
+  margin-bottom: -6px;
+}
+#more-filters .in-line #tutte:hover {
+  background: rgb(175, 172, 172);
 }
 
 @media (min-width: 1600px) {

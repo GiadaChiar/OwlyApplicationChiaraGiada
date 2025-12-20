@@ -307,14 +307,18 @@ nav {
         background-color: vars.$background2 !important;
         color: vars.$background1 !important;
         border: 2px solid vars.$background1 !important;
+
     }
+
+    li{
+            margin-bottom: 1px;
+            text-align: center;
+        }
             #italiano{
             background: linear-gradient(90deg,
                 rgb(32, 122, 32),rgb(244, 243, 243),rgb(220, 88, 88)
             );
-            margin-bottom:0.2px;
-            margin-top:-10px;
-            text-align: center;
+            margin-top: -6px;
             &:hover{
                 background: linear-gradient(90deg,
                 rgb(11, 94, 11),rgb(175, 172, 172),rgb(135, 12, 12));
@@ -324,8 +328,6 @@ nav {
             background: linear-gradient(90deg,
                 rgb(14, 34, 112),rgb(244, 243, 243),rgb(220, 88, 88)
             );
-            margin-bottom:0.2px;
-            text-align: center;
             &:hover{
                 background: linear-gradient(90deg,
                 rgb(4, 17, 68),rgb(175, 172, 172),rgb(135, 12, 12)
@@ -336,7 +338,7 @@ nav {
             background: linear-gradient(
                 rgb(220, 88, 88),rgb(238, 238, 44),rgb(220, 88, 88)
             );
-            text-align: center;
+            
             
             &:hover{
                 background: linear-gradient(
@@ -346,19 +348,22 @@ nav {
         }
         #inglese{
             background: linear-gradient(90deg,
-                rgb(10, 36, 106),rgb(255, 255, 255),rgb(200, 16, 46)
+                rgb(14, 34, 112),rgb(220, 88, 88),rgb(244, 243, 243)
             );
-            margin-top:-10px;
-            margin-bottom:0.2px;
-            text-align: center;
             &:hover{
                 background: linear-gradient(90deg,
-                rgb(3, 18, 53),rgb(222, 222, 222),rgb(135, 12, 12)
+                rgb(4, 17, 68),rgb(135, 12, 12),rgb(175, 172, 172)
             );
             }
-    }
-    
-        
+        }
+        #tutte{
+            background:rgb(244, 243, 243);
+            margin-bottom: -6px;
+            &:hover{
+                background:rgb(175, 172, 172);
+
+            }
+        }  
 
 
 }
