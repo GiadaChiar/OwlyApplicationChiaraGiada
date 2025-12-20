@@ -201,7 +201,9 @@ nav {
 /*quando lo attivo il menu*/
 /*creao la x ruoto le due barre e nascondo quella in mezzo*/
 .ham-menu.active span {
+    z-index: 9999;
 
+    
 
 
     &:nth-last-child(1) {
@@ -244,8 +246,7 @@ nav {
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-    position: fixed;
-    z-index: 9999;
+    z-index: 999;
 
 
     h3 a {
@@ -267,6 +268,9 @@ nav {
         }
 
     }
+}
+.off-screen-menu.active {
+    left: 0;
 }
 
 /*section to add-filter*/
@@ -359,10 +363,6 @@ nav {
 
 }
 
-
-.off-screen-menu.active {
-    left: 0;
-}
 
 }
 
