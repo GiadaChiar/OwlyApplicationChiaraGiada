@@ -50,26 +50,19 @@ categoryInput.addEventListener("input", () => {
 }
 });
 
-//if I click on search button
 
 
-searchButton.addEventListener("click", async () => {
-    const category = categoryInput.value.trim();
-    if (!category){
-        alert("Per favore, inserisci una categoria valida.");
-        return;
-    };
+//function to create a section with div and description-----------------------------------------------------------------------------------
+function ViewSearch(data){
 
-    const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
-    console.log("URL richiesta:", url); 
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Errore API " + response.status);
-
-        const data = await response.json();
-        console.log("Risultati API:", data.docs); // <-- QUI
+    risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
+    if(data.numFound==0){
         risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
+        alert("Nessun libro è stato trovato! Cambiare la ricerca")
+
+
+    }else{
+
 
         data.docs.forEach(doc => {
             const rowDiv = document.createElement('div');
@@ -219,15 +212,45 @@ searchButton.addEventListener("click", async () => {
                 divPlace.remove();
                 deleteBt.remove();
             })
+        
 
         }catch(error){
             console.log("Errore caricamento descrizione")
         }
-
+        
             
         });
     });
 
+
+}}
+
+
+
+//--------------------end function-----------------------------------------------------
+
+
+//if I click on search button
+
+
+searchButton.addEventListener("click", async () => {
+    const category = categoryInput.value.trim();
+    if (!category){
+        alert("Per favore, inserisci una categoria valida.");
+        return;
+    };
+
+    const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
+    console.log("URL richiesta:", url); 
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Errore API " + response.status);
+
+        const data = await response.json();
+        console.log("Risultati API:", data.docs); // <-- QUI
+        
+        ViewSearch(data);
             
     } catch (error) {
         console.error("Errore durante il recupero dei dati:", error);
@@ -324,6 +347,15 @@ searchButtonFilter.addEventListener("click",async()=>{
         if(!response.ok) throw new Error("Errore caricamento descrizione")
             const data = await response.json();
         console.log(data);
+
+//----------------------------------------da qui------------------------------------------------------------------
+        ViewSearch(data);
+
+        
+//----------------------------------------------------------a qui------------
+        ///create a fun ction to do that and recall it
+
+
     }catch(error){
         console.log("Errore fetch dei filtri aggiuntivi")
     }
