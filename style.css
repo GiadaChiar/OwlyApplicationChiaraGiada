@@ -410,4 +410,104 @@ section about us*/
     width: 100%;
     padding: 15px;
   }
+}
+
+/*adact to the biggest screen
+1024-1440 laptop monitor
+*/
+@media (min-width: 1024px) {
+  html, body {
+    background-size: contain;
+  }
+  html .ham-menu, body .ham-menu {
+    height: 40px;
+    width: 40px;
+  }
+  html .ham-menu span, body .ham-menu span {
+    height: 8px;
+  }
+  html .off-screen-menu h3 a, body .off-screen-menu h3 a {
+    font-size: 2.5rem;
+  }
+  html #firstPage #firstRight h1, body #firstPage #firstRight h1 {
+    margin-bottom: 80px;
+    margin-top: 30px;
+  }
+  html #firstPage #firstRight h2, body #firstPage #firstRight h2 {
+    margin-bottom: 100px;
+  }
+  html #firstPage #firstRight #insideFirstRight, body #firstPage #firstRight #insideFirstRight {
+    margin-bottom: 150px;
+  }
+  html #firstPage #firstRight #insideFirstRight p, body #firstPage #firstRight #insideFirstRight p {
+    font-size: larger;
+  }
+}
+/*768-834 tablet
+@media (max-width: 768px) { }*/
+/*375*414 Iphone
+@media (max-width: 414px) { }*/
+@media (max-width: 414px) {
+  html, body {
+    background-size: contain;
+  }
+  html .top-page .ham-menu, body .top-page .ham-menu {
+    height: 20px;
+    width: 20px;
+  }
+  html .top-page .ham-menu span, body .top-page .ham-menu span {
+    height: 3px;
+  }
+  html .top-page img, body .top-page img {
+    height: 35px;
+    width: 20px;
+  }
+  html .off-screen-menu, body .off-screen-menu {
+    width: 80%;
+  }
+  html .off-screen-menu h3 a, body .off-screen-menu h3 a {
+    font-size: 1rem;
+  }
+  html #firstPage, body #firstPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: url("img/bigbook.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  html #firstPage #firstLeft, body #firstPage #firstLeft {
+    display: none;
+  }
+  html #firstPage #firstRight h1, html #firstPage #firstRight h2, html #firstPage #firstRight p, body #firstPage #firstRight h1, body #firstPage #firstRight h2, body #firstPage #firstRight p {
+    color: #fff;
+  }
+  html #firstPage #firstRight h1, body #firstPage #firstRight h1 {
+    font-size: 1rem;
+  }
+  html #firstPage #firstRight h2, body #firstPage #firstRight h2 {
+    font-size: small;
+    margin-left: 3px;
+  }
+  html #firstPage #firstRight #insideFirstRight, body #firstPage #firstRight #insideFirstRight {
+    margin-bottom: 150px;
+    background-color: rgba(203, 208, 215, 0.8);
+  }
+  html #firstPage #firstRight #insideFirstRight p, body #firstPage #firstRight #insideFirstRight p {
+    font-size: 0.5rem;
+    color: #004aad;
+  }
+  html #firstPage #firstRight #SecondInsideFirstRight, body #firstPage #firstRight #SecondInsideFirstRight {
+    background-color: rgba(203, 208, 215, 0.8);
+    width: 100%;
+    margin: 0px;
+    margin-right: -100px;
+  }
+  html #firstPage #firstRight #SecondInsideFirstRight p, body #firstPage #firstRight #SecondInsideFirstRight p {
+    font-size: small;
+    color: #004aad;
+    margin-left: 15px;
+  }
 }/*# sourceMappingURL=style.css.map */

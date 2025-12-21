@@ -305,10 +305,4 @@ nav .ham-menu span:nth-child(3) {
 }
 #more-filters .in-line #tutte:hover {
   background: rgb(175, 172, 172);
-}
-
-@media (min-width: 1600px) {
-  html, body {
-    background-size: contain;
-  }
 }/*# sourceMappingURL=search.css.map */
