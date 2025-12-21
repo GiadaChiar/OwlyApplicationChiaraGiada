@@ -45,7 +45,6 @@ body.no-scroll {
   width: 100%;
   height: 5vh;
   margin-bottom: 5px;
-  margin-top: -15px;
   background-color: #004aad;
 }
 .top-page img {
@@ -152,7 +151,6 @@ nav .ham-menu span:nth-child(3) {
   gap: 30px;
 }
 #firstPage #firstLeft img {
-  margin-top: -0.5%;
   height: 75vh;
   width: 50vh;
   margin-left: 2.3rem;
@@ -187,7 +185,6 @@ nav .ham-menu span:nth-child(3) {
   color: #fff;
   font-size: 1rem;
   font-family: "Arial", " Helvetica ", sans-serif;
-  margin-top: -1rem;
   padding: 8%;
   text-align: right;
   margin-right: 10%;
@@ -242,19 +239,17 @@ section about us*/
 .SecondPage .container-aboutus .container {
   padding-top: 30px;
   padding-bottom: 30px;
+  justify-content: center;
 }
 .SecondPage .container-aboutus .container:first-child {
   margin-top: 10px;
-  justify-content: center;
 }
 .SecondPage .container-aboutus .container:nth-child(2) {
   margin-top: 30px;
-  justify-content: center;
 }
 .SecondPage .container-aboutus .container:nth-child(3) {
   margin-top: 50px;
   margin-bottom: 30px;
-  justify-content: center;
 }
 .SecondPage .container-aboutus .container p {
   color: #fff;
@@ -269,7 +264,7 @@ section about us*/
 }
 .SecondPage .container-aboutus #handsImg,
 .SecondPage .container-aboutus #girlRead {
-  width: 25vh;
+  width: 20vh;
   height: auto;
 }
 
@@ -338,7 +333,6 @@ section about us*/
 }
 
 #fourthPage {
-  margin-top: -15%;
   padding-top: 0%;
   /* ----- RESPONSIVE: THIRD PAGE (SERVIZI) ----- */
   /* Tablet → 2 colonne */
@@ -442,9 +436,54 @@ section about us*/
   html #firstPage #firstRight #insideFirstRight p, body #firstPage #firstRight #insideFirstRight p {
     font-size: larger;
   }
+  .SecondPage #titleDiv h1 {
+    font-size: 3.5rem;
+  }
+  .SecondPage .container-aboutus .container p {
+    font-size: 1rem;
+  }
+  #thirtPage {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    height: 50vh;
+  }
+  #thirtPage h1 {
+    margin-bottom: 80px;
+    font-size: 3.5rem;
+  }
+  #thirtPage .title-row h3 {
+    font-size: 2.5rem;
+  }
+  #thirtPage .title-row img {
+    height: 30px;
+    width: auto;
+    gap: 30px;
+  }
 }
 /*768-834 tablet
 @media (max-width: 768px) { }*/
+@media (max-width: 768px) {
+  .SecondPage .container-aboutus {
+    justify-content: center;
+    align-items: center;
+  }
+  .SecondPage .container-aboutus .container {
+    height: 60vh;
+  }
+  .SecondPage .container-aboutus .container:first-child {
+    margin-top: -100px;
+  }
+  .SecondPage .container-aboutus .container:nth-child(2) {
+    margin-top: -90px;
+  }
+  .SecondPage .container-aboutus .container:nth-child(2) p {
+    margin-top: -2px;
+    font-size: 1rem;
+  }
+  .SecondPage .container-aboutus #ony_large {
+    display: none;
+  }
+}
 /*375*414 Iphone
 @media (max-width: 414px) { }*/
 @media (max-width: 414px) {
@@ -485,10 +524,10 @@ section about us*/
     color: #fff;
   }
   html #firstPage #firstRight h1, body #firstPage #firstRight h1 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   html #firstPage #firstRight h2, body #firstPage #firstRight h2 {
-    font-size: small;
+    font-size: 1rem;
     margin-left: 3px;
   }
   html #firstPage #firstRight #insideFirstRight, body #firstPage #firstRight #insideFirstRight {
@@ -503,11 +542,60 @@ section about us*/
     background-color: rgba(203, 208, 215, 0.8);
     width: 100%;
     margin: 0px;
-    margin-right: -100px;
   }
   html #firstPage #firstRight #SecondInsideFirstRight p, body #firstPage #firstRight #SecondInsideFirstRight p {
     font-size: small;
     color: #004aad;
     margin-left: 15px;
+  }
+  .SecondPage #titleDiv h1 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+  }
+  .SecondPage .container-aboutus {
+    flex-direction: column;
+  }
+  .SecondPage .container-aboutus .container:first-child {
+    display: none;
+  }
+  .SecondPage .container-aboutus .container:nth-child(2) {
+    min-height: 80vh;
+    margin-top: 0px;
+  }
+  .SecondPage .container-aboutus .container:nth-child(2) p {
+    margin-top: -2px;
+    font-size: 1rem;
+  }
+  .SecondPage .container-aboutus #ony_large {
+    display: none;
+  }
+  #thirtPage {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  /*#thirtPage{
+
+      margin-top: 80px;
+      margin-bottom:100px;
+      height: 50vh;
+      h1{
+          margin-bottom: 30px;
+          font-size: 1.8rem;
+      }
+      .title-row{
+          h3{
+          font-size: 1.5rem;
+          }
+          img{
+              height:30px;
+              width:auto;
+              gap:30px;
+          }
+      }
+  }*/
+  #fourthPage #titleDiv h1 {
+    font-size: 1.8rem;
   }
 }/*# sourceMappingURL=style.css.map */

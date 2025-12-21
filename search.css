@@ -305,4 +305,26 @@ nav .ham-menu span:nth-child(3) {
 }
 #more-filters .in-line #tutte:hover {
   background: rgb(175, 172, 172);
+}
+
+/*375*414 Iphone
+@media (max-width: 414px) { }*/
+@media (max-width: 414px) {
+  html .top-page .ham-menu, body .top-page .ham-menu {
+    height: 20px;
+    width: 20px;
+  }
+  html .top-page .ham-menu span, body .top-page .ham-menu span {
+    height: 3px;
+  }
+  html .top-page img, body .top-page img {
+    height: 35px;
+    width: 20px;
+  }
+  html .off-screen-menu, body .off-screen-menu {
+    width: 80%;
+  }
+  html .off-screen-menu h3 a, body .off-screen-menu h3 a {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=search.css.map */

@@ -49,7 +49,7 @@ body.no-scroll {
     width: 100%;
     height: 5vh;
     margin-bottom: 5px;
-    margin-top: -15px;
+    //margin-top: -15px;
     background-color: vars.$background2;
     
     img{
@@ -187,7 +187,7 @@ nav {
 
     #firstLeft{
         img{
-            margin-top: -0.5%;
+            //margin-top: -0.5%;
             height: 75vh;
             width: 50vh;
             margin-left: 2.3rem;
@@ -224,7 +224,7 @@ nav {
                     color: vars.$font-color1;
                     font-size: vars.$font-sizeh3;
                     font-family: vars.$font-text2;
-                    margin-top: -1rem;
+                    //margin-top: -1rem;
                     padding: 8%;
                     text-align: right;
                     margin-right: 10%;
@@ -285,25 +285,21 @@ section about us*/
             .container {
                         padding-top: 30px;
                         padding-bottom: 30px;
+                        justify-content: center;
 
                 &:first-child {
-                        margin-top: 10px;
-                        justify-content: center;
-                        
+                        margin-top: 10px;  
                         
                 }
                 
                 &:nth-child(2) {
-                        margin-top: 30px;
-                        justify-content: center;
-                        
+                        margin-top: 30px;                        
                         
                 }
 
                 &:nth-child(3) {
                         margin-top: 50px;
                         margin-bottom: 30px;
-                        justify-content: center;
                 }
     
                 p {
@@ -324,7 +320,7 @@ section about us*/
     
             #handsImg,
             #girlRead {
-                width: 25vh;
+                width: 20vh;
                 height: auto;
             }
         }
@@ -405,7 +401,7 @@ section about us*/
 
 //fourth page section
 #fourthPage{
-    margin-top:-15%;
+    //margin-top:-15%;
     padding-top:0%;
     
     
@@ -513,6 +509,8 @@ section about us*/
 @media (min-width: 1024px) {
     html, body {
         background-size: contain;
+    //first page okay
+
         
         .ham-menu{
             height: 40px;
@@ -526,9 +524,6 @@ section about us*/
         .off-screen-menu{
             h3 a { 
             font-size: vars.$font-sizeh1;
-        }
-        .off-screen-menu.active{
-
         }
     }
 
@@ -555,6 +550,46 @@ section about us*/
     }
     //end firt page
 
+    //second page
+    .SecondPage{
+        #titleDiv{
+            h1{
+                font-size: 3.5rem;
+        }
+        }
+        .container-aboutus{
+            .container{
+                p{
+                    font-size: 1rem;
+                }
+            } 
+        }
+    }
+
+    // 3page
+    #thirtPage{
+
+        margin-top: 30px;
+        margin-bottom:100px;
+        height: 50vh;
+        h1{
+            margin-bottom: 80px;
+            font-size: 3.5rem;
+        }
+        .title-row{
+            h3{
+            font-size: 2.5rem;
+            }
+            img{
+                height:30px;
+                width:auto;
+                gap:30px;
+            }
+        }
+    }
+
+//last page ok
+
 }
 
 
@@ -564,8 +599,39 @@ section about us*/
 @media (max-width: 768px) { }*/
 @media (max-width: 768px) {
     //first page okay
+
+
+    //second page 
+    
+    //second page
+    .SecondPage{
+        
+        .container-aboutus{
+            justify-content: center;
+            align-items: center;
+            .container{
+                height: 60vh;
+                &:first-child {
+                    margin-top: -100px;
+                    }
+                
+                &:nth-child(2) {
+                    margin-top: -90px;
+                    p{
+                    margin-top: -2px;
+                    font-size: 1rem;
+                    }       
+                }
+            }
+            #ony_large{
+                display: none;
+            }
+        }
+    }
 }
 
+//page 3 okay
+//page 4 okay
 
 
 
@@ -593,7 +659,6 @@ section about us*/
             }
 
         }
-       
         
         .off-screen-menu{
             width: 80%;
@@ -625,11 +690,11 @@ section about us*/
                 }
 
                 h1{
-                        font-size: vars.$font-sizeh3;
+                        font-size: 1.3rem;
 
                     }
                 h2{
-                        font-size: small;
+                        font-size: 1rem;
                         margin-left: 3px;
                     }
                 #insideFirstRight{
@@ -645,7 +710,7 @@ section about us*/
                     background-color:rgba(203, 208, 215, 0.8);
                     width: 100%;
                     margin: 0px;
-                    margin-right: -100px;
+                    //margin-right: -100px;
                     p{
                         font-size: small;
                         color: vars.$font-color2;
@@ -658,11 +723,91 @@ section about us*/
         }
 
     }
-    //not more img left but like cover first page 
+    //second page
+    
+    .SecondPage{
+        #titleDiv{
+            h1{
+                font-size: 1.5rem;
+                margin-top: 30px;
+            }
+        }
+        
+        .container-aboutus{
+            flex-direction: column;
+            .container{
+                &:first-child {
+                    display: none;
+                    }
+                
+                &:nth-child(2) {
+                    min-height: 80vh;
+                    margin-top: 0px;
+                    p{
+                    margin-top: -2px;
+                    font-size: 1rem;
+                    }       
+                }
+            }
+            #ony_large{
+                display: none;
+            }
+        }
+    }
+
+    //3 page
+     // 3page
+
+        #thirtPage {
+        height: auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        
+
+    }
+
+    
+
+
+    /*#thirtPage{
+
+        margin-top: 80px;
+        margin-bottom:100px;
+        height: 50vh;
+        h1{
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        .title-row{
+            h3{
+            font-size: 1.5rem;
+            }
+            img{
+                height:30px;
+                width:auto;
+                gap:30px;
+            }
+        }
+    }*/
+
+    //4 page
+    #fourthPage{
+        #titleDiv{
+        h1{
+            font-size: 1.8rem;
+        }
+    }
+
+    }
+
+
+}
+
 
     
         
-    }
+    
 
 
 

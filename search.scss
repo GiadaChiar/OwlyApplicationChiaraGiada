@@ -371,3 +371,38 @@ nav {
 
 }
 
+
+
+
+
+
+/*375*414 Iphone
+@media (max-width: 414px) { }*/
+
+
+@media (max-width: 414px) {
+
+        html, body {
+        .top-page{
+            .ham-menu{
+                height: 20px;
+                width: 20px;
+                span{
+                    height: 3px;
+                }
+            }
+            img{
+                height: 35px;
+                width: 20px;
+            }
+
+        }
+        
+        .off-screen-menu{
+            width: 80%;
+            h3 a { 
+            font-size: vars.$font-sizeh3;
+            }
+        }
+    }
+}
