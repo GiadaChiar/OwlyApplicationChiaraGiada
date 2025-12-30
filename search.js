@@ -9,10 +9,38 @@ const menu_filters= document.getElementById("more-filters");
 //const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
 
-
+let selectedLanguage ="en";
 
 //default hide menu filters
 menu_filters.style.display="none";
+
+
+
+async function testTranslate() {
+    const bodyToSend = {
+        text: "Questa è la mia vita,davvero meravigliosa",
+        target: "en"
+    };
+
+    const response = await fetch("http://localhost:3000/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(bodyToSend)
+    });
+
+    const data = await response.json();
+    console.log("Tradotto:", data.translatedText);
+}
+
+testTranslate();
+
+
+
+
+
+
+
+
 
 
 hamMenu.addEventListener('click', () => {
@@ -53,7 +81,7 @@ categoryInput.addEventListener("input", () => {
 
 
 //function to create a section with div and description-----------------------------------------------------------------------------------
-function ViewSearch(data){
+function ViewSearch(data,selectedLanguage){
 
     risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
     if(data.numFound==0){
@@ -172,7 +200,7 @@ function ViewSearch(data){
             }
 
             //check data if it is an object or a string or it is empty
-            let descriptionText = "Descrizione non disponibile";
+            /* let descriptionText = "Descrizione non disponibile";
 
             if (typeof data.description === "string") {
                 descriptionText = data.description;
@@ -180,17 +208,45 @@ function ViewSearch(data){
                 typeof data.description === "object" &&
                 data.description?.value
             ) {
-                descriptionText = data.description.value;
+                if(selectedLanguage !=="en"){
+                    descriptionText = await translateText(data.description.value, selectedLanguage);
+                    console.log("Descrizione tradotta:", descriptionText); // ora
+                }else{
+                    descriptionText = data.description.value;
+                }
             }
+                */
+            let descriptionText = "Descrizione non disponibile";
+
+        if (data.description) {
+            // ottieni il testo reale, sia che sia stringa o oggetto
+            let rawText = (typeof data.description === "string") 
+                ? data.description 
+                : (typeof data.description === "object" && data.description.value) 
+                    ? data.description.value 
+                    : "Descrizione non disponibile";
+
+            // traduci solo se lingua diversa da inglese
+            if (selectedLanguage !== "en") {
+                descriptionText = await translateText(rawText, selectedLanguage);
+                console.log("Descrizione tradotta:", descriptionText);
+            } else {
+                descriptionText = rawText;
+            }
+
+        }
+
+
+
             // crea il div descrizione
             const divPlace = document.createElement("div");
             divPlace.classList.add("description-box");
             const titleDesc= document.createElement("h5")
-            titleDesc.classList.add="desc_title"
+            titleDesc.classList.add("desc_title")
             titleDesc.textContent=" Description:"
 
             const pDesc= document.createElement("p");
-            pDesc.classList.add="desc_p"
+            pDesc.classList.add("desc_p");
             pDesc.textContent = descriptionText;
             
             divPlace.appendChild(titleDesc)
@@ -249,8 +305,16 @@ searchButton.addEventListener("click", async () => {
 
         const data = await response.json();
         console.log("Risultati API:", data.docs); // <-- QUI
+
+        if(selectedLanguage==="en"){
+            console.log("selectedLanguage:",selectedLanguage)
+            ViewSearch(data);
+        }
+        else{
+            console.log("lingua selezionata differente")
+        }
         
-        ViewSearch(data);
+        
             
     } catch (error) {
         console.error("Errore durante il recupero dei dati:", error);
@@ -274,16 +338,99 @@ delete_html_filter.addEventListener("click",async()=>{
 });
 
 
+
+
+///function to get traslate 
+
+
+
+
+//how to get language selected
+
+const languageItems = document.querySelectorAll(".dropdown-item");
+
+languageItems.forEach(item => {
+    item.addEventListener("click", e => {
+        e.preventDefault();
+        selectedLanguage = item.dataset.lang;
+        console.log("Lingua selezionata:", selectedLanguage);
+    });
+});
+
+
+
+//function to traslate
+
+/*
+async function translateText(text, targetLang) {
+    // Se lingua inglese o testo vuoto → non tradurre
+    if (!text || targetLang === "en") {
+        return text;
+    }
+
+    try {
+        const response = await fetch("https://libretranslate.de/translate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                q: text,
+                source: "auto",
+                target: targetLang,
+                format: "text"
+            })
+        });
+
+        const data = await response.json();
+        console.log("testo tradotto:",data.translatedText);
+        return data.translatedText;
+        
+
+    } catch (error) {
+        console.error("Errore traduzione:", error);
+        return text; // fallback
+    }
+}
+*/
+
+async function translateText(text, targetLang) {
+    if (!text || targetLang === "en") return text;
+
+    try {
+        const response = await fetch("http://localhost:3000/translate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text, target: targetLang })
+        });
+
+        const data = await response.json();
+        console.log("testo tradotto:", data.translatedText);
+        return data.translatedText;
+
+    } catch (error) {
+        console.error("Errore traduzione:", error);
+        return text;
+    }
+}
+
+
+
+
 /*search with author and title and language if there is also category,
 everything will be work also if there insn't one or more selections.*/
-
+//language selection:
+    
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
 const searchButtonFilter= document.getElementById("search_filter")
 searchButtonFilter.addEventListener("click",async()=>{
     const authorInput= document.getElementById("author");
     const titleInput = document.getElementById("title");
-    const languageSelecte = document.getElementsByClassName("dropdown-item")
+
+
+   
+    
     //late language but l have to add it 
    /* if(authorInput.value) {
         console.log(authorInput.value);
@@ -294,8 +441,8 @@ searchButtonFilter.addEventListener("click",async()=>{
     console.log(authorInput.value ? authorInput.value : "autore non selezionato");
     console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
     console.log (categoryInput.value ? categoryInput.value : "categoria non selezionata");
-    console.log(languageSelecte.value ? languageSelecte.value : "linguaggio non selezionato");
-
+    //console.log(languageSelecte.value ? languageSelecte.value : "linguaggio non selezionato");
+    console.log("Lingua usata nella ricerca:", selectedLanguage);
    
 //author_name
    //language
@@ -349,7 +496,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         console.log(data);
 
 //----------------------------------------da qui------------------------------------------------------------------
-        ViewSearch(data);
+        ViewSearch(data,selectedLanguage);
 
         
 //----------------------------------------------------------a qui------------
