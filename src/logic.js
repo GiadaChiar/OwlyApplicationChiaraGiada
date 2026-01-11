@@ -1,3 +1,7 @@
+
+//import './style/style.scss';
+
+
 /*creo due costanti per le due classi*/
 const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');

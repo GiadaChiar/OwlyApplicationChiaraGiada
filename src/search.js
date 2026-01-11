@@ -1,5 +1,8 @@
 
 
+//import './style/search.scss';
+
+
 
 /*creo due costanti per le due classi*/
 const hamMenu = document.querySelector('.ham-menu');
@@ -86,7 +89,7 @@ function ViewSearch(data,selectedLanguage){
     risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
     if(data.numFound==0){
         risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
-        alert("Nessun libro è stato trovato! Cambiare la ricerca")
+        alert("No books were found! Try a different search.")
 
 
     }else{
@@ -103,7 +106,7 @@ function ViewSearch(data,selectedLanguage){
             rowDiv.appendChild(inerrRowDiv);
 
             const titleElement = document.createElement('a');
-            titleElement.textContent = doc.title ?? "Titolo non disponibile";
+            titleElement.textContent = doc.title ?? "Title not available";
             titleElement.id = doc.key;
             titleElement.classList.add('book-title', 'btn', 'btn-primary');
             titleElement.setAttribute('data-bs-toggle', 'collapse');
@@ -153,7 +156,7 @@ function ViewSearch(data,selectedLanguage){
             infoIcon.addEventListener("mouseover", () => {
                 infobox =document.createElement("div");
                 infobox.id="info_box";
-                infobox.textContent = "Lista dei Libri con autori e titoli in base alla categoria selezionata.";
+                infobox.textContent = "List of books with authors and titles based on the selected category.";
             risultatiDiv.appendChild(infobox);
             });
 
@@ -186,7 +189,7 @@ function ViewSearch(data,selectedLanguage){
 
         try{
             const response = await fetch(url);
-            if(!response.ok) throw new Error("Errore caricamento descrizione")
+            if(!response.ok) throw new Error("Error loading description")
             const data = await response.json();
             console.log("Risultati descrizione API:",data.description)
 
@@ -216,7 +219,7 @@ function ViewSearch(data,selectedLanguage){
                 }
             }
                 */
-            let descriptionText = "Descrizione non disponibile";
+            let descriptionText = "Description not available";
 
         if (data.description) {
             // ottieni il testo reale, sia che sia stringa o oggetto
@@ -224,7 +227,7 @@ function ViewSearch(data,selectedLanguage){
                 ? data.description 
                 : (typeof data.description === "object" && data.description.value) 
                     ? data.description.value 
-                    : "Descrizione non disponibile";
+                    : "Description not available";
 
             // traduci solo se lingua diversa da inglese
             if (selectedLanguage !== "en") {
@@ -292,7 +295,7 @@ function ViewSearch(data,selectedLanguage){
 searchButton.addEventListener("click", async () => {
     const category = categoryInput.value.trim();
     if (!category){
-        alert("Per favore, inserisci una categoria valida.");
+        alert("Please enter a valid category.");
         return;
     };
 
