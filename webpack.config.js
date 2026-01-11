@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        logic: './src/logic.js',
-        search: './src/search.js',
+        logic: './src/js/logic.js',
+        search: './src/js/search.js',
     },
     output: {
         filename: '[name].bundle.js',
