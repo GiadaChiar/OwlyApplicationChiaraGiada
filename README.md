@@ -84,5 +84,5 @@ Same result or similar books
 
 # TO OPEN APP ONLINE 
 ## Prova l'app online
-[open Owly Application online](https://GiadaChiar.github.io/OwlyApplicationChiaraGiada/)
+[open Owly Application online](https://giadachiar.github.io/OwlyApplicationChiaraGiada/)
 
