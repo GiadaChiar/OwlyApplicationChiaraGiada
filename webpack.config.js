@@ -14,26 +14,26 @@ module.exports = {
     mode: 'development',
     module: {
         rules: [
-        {
-            test: /\.scss$/,
-            use: ['style-loader', 'css-loader', 'sass-loader'],
-        },
-        {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader'],
-        },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['logic'], // includi solo logic.bundle.js
+            template: './src/index.html', 
+            filename: 'index.html',
+            chunks: ['logic'], 
         }),
         new HtmlWebpackPlugin({
-        template: './src/search.html',
-        filename: 'search.html',
-        chunks: ['search'], // includi solo search.bundle.js
+            template: './src/search.html',  
+            filename: 'search.html',
+            chunks: ['search'], 
         }),
     ],
     devServer: {

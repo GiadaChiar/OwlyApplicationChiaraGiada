@@ -487,7 +487,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         params.append("title",titleInput.value);
     }
     //limit 
-    params.append("limit", "5");
+    params.append("limit", "20");
 
     const url = `${baseUrl}?${params.toString()}`;
     console.log(url);
