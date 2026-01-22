@@ -19,32 +19,6 @@ menu_filters.style.display="none";
 
 
 
-async function testTranslate() {
-    const bodyToSend = {
-        text: "Questa è la mia vita,davvero meravigliosa",
-        target: "en"
-    };
-
-    const response = await fetch("http://localhost:3000/translate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bodyToSend)
-    });
-
-    const data = await response.json();
-    console.log("Tradotto:", data.translatedText);
-}
-
-testTranslate();
-
-
-
-
-
-
-
-
-
 
 hamMenu.addEventListener('click', () => {
     hamMenu.classList.toggle('active');  // attivo/disattivo la X
@@ -84,7 +58,7 @@ categoryInput.addEventListener("input", () => {
 
 
 //function to create a section with div and description-----------------------------------------------------------------------------------
-function ViewSearch(data,selectedLanguage){
+function ViewSearch(data){
 
     risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
     if(data.numFound==0){
@@ -180,12 +154,6 @@ function ViewSearch(data,selectedLanguage){
             console.log("stampo id:", title.id)
 
 
-            /* try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Errore API " + response.status);
-
-        const data = await response.json();
-        console.log("Risultati API:", data.docs);*/
 
         try{
             const response = await fetch(url);
@@ -202,23 +170,6 @@ function ViewSearch(data,selectedLanguage){
                 return; // evita duplicati
             }
 
-            //check data if it is an object or a string or it is empty
-            /* let descriptionText = "Descrizione non disponibile";
-
-            if (typeof data.description === "string") {
-                descriptionText = data.description;
-            } else if (
-                typeof data.description === "object" &&
-                data.description?.value
-            ) {
-                if(selectedLanguage !=="en"){
-                    descriptionText = await translateText(data.description.value, selectedLanguage);
-                    console.log("Descrizione tradotta:", descriptionText); // ora
-                }else{
-                    descriptionText = data.description.value;
-                }
-            }
-                */
             let descriptionText = "Description not available";
 
         if (data.description) {
@@ -343,79 +294,6 @@ delete_html_filter.addEventListener("click",async()=>{
 
 
 
-///function to get traslate 
-
-
-
-
-//how to get language selected
-
-const languageItems = document.querySelectorAll(".dropdown-item");
-
-languageItems.forEach(item => {
-    item.addEventListener("click", e => {
-        e.preventDefault();
-        selectedLanguage = item.dataset.lang;
-        console.log("Lingua selezionata:", selectedLanguage);
-    });
-});
-
-
-
-//function to traslate
-
-/*
-async function translateText(text, targetLang) {
-    // Se lingua inglese o testo vuoto → non tradurre
-    if (!text || targetLang === "en") {
-        return text;
-    }
-
-    try {
-        const response = await fetch("https://libretranslate.de/translate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                q: text,
-                source: "auto",
-                target: targetLang,
-                format: "text"
-            })
-        });
-
-        const data = await response.json();
-        console.log("testo tradotto:",data.translatedText);
-        return data.translatedText;
-        
-
-    } catch (error) {
-        console.error("Errore traduzione:", error);
-        return text; // fallback
-    }
-}
-*/
-
-async function translateText(text, targetLang) {
-    if (!text || targetLang === "en") return text;
-
-    try {
-        const response = await fetch("http://localhost:3000/translate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ text, target: targetLang })
-        });
-
-        const data = await response.json();
-        console.log("testo tradotto:", data.translatedText);
-        return data.translatedText;
-
-    } catch (error) {
-        console.error("Errore traduzione:", error);
-        return text;
-    }
-}
 
 
 
@@ -431,41 +309,13 @@ searchButtonFilter.addEventListener("click",async()=>{
     const authorInput= document.getElementById("author");
     const titleInput = document.getElementById("title");
 
-
-   
-    
-    //late language but l have to add it 
-   /* if(authorInput.value) {
-        console.log(authorInput.value);
-    }else {
-        console.log("autore non selezionato")
-    }*/
    //same 
     console.log(authorInput.value ? authorInput.value : "autore non selezionato");
     console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
     console.log (categoryInput.value ? categoryInput.value : "categoria non selezionata");
     //console.log(languageSelecte.value ? languageSelecte.value : "linguaggio non selezionato");
     console.log("Lingua usata nella ricerca:", selectedLanguage);
-   
-//author_name
-   //language
-   //title
 
-   //fetch more filters
-   /* const url = `https://openlibrary.org/search.json?subject=${categoryInput.value}&author_name=${encodeURIComponent(authorInput.value)}`+"&limit=20";
-
-    if(categoryInput.value){
-        const catUrl= + `subject=${categoryInput.value}`
-    } 
-
-    if(authorInput.value){
-        const authUrl= + `author_name=${encodeURIComponent(authorInput.value)}`
-        if(categoryInput.value){
-            const authorInput = + `&author_name=${encodeURIComponent(authorInput.value)}`
-        }
-    }
-    
-    console.log("URL richiesta:", url); */
 
     const baseUrl= `https://openlibrary.org/search.json`
     
@@ -499,7 +349,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         console.log(data);
 
 //----------------------------------------da qui------------------------------------------------------------------
-        ViewSearch(data,selectedLanguage);
+        ViewSearch(data);
 
         
 //----------------------------------------------------------a qui------------
