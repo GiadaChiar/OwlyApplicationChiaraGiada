@@ -164,7 +164,8 @@
             <h1 id="contact">Would you like more information about Owly?</h1>
             <img src="style/img/childrenRead.jpeg" alt="Shadows Children reading books">
         </div>
-        <form>
+        <form target="_blank" action="https://formsubmit.co/giadachiara530@gmail.com" method="POST">
+            <input type="text" name="_honey" style="display:none">
             <div id="formBlue">
                 <p>Fill out our form and we will get back to you as soon as possible.</p>
         
@@ -175,28 +176,28 @@
                         <div class="row mb-3">
                             <label for="nome" class="col-sm-3 col-form-label">First Name*</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nome" placeholder="Mario">
+                                <input type="text" class="form-control" id="nome" name="name" placeholder="Mario" required>
                             </div>
                         </div>
         
                         <div class="row mb-3">
                             <label for="cognome" class="col-sm-3 col-form-label">Last Name*</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="cognome" placeholder="Rossi">
+                                <input type="text" class="form-control" id="cognome" name="lastname" placeholder="Rossi" >
                             </div>
                         </div>
         
                         <div class="row mb-3">
                             <label for="email" class="col-sm-3 col-form-label">Email*</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" placeholder="nomecognome@gmail.com">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="nomecognome@gmail.com" required>
                             </div>
                         </div>
         
                         <div class="row mb-3">
                             <label for="cellulare" class="col-sm-3 col-form-label">Mobile Phone</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="cellulare" placeholder="+39 333 1234567">
+                                <input type="text" class="form-control" id="cellulare" name="phone" placeholder="+39 333 1234567">
                             </div>
                         </div>
         
@@ -205,8 +206,8 @@
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <p>Request Message:</p>
-                            <textarea class="form-control" id="floatingTextarea" placeholder="Inserisci qui la tua richiesta..."
-                                style="height: 220px"></textarea>
+                            <textarea class="form-control" id="floatingTextarea" name="message" placeholder="Inserisci qui la tua richiesta..."
+                                style="height: 220px" required ></textarea>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary" id="submit">Send</button>
