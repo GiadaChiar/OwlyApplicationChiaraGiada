@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//to create css file because it will be static in css 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 module.exports = {
     entry: {
@@ -20,7 +23,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                //use: ['style-loader', 'css-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ],
             },
         ],
     },
@@ -35,6 +43,19 @@ module.exports = {
             filename: 'search.html',
             chunks: ['search'], 
         }),
+        new MiniCssExtractPlugin({
+        filename: '[name].css',
+        }),
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+        chunks: ['logic'],
+        }),
+    new HtmlWebpackPlugin({
+        template: './src/search.html',
+        filename: 'search.html',
+        chunks: ['search'],
+    }),
     ],
     devServer: {
         static: './dist',
