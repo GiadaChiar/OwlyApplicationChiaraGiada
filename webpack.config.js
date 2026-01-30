@@ -40,7 +40,7 @@ module.exports = {
             chunks: ['search'], 
         }),
         new MiniCssExtractPlugin({
-            filename: 'style.css', // nome del file CSS finale
+            filename: '[name].css', // nome del file CSS finale
     }),
     ],
     devServer: {
@@ -50,3 +50,57 @@ module.exports = {
         compress: true,
     },
 };
+
+
+
+
+/*
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: {
+        index: './src/js/index.js',
+        search: './src/js/search.js',
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/nome-repo/',
+        clean: true,
+    },
+    module: {
+        rules: [
+        {
+            test: /\.css$/i,
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        },
+        {
+            test: /\.(png|jpe?g|gif|svg)$/i,
+            type: 'asset/resource',
+            generator: {
+            filename: 'img/[name][ext]',
+            },
+        },
+        ],
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+        filename: '[name].css',
+        }),
+
+        new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+        chunks: ['index'],
+        }),
+
+        new HtmlWebpackPlugin({
+        template: './src/search.html',
+        filename: 'search.html',
+        chunks: ['search'],
+        }),
+    ],
+};
+*/
