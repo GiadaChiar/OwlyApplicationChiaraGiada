@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //to create css file because it will be static in css 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
@@ -41,7 +41,12 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css', // nome del file CSS finale
-    }),
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/style/img', to: 'img' },
+            ],
+        }),
     ],
     devServer: {
         static: './dist',
