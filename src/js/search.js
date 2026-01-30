@@ -13,8 +13,6 @@ const menu_filters= document.getElementById("more-filters");
 //const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
 //if I click I pass hover mouse  get other informations info
-       let bookTitles= document.querySelectorAll(".book-title")
-    
 let selectedLanguage ="en";
 
 //default hide menu filters
@@ -141,9 +139,9 @@ function ViewSearch(data){
             infoIcon.addEventListener("mouseleave",()=>{
                 infobox.remove();
             })
-///////
+
             //if I click I pass hover mouse  get other informations info
-            //bookTitles= document.querySelectorAll(".book-title")
+            const bookTitles = document.querySelectorAll(".book-title")
     
 
         bookTitles.forEach(title => {
