@@ -233,7 +233,7 @@ function ViewSearch(data){
         
 
         }catch(error){
-            console.error("Errore caricamento descrizione");
+            console.error("Errore caricamento descrizione",error)
         }
         
             
@@ -365,7 +365,7 @@ searchButtonFilter.addEventListener("click",async()=>{
 
 
     }catch(error){
-        console.log("Errore fetch dei filtri aggiuntivi",error)
+        console.error("Errore fetch dei filtri aggiuntivi",error)
     }
 
 
