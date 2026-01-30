@@ -127,9 +127,12 @@ function ViewSearch(data){
             infoIcon.id = "info_icon";
             risultatiDiv.appendChild(infoIcon);
 
+            let infobox = null;
+
         //if I pass over the icon show alert with information
             infoIcon.addEventListener("mouseover", () => {
-                let infobox =document.createElement("div");
+                if (infobox) return;
+                infobox =document.createElement("div");
                 infobox.id="info_box";
                 infobox.textContent = "List of books with authors and titles based on the selected category.";
             risultatiDiv.appendChild(infobox);
@@ -137,8 +140,12 @@ function ViewSearch(data){
 
             //if I exit from icon the infobox disappear
             infoIcon.addEventListener("mouseleave",()=>{
-                infobox.remove();
-            })
+                if (infobox) {
+                    infobox.remove();
+                    infobox = null;
+                }
+                
+            });
 
             //if I click I pass hover mouse  get other informations info
             const bookTitles = document.querySelectorAll(".book-title")
