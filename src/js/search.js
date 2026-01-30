@@ -1,6 +1,6 @@
 
 
-//import './style/search.scss';
+import '../style/style.css';
 
 
 

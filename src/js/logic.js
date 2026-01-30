@@ -1,5 +1,6 @@
 
 //import './style/style.scss';
+import '../style/style.css';
 
 
 /*creo due costanti per le due classi*/
