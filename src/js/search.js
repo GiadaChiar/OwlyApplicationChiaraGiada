@@ -351,7 +351,7 @@ searchButtonFilter.addEventListener("click",async()=>{
     console.log(url);
 
     try{
-        response = await fetch(url);
+        const response = await fetch(url);
         if(!response.ok) throw new Error("Errore caricamento descrizione")
             const data = await response.json();
         console.log(data);
