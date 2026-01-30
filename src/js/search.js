@@ -365,7 +365,7 @@ searchButtonFilter.addEventListener("click",async()=>{
 
 
     }catch(error){
-        console.log("Errore fetch dei filtri aggiuntivi")
+        console.log("Errore fetch dei filtri aggiuntivi",error)
     }
 
 
