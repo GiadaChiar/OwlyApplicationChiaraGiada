@@ -233,7 +233,7 @@ function ViewSearch(data){
         
 
         }catch(error){
-            console.log("Errore caricamento descrizione")
+            console.error("Errore caricamento descrizione");
         }
         
             
