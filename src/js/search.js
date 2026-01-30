@@ -129,7 +129,7 @@ function ViewSearch(data){
 
         //if I pass over the icon show alert with information
             infoIcon.addEventListener("mouseover", () => {
-                infobox =document.createElement("div");
+                const infobox =document.createElement("div");
                 infobox.id="info_box";
                 infobox.textContent = "List of books with authors and titles based on the selected category.";
             risultatiDiv.appendChild(infobox);
