@@ -2,6 +2,12 @@
 
 import '../style/search.css';
 
+import { setUpMenu } from './menu.js';
+
+const currentPage = document.body.dataset.currentPage;
+
+setUpMenu(currentPage);
+/*
 //create a fetch to get menu in menu.html
 
     fetch("menu.html")
@@ -10,8 +16,7 @@ import '../style/search.css';
         document.getElementById("header").innerHTML = html;
     })
 
-/*if current page is index.html  remove every classess disable and
-add class=disable to index.html link*/
+
 
 const currentPage = document.body.dataset.currentPage;
 
@@ -25,12 +30,13 @@ document.querySelectorAll("a[data-page]").forEach(link => {
 
 
 
+*/
 
-
-/*creo due costanti per le due classi*/
+/*
 const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');
 const elencMenu= document.querySelectorAll('.off-screen-menu h3 a')//qualsiasi all
+*/
 const menu_filters= document.getElementById("more-filters");
 //const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
@@ -41,7 +47,7 @@ let selectedLanguage ="en";
 menu_filters.style.display="none";
 
 
-
+/*
 
 hamMenu.addEventListener('click', () => {
     hamMenu.classList.toggle('active');  // attivo/disattivo la X
@@ -60,6 +66,8 @@ elencMenu.forEach(link => {
 
     });
 });
+
+*/
 
 //take input category value 
 const searchButton = document.getElementById('cerca');
