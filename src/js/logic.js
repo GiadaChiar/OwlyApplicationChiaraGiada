@@ -6,7 +6,7 @@ import '../style/style.css';
 
     fetch("menu.html")
     .then(res =>res.text()) //then response in text form
-    .them(html=>{
+    .then(html=>{
         document.getElementById("header").innerHTML = html;
     })
 
