@@ -8,7 +8,7 @@ const currentPage = document.body.dataset.currentPage;
 
 //function to load and add header(menu) to html file
 function fetchMenu(){
-    fetch("/menu.html")
+    return fetch("/menu.html")
     .then(res =>res.text()) //then response in text form
     .then(html=>{
         
@@ -33,9 +33,9 @@ function disableLinkCurrentPage(header){
 //function to activate all toggle manu 
 function activateToggleMenu(header){
     
-const hamMenu = document.querySelector('.ham-menu');
-const offScreenMenu = document.querySelector('.off-screen-menu');
-const elencMenu= document.querySelectorAll('.off-screen-menu h3 a');// all
+const hamMenu = header.querySelector('.ham-menu');
+const offScreenMenu = header.querySelector('.off-screen-menu');
+const elencMenu= header.querySelectorAll('.off-screen-menu h3 a');// all
 
 hamMenu.addEventListener('click', () => {
         hamMenu.classList.toggle('active');  // anable and disable X
@@ -59,9 +59,10 @@ hamMenu.addEventListener('click', () => {
 
 // function to recall all the functions about header(menu)
 function setUpMenu(){
-    fetchMenu();
-    disableLinkCurrentPage(header);
+    fetchMenu()
+    .then(header=>{disableLinkCurrentPage(header);
     activateToggleMenu(header);
+    })
 }
 
 //call it to work menu
