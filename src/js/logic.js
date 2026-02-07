@@ -2,6 +2,16 @@
 //import './style/style.scss';
 import '../style/style.css';
 
+//create a fetch to get menu in menu.html-->
+
+    fetch("menu.html")
+    .then(res =>res.text()) //then response in text form
+    .them(html=>{
+        document.getElementById("header").innerHTML = html;
+    })
+
+
+
 
 
 /*creo due costanti per le due classi*/
