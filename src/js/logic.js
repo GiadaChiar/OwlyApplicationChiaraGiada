@@ -4,49 +4,77 @@ import '../style/style.css';
 
 //create a fetch to get menu in menu.html-->
 
-    fetch("menu.html")
-    .then(res =>res.text()) //then response in text form
-    .then(html=>{
-        document.getElementById("header").innerHTML = html;
-    })
-
-/*if current page is index.html  remove every classess disable and
-add class=disable to index.html link*/
-
 const currentPage = document.body.dataset.currentPage;
 
-document.querySelectorAll("a[data-page]").forEach(link => {
+//function to load and add header(menu) to html file
+function fetchMenu(){
+    fetch("/menu.html")
+    .then(res =>res.text()) //then response in text form
+    .then(html=>{
+        
+        const header = document.getElementById("header");
+        header.innerHTML = html;
+        return header
+    })
+}
+
+//function to remuve disable class and add it to current page (link a)
+function disableLinkCurrentPage(header){
+    header.querySelectorAll("a[data-page]").forEach(link => {
     link.classList.remove("disable");
 
     if (link.dataset.page === currentPage) {
-    link.classList.add("disable");
-    }
-});
+        link.classList.add("disable");
+        }
+    });
+}
 
 
-/*creo due costanti per le due classi*/
+//function to activate all toggle manu 
+function activateToggleMenu(header){
+    
 const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');
-const elencMenu= document.querySelectorAll('.off-screen-menu h3 a')//qualsiasi all
-
+const elencMenu= document.querySelectorAll('.off-screen-menu h3 a');// all
 
 hamMenu.addEventListener('click', () => {
-    hamMenu.classList.toggle('active');  // attivo/disattivo la X
-    offScreenMenu.classList.toggle('active'); // mostro/nascondo il menu
-    
-    // Blocca lo scroll quando il menu è aperto
-    document.body.classList.toggle('no-scroll');
-})
+        hamMenu.classList.toggle('active');  // anable and disable X
+        offScreenMenu.classList.toggle('active'); // show/hidden menu
+        
+        // block scrolling when menu is open
+        document.body.classList.toggle('no-scroll');
+    })
 
-//su qualsiasi elemento che clicchi 
-elencMenu.forEach(link => {
-    link.addEventListener('click', ()=>{
-        offScreenMenu.classList.toggle('active');//nascondo menu
-        hamMenu.classList.toggle('active');  // attivo/disattivo la X
-        document.body.classList.toggle('no-scroll');//se era bloccato lo riattiva
+    //if you clink in every other part
+    elencMenu.forEach(link => {
+        link.addEventListener('click', ()=>{
+            offScreenMenu.classList.toggle('active');//hidden menu
+            hamMenu.classList.toggle('active');  // anable and disable X
+            document.body.classList.toggle('no-scroll');//if it was blocked I active it
 
+        });
     });
-});
+
+}
+
+// function to recall all the functions about header(menu)
+function setUpMenu(){
+    fetchMenu();
+    disableLinkCurrentPage(header);
+    activateToggleMenu(header);
+}
+
+//call it to work menu
+setUpMenu();
+
+
+
+
+
+
+
+    
+
 
 
 
