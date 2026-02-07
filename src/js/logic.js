@@ -10,8 +10,18 @@ import '../style/style.css';
         document.getElementById("header").innerHTML = html;
     })
 
+/*if current page is index.html  remove every classess disable and
+add class=disable to index.html link*/
 
+const currentPage = document.body.dataset.currentPage;
 
+document.querySelectorAll("a[data-page]").forEach(link => {
+    link.classList.remove("disable");
+
+    if (link.dataset.page === currentPage) {
+    link.classList.add("disable");
+    }
+});
 
 
 /*creo due costanti per le due classi*/
