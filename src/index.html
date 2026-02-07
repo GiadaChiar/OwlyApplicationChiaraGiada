@@ -12,27 +12,10 @@
 <!--<script defer src="logic.bundle.js"></script>-->
 </head>
 <body>
-    <header>
-        <div class="off-screen-menu">
-            <link rel="icon magic book with a castle on it and the write owly" href="./img/Scritta_logo.png" type="image/x-icon">
-            <h3><a class="disable" href="index.html">Home</a></h3>
-            <h3><a href="#about_us">About Us</a></h3>
-            <h3><a href="#Servizi">Services</a></h3>
-            <h3><a href="search.html">Find your book</a></h3>
+    <!--shared header -->
+    <div id="header"></div>
+    <!--created a box-->
 
-            <h3><a href="#contact">Contacts</a></h3>
-        </div>
-    </header>
-    <nav>
-        <div class="top-page">
-            <div class="ham-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <img src="./img/Logo_owly.png" alt="Logo Owly">
-        </div>
-    </nav>
     <section id="firstPage">
         <div id="firstLeft">
             <img src="./img/bigbook.png" alt="Magic big book with a girl in the fantasy woods">  
@@ -226,6 +209,15 @@
     </section>
     <!--<script src="./logic.js"></script>
     <script src="./dist/bundle.js"></script>-->
+    
 
+    <!--create a fetch to get menu in menu.html-->
+<script>
+    fetch("menu.html")
+    .then(res =>res.text()) //then response in text form
+    .them(html=>{
+        document.getElementById("header").innerHTML = html;
+    })
+</script>
 </body>
 </html>
