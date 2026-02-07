@@ -2,8 +2,7 @@
 
 import '../style/search.css';
 
-
-//create a fetch to get menu in menu.html-->
+//create a fetch to get menu in menu.html
 
     fetch("menu.html")
     .then(res =>res.text()) //then response in text form
