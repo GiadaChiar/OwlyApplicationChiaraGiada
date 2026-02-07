@@ -8,7 +8,7 @@ const currentPage = document.body.dataset.currentPage;
 
 //function to load and add header(menu) to html file
 function fetchMenu(){
-    return fetch("/menu.html")
+    return fetch("menu.html")
     .then(res =>res.text()) //then response in text form
     .then(html=>{
         
