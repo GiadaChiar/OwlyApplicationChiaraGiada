@@ -270,9 +270,14 @@ everything will be work also if there insn't one or more selections.*/
     
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
+
+authorInput.addEventListener("input", changeSearchFilter);
+titleInput.addEventListener("input", changeSearchFilter);
+
 searchButtonFilter.addEventListener("click",async()=>{
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
+
     //function to change color from grey to white to Search button in the filters
    //same 
     console.log(authorInput.value ? authorInput.value : "autore non selezionato");
@@ -290,12 +295,10 @@ searchButtonFilter.addEventListener("click",async()=>{
     //author
     if(authorInput.value){
         params.append("author_name",authorInput.value);
-        changeSearchFilter();
     }
     //title
     if(titleInput.value){
         params.append("title",titleInput.value);
-        changeSearchFilter();
     }
     //limit 
     params.append("limit", "20");
