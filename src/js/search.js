@@ -87,12 +87,12 @@ function createInfoIcon(){
         
     });
 
-    //if I click I pass hover mouse  get other informations info
-    const bookTitles = document.querySelectorAll(".book-title");
 }
 
 
 function fetchBookDescription(){
+    //if I click I pass hover mouse  get other informations info
+    const bookTitles = document.querySelectorAll(".book-title");
     //when Iclick on titles description
     bookTitles.forEach(title => {
     title.addEventListener("click", async() => {
@@ -154,7 +154,7 @@ function fetchBookDescription(){
 
             deleteBt.addEventListener("click",()=>{
                 divPlace.remove();
-                deleteBt.remove();
+                //deleteBt.remove();
             })
     
         }catch(error){
@@ -425,7 +425,7 @@ searchButton.addEventListener("click", async () => {
             console.log("selectedLanguage:",selectedLanguage)
 
             //ViewSearch(data);
-            //CreateDom(data)
+            CreateDom(data)
         }
         else{
             console.log("lingua selezionata differente")
