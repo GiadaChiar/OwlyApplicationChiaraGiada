@@ -21,6 +21,8 @@ const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
 risultatiDiv.style.display = "none";
 const searchButtonFilter = document.getElementById("search_filter");
+const authorInput = document.getElementById("author");
+const titleInput = document.getElementById("title");
 
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
@@ -251,9 +253,6 @@ delete_html_filter.addEventListener("click",async()=>{
 
 
 function changeSearchFilter(){
-    
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
     const author = authorInput.value.trim();
     const title = titleInput.value.trim();
     if (author !== "" || title !== ""){
@@ -275,8 +274,6 @@ authorInput.addEventListener("input", changeSearchFilter);
 titleInput.addEventListener("input", changeSearchFilter);
 
 searchButtonFilter.addEventListener("click",async()=>{
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
 
     //function to change color from grey to white to Search button in the filters
    //same 
