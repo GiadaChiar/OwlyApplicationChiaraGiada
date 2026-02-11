@@ -423,7 +423,9 @@ searchButton.addEventListener("click", async () => {
 
         if(selectedLanguage==="en"){
             console.log("selectedLanguage:",selectedLanguage)
-            ViewSearch(data);
+
+            //ViewSearch(data);
+            CreateDom(data)
         }
         else{
             console.log("lingua selezionata differente")
