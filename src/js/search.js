@@ -7,75 +7,21 @@ import { setUpMenu } from './menu.js';
 const currentPage = document.body.dataset.currentPage;
 
 setUpMenu(currentPage);
-/*
-//create a fetch to get menu in menu.html
 
-    fetch("menu.html")
-    .then(res =>res.text()) //then response in text form
-    .then(html=>{
-        document.getElementById("header").innerHTML = html;
-    })
-
-
-
-const currentPage = document.body.dataset.currentPage;
-
-document.querySelectorAll("a[data-page]").forEach(link => {
-    link.classList.remove("disable");
-
-    if (link.dataset.page === currentPage) {
-    link.classList.add("disable");
-    }
-});
-
-
-
-*/
-
-/*
-const hamMenu = document.querySelector('.ham-menu');
-const offScreenMenu = document.querySelector('.off-screen-menu');
-const elencMenu= document.querySelectorAll('.off-screen-menu h3 a')//qualsiasi all
-*/
-const menu_filters= document.getElementById("more-filters");
+const menu_filters = document.getElementById("more-filters");
 //const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
 //if I click I pass hover mouse  get other informations info
 let selectedLanguage ="en";
-
 //default hide menu filters
-menu_filters.style.display="none";
-
-
-/*
-
-hamMenu.addEventListener('click', () => {
-    hamMenu.classList.toggle('active');  // attivo/disattivo la X
-    offScreenMenu.classList.toggle('active'); // mostro/nascondo il menu
-    
-    // Blocca lo scroll quando il menu è aperto
-    document.body.classList.toggle('no-scroll');
-})
-
-//su qualsiasi elemento che clicchi 
-elencMenu.forEach(link => {
-    link.addEventListener('click', ()=>{
-        offScreenMenu.classList.toggle('active');//nascondo menu
-        hamMenu.classList.toggle('active');  // attivo/disattivo la X
-        document.body.classList.toggle('no-scroll');//se era bloccato lo riattiva
-
-    });
-});
-
-*/
-
+menu_filters.style.display ="none";
 //take input category value 
 const searchButton = document.getElementById('cerca');
 const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
-risultatiDiv.style.display="none";
+risultatiDiv.style.display = "none";
 
-
+/////////////////////////////////////////////----------------------------------------------------quui ---------------------------//
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
     const category = categoryInput.value.trim();
@@ -85,7 +31,191 @@ categoryInput.addEventListener("input", () => {
         searchButton.style.color = "grey";
 }
 });
+//////////////////////////////////////////////////aggiungi search -------------------------///////////////////////////////////////////
 
+
+
+
+//DEVO CAMBIARE LA FUNZIONE//
+
+
+function cleanResults(){
+    risultatiDiv.innerHTML = ""; 
+}
+
+
+function buttonDelete(){
+//create button for delete 
+    const deleteBt=document.createElement("button");
+        deleteBt.id = "delete_bt";
+        deleteBt.type = "button";
+        deleteBt.classList.add("btn-close");
+        deleteBt.setAttribute("aria-label", "Close");
+        risultatiDiv.appendChild(deleteBt);
+
+    deleteBt.addEventListener("click",()=>{
+        risultatiDiv.style.display="none";
+        //risultatiDiv.innerHTML = "";
+        cleanResults()
+    })
+}
+
+
+function createInfoIcon(){
+//create icone info to information about book
+    const infoIcon = document.createElement('i');
+    infoIcon.classList.add('bi', 'bi-info-circle-fill');
+    infoIcon.id = "info_icon";
+    risultatiDiv.appendChild(infoIcon);
+    let infobox = null;
+
+//if I pass over the icon show alert with information
+    infoIcon.addEventListener("mouseover", () => {
+        if (infobox) return;
+        infobox =document.createElement("div");
+        infobox.id="info_box";
+        infobox.textContent = "List of books with authors and titles based on the selected category.";
+    risultatiDiv.appendChild(infobox);
+    });
+
+    //if I exit from icon the infobox disappear
+    infoIcon.addEventListener("mouseleave",()=>{
+        if (infobox) {
+            infobox.remove();
+            infobox = null;
+        }
+        
+    });
+
+    //if I click I pass hover mouse  get other informations info
+    const bookTitles = document.querySelectorAll(".book-title");
+}
+
+
+function fetchBookDescription(){
+    //when Iclick on titles description
+    bookTitles.forEach(title => {
+    title.addEventListener("click", async() => {
+        
+        const row = title.closest(".book-row");
+        //call another API 
+        //donm't usen encodeURIComponent bacause it trasform / in %
+        const url =`https://openlibrary.org${title.id}.json`;
+        console.log("Url richiesta desc:", url)
+        console.log("stampo id:", title.id)
+        try{
+            const response = await fetch(url);
+            if(!response.ok) 
+                throw new Error("Error loading description")
+                const data = await response.json();
+                console.log("Risultati descrizione API:",data.description)
+            if (!row) 
+                return;
+            // see if already exist a description box
+            if (row.nextElementSibling?.classList.contains("description-box")) {
+                return;// not duplicate 
+            }
+            let descriptionText = "Description not available";
+            if (data.description) {
+                //get text if it is a string or an object because we have differents types
+                let rawText = (typeof data.description === "string") ? data.description : (typeof data.description === "object" && data.description.value) 
+                ? data.description.value : "Description not available";
+                // traslate language is it isn't in english
+                if (selectedLanguage !== "en") {
+                    descriptionText = await translateText(rawText, selectedLanguage);
+                    console.log("Descrizione tradotta:", descriptionText);
+                } else {
+                    descriptionText = rawText;
+                }
+            }
+            // create description div when put my informations
+            const divPlace = document.createElement("div");
+            divPlace.classList.add("description-box");
+            const titleDesc= document.createElement("h5")
+            titleDesc.classList.add("desc_title")
+            titleDesc.textContent=" Description:"
+
+            const pDesc= document.createElement("p");
+            pDesc.classList.add("desc_p");
+            pDesc.textContent = descriptionText;
+            
+            divPlace.appendChild(titleDesc)
+            divPlace.appendChild(pDesc);
+            //insert under the title row
+            row.after(divPlace);
+
+            //create button for delete 
+            const deleteBt=document.createElement("button");
+            deleteBt.id = "delete_bt-des";
+            deleteBt.type = "button";
+            deleteBt.classList.add("btn-close");
+            deleteBt.setAttribute("aria-label", "Close");
+            divPlace.appendChild(deleteBt);
+
+            deleteBt.addEventListener("click",()=>{
+                divPlace.remove();
+                deleteBt.remove();
+            })
+    
+        }catch(error){
+            console.error("Error dowloand description",error)
+        }
+        });
+    });
+}
+
+
+function CreateDom(data){
+    cleanResults()
+    //risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
+    if(data.numFound==0){
+        cleanResults()
+        //risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
+        alert("No books were found! Try a different search.")
+    }else{
+        data.docs.forEach(doc => {
+            const rowDiv = document.createElement('div');
+            rowDiv.classList.add('book-row');
+            rowDiv.id = doc.key; 
+            // remuve /works/ from key to have a valid ID
+            const inerrRowDiv = document.createElement('div');
+            inerrRowDiv.classList.add('inner-row');
+            rowDiv.appendChild(inerrRowDiv);
+
+            const titleElement = document.createElement('a');
+            titleElement.textContent = doc.title ?? "Title not available";
+            titleElement.id = doc.key;
+            titleElement.classList.add('book-title', 'btn', 'btn-primary');
+            titleElement.setAttribute('data-bs-toggle', 'collapse');
+            titleElement.setAttribute('href', '#collapseExample');
+            titleElement.setAttribute('role', 'button');
+            titleElement.setAttribute('aria-expanded', 'false');
+            titleElement.setAttribute('aria-controls', 'collapseExample');
+
+            const authorElement = document.createElement('h3');
+            authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Autore sconosciuto";
+            authorElement.classList.add('book-author');
+            authorElement.id = doc.key;
+            
+            risultatiDiv.style.display="block";
+            inerrRowDiv.appendChild(authorElement);
+            inerrRowDiv.appendChild(titleElement);
+            rowDiv.appendChild(inerrRowDiv);
+            risultatiDiv.appendChild(rowDiv);
+
+        });
+        //create button for delete 
+        buttonDelete();
+        //create infobox
+        createInfoIcon();
+        //make the fetch 
+        fetchBookDescription();
+    }
+}
+
+
+
+/*
 
 
 //function to create a section with div and description-----------------------------------------------------------------------------------
@@ -95,11 +225,7 @@ function ViewSearch(data){
     if(data.numFound==0){
         risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
         alert("No books were found! Try a different search.")
-
-
     }else{
-
-
         data.docs.forEach(doc => {
             const rowDiv = document.createElement('div');
             rowDiv.classList.add('book-row');
@@ -120,9 +246,6 @@ function ViewSearch(data){
             titleElement.setAttribute('aria-expanded', 'false');
             titleElement.setAttribute('aria-controls', 'collapseExample');
 
-        /*   <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-    </a>*/
 
             const authorElement = document.createElement('h3');
             authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Autore sconosciuto";
@@ -273,7 +396,7 @@ function ViewSearch(data){
 
 }}
 
-
+*/
 
 //--------------------end function-----------------------------------------------------
 
@@ -387,7 +510,8 @@ searchButtonFilter.addEventListener("click",async()=>{
         console.log(data);
 
 //----------------------------------------da qui------------------------------------------------------------------
-        ViewSearch(data);
+       // ViewSearch(data);
+    CreateDom(data)
 
         
 //----------------------------------------------------------a qui------------
