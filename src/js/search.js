@@ -425,7 +425,7 @@ searchButton.addEventListener("click", async () => {
             console.log("selectedLanguage:",selectedLanguage)
 
             //ViewSearch(data);
-            CreateDom(data)
+            //CreateDom(data)
         }
         else{
             console.log("lingua selezionata differente")
