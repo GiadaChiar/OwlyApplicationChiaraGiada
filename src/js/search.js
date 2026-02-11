@@ -20,7 +20,6 @@ const searchButton = document.getElementById('cerca');
 const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
 risultatiDiv.style.display = "none";
-const searchButtonFilter = document.getElementById("search_filter");
 
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
@@ -270,6 +269,7 @@ everything will be work also if there insn't one or more selections.*/
     
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
+const searchButtonFilter = document.getElementById("search_filter");
 searchButtonFilter.addEventListener("click",async()=>{
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
