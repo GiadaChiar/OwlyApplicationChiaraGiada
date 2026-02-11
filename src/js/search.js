@@ -274,8 +274,6 @@ searchButtonFilter.addEventListener("click",async()=>{
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
     //function to change color from grey to white to Search button in the filters
-    changeSearchFilter()
-
    //same 
     console.log(authorInput.value ? authorInput.value : "autore non selezionato");
     console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
@@ -292,10 +290,12 @@ searchButtonFilter.addEventListener("click",async()=>{
     //author
     if(authorInput.value){
         params.append("author_name",authorInput.value);
+        changeSearchFilter();
     }
     //title
     if(titleInput.value){
         params.append("title",titleInput.value);
+        changeSearchFilter();
     }
     //limit 
     params.append("limit", "20");
