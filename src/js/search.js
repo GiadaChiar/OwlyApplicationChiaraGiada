@@ -21,8 +21,6 @@ const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
 risultatiDiv.style.display = "none";
 const searchButtonFilter = document.getElementById("search_filter");
-const authorInput = document.getElementById("author");
-const titleInput = document.getElementById("title");
 
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
@@ -252,7 +250,10 @@ delete_html_filter.addEventListener("click",async()=>{
 
 
 
-function changeSearchFilter(){
+/*function changeSearchFilter(){
+    
+    const authorInput = document.getElementById("author");
+    const titleInput = document.getElementById("title");
     const author = authorInput.value.trim();
     const title = titleInput.value.trim();
     if (author !== "" || title !== ""){
@@ -260,7 +261,7 @@ function changeSearchFilter(){
     }else{
         searchButtonFilter.style.color = "grey";
     }
-}
+}*/
 
 
 /*search with author and title and language if there is also category,
@@ -269,13 +270,11 @@ everything will be work also if there insn't one or more selections.*/
     
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
-
-authorInput.addEventListener("input", changeSearchFilter);
-titleInput.addEventListener("input", changeSearchFilter);
-
 searchButtonFilter.addEventListener("click",async()=>{
-
+    const authorInput = document.getElementById("author");
+    const titleInput = document.getElementById("title");
     //function to change color from grey to white to Search button in the filters
+
    //same 
     console.log(authorInput.value ? authorInput.value : "autore non selezionato");
     console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
