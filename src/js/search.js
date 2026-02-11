@@ -257,9 +257,9 @@ function changeSearchFilter(){
     const author = authorInput.value.trim();
     const title = titleInput.value.trim();
     if (author !== "" || title !== ""){
-        searchButtonFilter.style.Color = "white";
+        searchButtonFilter.style.color = "white";
     }else{
-        searchButtonFilter.style.Color = "grey";
+        searchButtonFilter.style.color = "grey";
     }
 }
 
