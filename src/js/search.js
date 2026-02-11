@@ -249,6 +249,8 @@ delete_html_filter.addEventListener("click",async()=>{
 });
 
 function changeSearchFilter(){
+    const authorInput = document.getElementById("author");
+    const titleInput = document.getElementById("title");
     const author = authorInput.value.trim();
     const title = titleInput.value.trim();
     if (author !== "" || title !== ""){
