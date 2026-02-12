@@ -20,6 +20,7 @@ const searchButton = document.getElementById('cerca');
 const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
 risultatiDiv.style.display = "none";
+const searchButtonFilter = document.getElementById("search_filter");
 
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
@@ -207,16 +208,26 @@ function CreateDom(data){
     }
 }
 
-///change color write if is full 
-searchButton.addEventListener("input", () => {
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
-    if (authorInput.value !== "" || titleInput.value !== "") {
-        searchButton.style.color = "white";
+
+///change color write if it isn't empty 
+const authorInput = document.getElementById("author");
+const titleInput = document.getElementById("title");
+
+function updateButtomColor(){
+    const author=authorInput.value.trim();
+    const title = titleInput.value.trim();
+
+    if (author !== "" || title !== "") {
+        searchButtonFilter.style.color = "white";
     } else {
-        searchButton.style.color = "grey";
+        searchButtonFilter.style.color = "grey";
+    }
 }
-});
+
+//recall function
+authorInput.addEventListener("input", updateButtomColor);
+titleInput.addEventListener("input", updateButtomColor);
+
 
 
 //if I click on search button
@@ -260,27 +271,12 @@ delete_html_filter.addEventListener("click",async()=>{
 
 
 
-/*function changeSearchFilter(){
-    
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
-    const author = authorInput.value.trim();
-    const title = titleInput.value.trim();
-    if (author !== "" || title !== ""){
-        searchButtonFilter.style.color = "white";
-    }else{
-        searchButtonFilter.style.color = "grey";
-    }
-}*/
-
-
 /*search with author and title and language if there is also category,
 everything will be work also if there insn't one or more selections.*/
 //language selection:
     
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
-const searchButtonFilter = document.getElementById("search_filter");
 searchButtonFilter.addEventListener("click",async()=>{
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
