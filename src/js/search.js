@@ -1,11 +1,9 @@
 
 
 import '../style/search.css';
-
 import { setUpMenu } from './menu.js';
 
 const currentPage = document.body.dataset.currentPage;
-
 setUpMenu(currentPage);
 
 const menu_filters = document.getElementById("more-filters");
@@ -29,9 +27,8 @@ categoryInput.addEventListener("input", () => {
         searchButton.style.color = "white";
     } else {
         searchButton.style.color = "grey";
-}
+    }
 });
-
 
 
 function cleanResults(){
@@ -79,9 +76,7 @@ function createInfoIcon(){
             infobox.remove();
             infobox = null;
         }
-        
     });
-
 }
 
 
@@ -151,7 +146,6 @@ function fetchBookDescription(){
                 divPlace.remove();
                 //deleteBt.remove();
             })
-    
         }catch(error){
             console.error("Error dowloand description",error)
         }
@@ -197,7 +191,6 @@ function CreateDom(data){
             inerrRowDiv.appendChild(titleElement);
             rowDiv.appendChild(inerrRowDiv);
             risultatiDiv.appendChild(rowDiv);
-
         });
         //create button for delete 
         buttonDelete();
@@ -216,18 +209,17 @@ const titleInput = document.getElementById("title");
 function updateButtomColor(){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
-
     if (author !== "" || title !== "") {
         searchButtonFilter.style.color = "white";
+        searchButtonFilter.style.border.color = "white";
     } else {
         searchButtonFilter.style.color = "grey";
+        searchButtonFilter.style.border.color = "grey";
     }
 }
-
 //recall function
 authorInput.addEventListener("input", updateButtomColor);
 titleInput.addEventListener("input", updateButtomColor);
-
 
 
 //if I click on search button
