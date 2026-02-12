@@ -211,10 +211,8 @@ function updateButtomColor(){
     const title = titleInput.value.trim();
     if (author !== "" || title !== "") {
         searchButtonFilter.style.color = "white";
-        searchButtonFilter.style.border.color = "white";
     } else {
         searchButtonFilter.style.color = "grey";
-        searchButtonFilter.style.border.color = "grey";
     }
 }
 //recall function
