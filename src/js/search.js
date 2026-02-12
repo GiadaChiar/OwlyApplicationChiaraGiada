@@ -16,8 +16,8 @@ menu_filters.style.display ="none";
 //take input category value 
 const searchButton = document.getElementById('search');
 const categoryInput = document.getElementById('category');
-const risultatiDiv = document.getElementById('results');
-risultatiDiv.style.display = "none";
+const resultsDiv = document.getElementById('results');
+resultsDiv.style.display = "none";
 const searchButtonFilter = document.getElementById("search_filter");
 
 //I whant to check if textbox category isn't empty 
@@ -32,7 +32,7 @@ categoryInput.addEventListener("input", () => {
 
 
 function cleanResults(){
-    risultatiDiv.innerHTML = ""; 
+    resultsDiv.innerHTML = ""; 
 }
 
 
@@ -43,10 +43,10 @@ function buttonDelete(){
         deleteBt.type = "button";
         deleteBt.classList.add("btn-close");
         deleteBt.setAttribute("aria-label", "Close");
-        risultatiDiv.appendChild(deleteBt);
+        resultsDiv.appendChild(deleteBt);
 
     deleteBt.addEventListener("click",()=>{
-        risultatiDiv.style.display="none";
+        resultsDiv.style.display="none";
         //risultatiDiv.innerHTML = "";
         cleanResults()
     })
@@ -58,7 +58,7 @@ function createInfoIcon(){
     const infoIcon = document.createElement('i');
     infoIcon.classList.add('bi', 'bi-info-circle-fill');
     infoIcon.id = "info_icon";
-    risultatiDiv.appendChild(infoIcon);
+    resultsDiv.appendChild(infoIcon);
     let infobox = null;
 
 //if I pass over the icon show alert with information
@@ -67,7 +67,7 @@ function createInfoIcon(){
         infobox =document.createElement("div");
         infobox.id="info_box";
         infobox.textContent = "List of books with authors and titles based on the selected category.";
-    risultatiDiv.appendChild(infobox);
+    resultsDiv.appendChild(infobox);
     });
 
     //if I exit from icon the infobox disappear
@@ -186,11 +186,11 @@ function CreateDom(data){
             authorElement.classList.add('book-author');
             authorElement.id = doc.key;
             
-            risultatiDiv.style.display="block";
+            resultsDiv.style.display="block";
             inerrRowDiv.appendChild(authorElement);
             inerrRowDiv.appendChild(titleElement);
             rowDiv.appendChild(inerrRowDiv);
-            risultatiDiv.appendChild(rowDiv);
+            resultsDiv.appendChild(rowDiv);
         });
         //create button for delete 
         buttonDelete();
