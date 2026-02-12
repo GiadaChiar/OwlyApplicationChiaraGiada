@@ -1,11 +1,10 @@
 
-
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
 
+
 const currentPage = document.body.dataset.currentPage;
 setUpMenu(currentPage);
-
 const menu_filters = document.getElementById("more-filters");
 //const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
@@ -19,6 +18,10 @@ const categoryInput = document.getElementById('category');
 const resultsDiv = document.getElementById('results');
 resultsDiv.style.display = "none";
 const searchButtonFilter = document.getElementById("search_filter");
+const authorInput = document.getElementById("author");
+const titleInput = document.getElementById("title");
+const delete_html_filter= document.getElementById("delete_html_filter");
+
 
 //I whant to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
@@ -86,7 +89,6 @@ function fetchBookDescription(){
     //when Iclick on titles description
     bookTitles.forEach(title => {
     title.addEventListener("click", async() => {
-        
         const row = title.closest(".book-row");
         //call another API 
         //donm't usen encodeURIComponent bacause it trasform / in %
@@ -201,9 +203,6 @@ function CreateDom(data){
 
 
 ///change color write if it isn't empty 
-const authorInput = document.getElementById("author");
-const titleInput = document.getElementById("title");
-
 function updateButtomColor(){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
@@ -248,7 +247,6 @@ searchButton.addEventListener("click", async () => {
 });
 
 
-const delete_html_filter= document.getElementById("delete_html_filter");
 //if I click on more filters show menu filter
 button_filters.addEventListener("click",()=>{
     menu_filters.style.display="block";

@@ -1,8 +1,6 @@
 
 //MENU LOGIC
-
-//create a fetch to get menu in menu.html-->
-
+//create a fetch to get menu in menu.html
 //const currentPage = document.body.dataset.currentPage;
 
 //function to load and add header(menu) to html file
@@ -30,7 +28,6 @@ function disableLinkCurrentPage(header,currentPage){
 
 //function to activate all toggle manu 
 function activateToggleMenu(header){
-    
 const hamMenu = header.querySelector('.ham-menu');
 const offScreenMenu = header.querySelector('.off-screen-menu');
 const elencMenu= header.querySelectorAll('.off-screen-menu h3 a');// all
@@ -60,18 +57,3 @@ export function setUpMenu(currentPage){
     activateToggleMenu(header);
     })
 }
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
