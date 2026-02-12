@@ -16,21 +16,26 @@ body{
     padding: 0;
     background-color: vars.$background1;
     max-width: 100%;
-    #search{
-        background-color: vars.$background2-transparent;
-        &:hover{
-            transform: scale(1.05);
+    .input-group.mb-3{
+        .input-group-append{
+            #search{
+                background-color: vars.$background2-transparent;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
+            #filters{
+                background-color: vars.$background2-transparent;
+                color: white;
+                border-color: white;
+                margin-left: -4px;
+                &:hover{
+                    transform: scale(1.05);
+                }
+            }
         }
     }
-    #filters{
-        background-color: vars.$background2-transparent;
-        color: white;
-        border-color: white;
-        margin-left: -4px;
-        &:hover{
-            transform: scale(1.05);
-        }
-    }
+    
     #risultati{
         background-color: rgb(231, 234, 237, 0.8);
         margin: 10px;
