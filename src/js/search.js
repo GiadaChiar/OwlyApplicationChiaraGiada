@@ -16,7 +16,7 @@ menu_filters.style.display ="none";
 //take input category value 
 const searchButton = document.getElementById('search');
 const categoryInput = document.getElementById('category');
-const risultatiDiv = document.getElementById('risultati');
+const risultatiDiv = document.getElementById('results');
 risultatiDiv.style.display = "none";
 const searchButtonFilter = document.getElementById("search_filter");
 
