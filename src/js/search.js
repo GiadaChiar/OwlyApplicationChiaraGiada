@@ -14,7 +14,7 @@ let selectedLanguage ="en";
 //default hide menu filters
 menu_filters.style.display ="none";
 //take input category value 
-const searchButton = document.getElementById('cerca');
+const searchButton = document.getElementById('search');
 const categoryInput = document.getElementById('category');
 const risultatiDiv = document.getElementById('risultati');
 risultatiDiv.style.display = "none";

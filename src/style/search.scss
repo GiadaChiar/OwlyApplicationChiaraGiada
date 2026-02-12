@@ -16,7 +16,7 @@ body{
     padding: 0;
     background-color: vars.$background1;
     max-width: 100%;
-    #cerca{
+    #search{
         background-color: vars.$background2-transparent;
         &:hover{
             transform: scale(1.05);
