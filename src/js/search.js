@@ -38,14 +38,14 @@ function cleanResults(){
 
 function buttonDelete(){
 //create button for delete 
-    const deleteBt=document.createElement("button");
-        deleteBt.id = "delete_bt";
-        deleteBt.type = "button";
-        deleteBt.classList.add("btn-close");
-        deleteBt.setAttribute("aria-label", "Close");
-        resultsDiv.appendChild(deleteBt);
+    const deleteButton=document.createElement("button");
+        deleteButton.id = "delete_bt";
+        deleteButton.type = "button";
+        deleteButton.classList.add("btn-close");
+        deleteButton.setAttribute("aria-label", "Close");
+        resultsDiv.appendChild(deleteButton);
 
-    deleteBt.addEventListener("click",()=>{
+    deleteButton.addEventListener("click",()=>{
         resultsDiv.style.display="none";
         //risultatiDiv.innerHTML = "";
         cleanResults()
@@ -119,32 +119,32 @@ function fetchBookDescription(){
                 }
             }
             // create description div when put my informations
-            const divPlace = document.createElement("div");
-            divPlace.classList.add("description-box");
+            const divDescription = document.createElement("div");
+            divDescription.classList.add("description-box");
             const titleDesc= document.createElement("h5")
             titleDesc.classList.add("desc_title")
             titleDesc.textContent=" Description:"
 
-            const pDesc= document.createElement("p");
-            pDesc.classList.add("desc_p");
-            pDesc.textContent = descriptionText;
+            const pDescription= document.createElement("p");
+            pDescription.classList.add("desc_p");
+            pDescription.textContent = descriptionText;
             
-            divPlace.appendChild(titleDesc)
-            divPlace.appendChild(pDesc);
+            divDescription.appendChild(titleDesc)
+            divDescription.appendChild(pDescription);
             //insert under the title row
-            row.after(divPlace);
+            row.after(divDescription);
 
             //create button for delete 
-            const deleteBt=document.createElement("button");
-            deleteBt.id = "delete_bt-des";
-            deleteBt.type = "button";
-            deleteBt.classList.add("btn-close");
-            deleteBt.setAttribute("aria-label", "Close");
-            divPlace.appendChild(deleteBt);
+            const deleteButton=document.createElement("button");
+            deleteButton.id = "delete_bt-des";
+            deleteButton.type = "button";
+            deleteButton.classList.add("btn-close");
+            deleteButton.setAttribute("aria-label", "Close");
+            divDescription.appendChild(deleteButton);
 
-            deleteBt.addEventListener("click",()=>{
-                divPlace.remove();
-                //deleteBt.remove();
+            deleteButton.addEventListener("click",()=>{
+                divDescription.remove();
+                //deleteButton.remove();
             })
         }catch(error){
             console.error("Error dowloand description",error)
@@ -167,9 +167,9 @@ function CreateDom(data){
             rowDiv.classList.add('book-row');
             rowDiv.id = doc.key; 
             // remuve /works/ from key to have a valid ID
-            const inerrRowDiv = document.createElement('div');
-            inerrRowDiv.classList.add('inner-row');
-            rowDiv.appendChild(inerrRowDiv);
+            const insideRowDiv = document.createElement('div');
+            insideRowDiv.classList.add('inner-row');
+            rowDiv.appendChild(insideRowDiv);
 
             const titleElement = document.createElement('a');
             titleElement.textContent = doc.title ?? "Title not available";
@@ -187,9 +187,9 @@ function CreateDom(data){
             authorElement.id = doc.key;
             
             resultsDiv.style.display="block";
-            inerrRowDiv.appendChild(authorElement);
-            inerrRowDiv.appendChild(titleElement);
-            rowDiv.appendChild(inerrRowDiv);
+            insideRowDiv.appendChild(authorElement);
+            insideRowDiv.appendChild(titleElement);
+            rowDiv.appendChild(insideRowDiv);
             resultsDiv.appendChild(rowDiv);
         });
         //create button for delete 
