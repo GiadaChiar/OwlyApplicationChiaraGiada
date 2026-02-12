@@ -96,7 +96,7 @@ function fetchBookDescription(){
         try{
             const response = await fetch(url);
             if(!response.ok) 
-                throw new Error("Error loading description")
+                throw new Error("Error, fetch failed or book's id not found", error)
                 const data = await response.json();
                 console.log("Risultati descrizione API:",data.description)
             if (!row) 
@@ -147,7 +147,7 @@ function fetchBookDescription(){
                 //deleteButton.remove();
             })
         }catch(error){
-            console.error("Error dowloand description",error)
+            console.error("Error to create or insert text to description section",error)
         }
         });
     });
@@ -156,17 +156,15 @@ function fetchBookDescription(){
 
 function CreateDom(data){
     cleanResults()
-    //risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
     if(data.numFound==0){
         cleanResults()
-        //risultatiDiv.innerHTML = ""; // pulisce risultati precedenti
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
             const rowDiv = document.createElement('div');
             rowDiv.classList.add('book-row');
             rowDiv.id = doc.key; 
-            // remuve /works/ from key to have a valid ID
+            // it removes /works/ from key to have a valid ID
             const insideRowDiv = document.createElement('div');
             insideRowDiv.classList.add('inner-row');
             rowDiv.appendChild(insideRowDiv);
@@ -182,7 +180,7 @@ function CreateDom(data){
             titleElement.setAttribute('aria-controls', 'collapseExample');
 
             const authorElement = document.createElement('h3');
-            authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Autore sconosciuto";
+            authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Author unknown";
             authorElement.classList.add('book-author');
             authorElement.id = doc.key;
             
@@ -241,10 +239,11 @@ searchButton.addEventListener("click", async () => {
             CreateDom(data)
         }
         else{
-            console.log("lingua selezionata differente")
+            console.log("different language")
         }
     } catch (error) {
-        console.error("Errore durante il recupero dei dati:", error);
+        console.error("Error,fetch failed or not category found", error);
+        alert("Error,fetch failed or not category found, try a different category");
     }
 });
 
@@ -273,10 +272,10 @@ searchButtonFilter.addEventListener("click",async()=>{
     //function to change color from grey to white to Search button in the filters
 
    //same 
-    console.log(authorInput.value ? authorInput.value : "autore non selezionato");
-    console.log(titleInput.value ? titleInput.value: "titolo non selezionato");
-    console.log (categoryInput.value ? categoryInput.value : "categoria non selezionata");
-    //console.log(languageSelecte.value ? languageSelecte.value : "linguaggio non selezionato");
+    console.log(authorInput.value ? authorInput.value : "author not selected");
+    console.log(titleInput.value ? titleInput.value: "title not selected");
+    console.log (categoryInput.value ? categoryInput.value : "category not selected");
+    //console.log(languageSelecte.value ? languageSelecte.value : "langiage not selected");
     console.log("Lingua usata nella ricerca:", selectedLanguage);
     const baseUrl= `https://openlibrary.org/search.json`
     //object for create dynamic url, amazing!
@@ -299,12 +298,13 @@ searchButtonFilter.addEventListener("click",async()=>{
     console.log(url);
     try{
         const response = await fetch(url);
-        if(!response.ok) throw new Error("Errore caricamento descrizione")
+        if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
             const data = await response.json();
         console.log(data);
         //call function
         CreateDom(data)
     }catch(error){
-        console.error("Errore fetch dei filtri aggiuntivi",error)
+        console.error("Error, creation filter Dom failed or insert",error)
+        alert("Data entry error, please try again")
     }
 });
