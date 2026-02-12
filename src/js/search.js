@@ -207,6 +207,17 @@ function CreateDom(data){
     }
 }
 
+///change color write if is full 
+searchButton.addEventListener("input", () => {
+    const authorInput = document.getElementById("author");
+    const titleInput = document.getElementById("title");
+    if (authorInput.value !== "" || titleInput.value !== "") {
+        searchButton.style.color = "white";
+    } else {
+        searchButton.style.color = "grey";
+}
+});
+
 
 //if I click on search button
 searchButton.addEventListener("click", async () => {
