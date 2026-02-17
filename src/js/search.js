@@ -139,7 +139,7 @@ function fetchBookDescription(){
 }
 
 //create dom is too much long I needed to create a function to help me to create objects 
-function createElements(tag,className,idName,text,attributes ={}){
+function createElements(tag,className,idName,text,fatherName,attributes ={}){
     //create element 
     let constName = document.createElement(tag);
     if(className) {
@@ -156,11 +156,9 @@ function createElements(tag,className,idName,text,attributes ={}){
             constName.setAttribute(key,attributes[key])
         }
     }
-    /*if(attributes){
-        for(let key in attributes){
-            constName.setAttribute(key,attributes[key]);
-        }
-    }*/
+    if(fatherName){
+        fatherName.appendChild(constName)
+    }
     return constName;
 
 }
@@ -176,9 +174,9 @@ function CreateDom(data){
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
-            let rowDiv = createElements('div','book-row',doc.key,undefined);
-            let insideRowDiv =createElements('div','inner-row',undefined,undefined);
-            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",{
+            let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv);
+            let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv);
+            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",insideRowDiv,{
                 'data-bs-toggle': 'collapse',
                 'href': '#collapseExample',
                 'role':'button',
@@ -191,13 +189,13 @@ function CreateDom(data){
             titleElement.setAttribute('role', 'button');
             titleElement.setAttribute('aria-expanded', 'false');
             titleElement.setAttribute('aria-controls', 'collapseExample');*/
-            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",undefined);
+            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
             //append all elements
             resultsDiv.style.display="block";
-            insideRowDiv.appendChild(authorElement);
+            /*insideRowDiv.appendChild(authorElement);
             insideRowDiv.appendChild(titleElement);
             rowDiv.appendChild(insideRowDiv);
-            resultsDiv.appendChild(rowDiv);
+            resultsDiv.appendChild(rowDiv);*/
 
 
 
