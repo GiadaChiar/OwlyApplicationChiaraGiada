@@ -171,7 +171,7 @@ function fetchBookDescription(){
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
-    
+    console.log("holllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     });
 }
 
