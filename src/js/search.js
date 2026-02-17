@@ -139,7 +139,7 @@ function fetchBookDescription(){
 }
 
 //create dom is too much long I needed to create a function to help me to create objects 
-function createElements(tag,className,idName,text,fatherElement,attributes = {}){
+function createElements(tag,className,idName,text,attributes = {}){
     //create element 
     let constName = document.createElement(tag);
     if(className) {
@@ -156,11 +156,6 @@ function createElements(tag,className,idName,text,fatherElement,attributes = {})
             constName.setAttribute(key,attributes[key]);
         }
     }
-    if(fatherElement){
-        fatherElement.appendChild(constName);
-    }else{
-        console.warn("fatherElement not defined")
-    }
     return constName;
 
 }
@@ -176,16 +171,25 @@ function CreateDom(data){
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
-            let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv,undefined);
-            let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv,undefined);
-            let titleElement = createElements('a','book-title btn btn-primary',doc.key,undefined,insideRowDiv,{
+            let rowDiv = createElements('div','book-row',doc.key,undefined,undefined);
+            let insideRowDiv =createElements('div','inner-row',undefined,undefined,undefined);
+            let titleElement = createElements('a','book-title btn btn-primary',doc.key,undefined,{
                 'data-bs-toggle': 'collapse',
                 'href': '#collapseExample',
                 'role': 'button',
                 'aria-expanded': 'false',
                 'aria-controls': 'collapseExample'
             });
-            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv,undefined);
+            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",undefined);
+            //append all elements
+            resultsDiv.style.display="block";
+            insideRowDiv.appendChild(authorElement);
+            insideRowDiv.appendChild(titleElement);
+            rowDiv.appendChild(insideRowDiv);
+            resultsDiv.appendChild(rowDiv);
+
+
+
         });
         //create button for delete 
         buttonDelete(resultsDiv);
