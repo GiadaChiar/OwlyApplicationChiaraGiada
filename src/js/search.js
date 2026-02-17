@@ -36,14 +36,44 @@ function cleanResults(){
     resultsDiv.innerHTML = ""; 
 }
 
+
+//create dom is too much long I needed to create a function to help me to create objects 
+function createElements(tag,className,idName,text,fatherName,attributes ={}){
+    //create element 
+    let constName = document.createElement(tag);
+    if(className) {
+        className.split(' ').forEach(cls => constName.classList.add(cls));
+    }
+    if(idName){
+        constName.id = idName;
+    }
+    if(text){
+        constName.textContent = text;
+    }
+    if (attributes && typeof attributes ==='object'){
+        for (let key in attributes){
+            constName.setAttribute(key,attributes[key])
+        }
+    }
+    if(fatherName){
+        fatherName.appendChild(constName)
+    }
+    return constName;
+
+}
+
 //generic function to targetElement to choose when you want it 
 function buttonDelete(targetElement){
     //create button for delete 
-    const deleteButton=document.createElement("button");
+    /* const deleteButton=document.createElement("button");
     deleteButton.type = "button";
     deleteButton.classList.add("btn-close");
-    deleteButton.setAttribute("aria-label", "Close");
+    deleteButton.setAttribute("aria-label", "Close");*/
+    let deleteButton = createElements('button','btn-close',undefined,undefined,undefined,{
+        "aria-label": "Close"
+    })
     //to find where you want it
+    deleteButton.type = "button";
     targetElement.appendChild(deleteButton)//father=targetElement
     deleteButton.addEventListener("click",()=>{
         if(targetElement === resultsDiv){
@@ -58,10 +88,11 @@ function buttonDelete(targetElement){
 
 function createInfoIcon(){
 //create icone info to information about book
-    const infoIcon = document.createElement('i');
+    /*const infoIcon = document.createElement('i');
     infoIcon.classList.add('bi','bi-info-circle-fill');
     infoIcon.id = "info_icon";
-    resultsDiv.appendChild(infoIcon);
+    resultsDiv.appendChild(infoIcon);*/
+    const infoIcon  = createElements('i','bi bi-info-circle-fill','info_icon',undefined,resultsDiv)
     let infobox = null;
 
 //if I pass over the icon show alert with information
@@ -116,17 +147,23 @@ function fetchBookDescription(){
             }
 
             // create description div when put my informations
+            /*
             const divDescription = document.createElement("div");
             divDescription.classList.add("description-box");
             const titleDesc= document.createElement("h5")
             titleDesc.classList.add("desc_title")
-            titleDesc.textContent=" Description:"
+            titleDesc.textContent=" Description:"*/
+            const divDescription = createElements('div','description-box',undefined,undefined,undefined)
+            const titleDescription = createElements('h5','desc_title"',undefined,' Description:',undefined)
 
+            /*
             const pDescription= document.createElement("p");
             pDescription.classList.add("desc_p");
             pDescription.textContent = descriptionText;
-            
-            divDescription.appendChild(titleDesc)
+            */
+            const pDescription = createElements('p','desc_p',undefined,descriptionText,undefined)
+            //append
+            divDescription.appendChild(titleDescription)
             divDescription.appendChild(pDescription);
             //insert under the title row
             row.after(divDescription);
@@ -136,31 +173,6 @@ function fetchBookDescription(){
         }
     
     });
-}
-
-//create dom is too much long I needed to create a function to help me to create objects 
-function createElements(tag,className,idName,text,fatherName,attributes ={}){
-    //create element 
-    let constName = document.createElement(tag);
-    if(className) {
-        className.split(' ').forEach(cls => constName.classList.add(cls));
-    }
-    if(idName){
-        constName.id = idName;
-    }
-    if(text){
-        constName.textContent = text;
-    }
-    if (attributes && typeof attributes ==='object'){
-        for (let key in attributes){
-            constName.setAttribute(key,attributes[key])
-        }
-    }
-    if(fatherName){
-        fatherName.appendChild(constName)
-    }
-    return constName;
-
 }
 
 
@@ -184,21 +196,8 @@ function CreateDom(data){
                 'aria-controls': 'collapseExample'
             });
             
-            /*titleElement.setAttribute('data-bs-toggle', 'collapse');
-            titleElement.setAttribute('href', '#collapseExample');
-            titleElement.setAttribute('role', 'button');
-            titleElement.setAttribute('aria-expanded', 'false');
-            titleElement.setAttribute('aria-controls', 'collapseExample');*/
             let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
-            //append all elements
             resultsDiv.style.display="block";
-            /*insideRowDiv.appendChild(authorElement);
-            insideRowDiv.appendChild(titleElement);
-            rowDiv.appendChild(insideRowDiv);
-            resultsDiv.appendChild(rowDiv);*/
-
-
-
         });
         //create button for delete 
         buttonDelete(resultsDiv);
@@ -211,68 +210,6 @@ function CreateDom(data){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-function CreateDom(data){
-    cleanResults()
-    if(data.numFound==0){
-        cleanResults()
-        alert("No books were found! Try a different search.")
-    }else{
-        data.docs.forEach(doc => {
-            const rowDiv = document.createElement('div');
-            rowDiv.classList.add('book-row');
-            rowDiv.id = doc.key; 
-            // it removes /works/ from key to have a valid ID
-            const insideRowDiv = document.createElement('div');
-            insideRowDiv.classList.add('inner-row');
-            rowDiv.appendChild(insideRowDiv);
-
-            const titleElement = document.createElement('a');
-            titleElement.textContent = doc.title ?? "Title not available";
-            titleElement.id = doc.key;
-            titleElement.classList.add('book-title', 'btn', 'btn-primary');
-            titleElement.setAttribute('data-bs-toggle', 'collapse');
-            titleElement.setAttribute('href', '#collapseExample');
-            titleElement.setAttribute('role', 'button');
-            titleElement.setAttribute('aria-expanded', 'false');
-            titleElement.setAttribute('aria-controls', 'collapseExample');
-
-            const authorElement = document.createElement('h3');
-            authorElement.textContent = doc.author_name ? doc.author_name.join(", ") : "Author unknown";
-            authorElement.classList.add('book-author');
-            authorElement.id = doc.key;
-            
-            resultsDiv.style.display="block";
-            insideRowDiv.appendChild(authorElement);
-            insideRowDiv.appendChild(titleElement);
-            rowDiv.appendChild(insideRowDiv);
-            resultsDiv.appendChild(rowDiv);
-        });
-        //create button for delete 
-        buttonDelete(resultsDiv);
-        //create infobox
-        createInfoIcon();
-        //make the fetch 
-        fetchBookDescription();
-    }
-}
-*/
 
 ///change color write if it isn't empty 
 function updateButtomColor(){
