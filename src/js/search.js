@@ -173,7 +173,7 @@ function CreateDom(data){
         data.docs.forEach(doc => {
             let rowDiv = createElements('div','book-row',doc.key,undefined,undefined);
             let insideRowDiv =createElements('div','inner-row',undefined,undefined,undefined);
-            let titleElement = createElements('a','book-title btn btn-primary',doc.key, titleElement.textContent = doc.title ?? "Title not available",{
+            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",{
                 'data-bs-toggle': 'collapse',
                 'href': '#collapseExample',
                 'role': 'button',
