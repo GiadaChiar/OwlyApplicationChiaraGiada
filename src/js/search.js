@@ -36,8 +36,26 @@ function cleanResults(){
     resultsDiv.innerHTML = ""; 
 }
 
+//generic function to targetElement to choose when you want it 
+function buttonDelete(targetElement){
+    //create button for delete 
+    const deleteButton=document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.classList.add("btn-close");
+    deleteButton.setAttribute("aria-label", "Close");
+    //to find where you want it
+    targetElement.appendChild(deleteButton)//father=targetElement
+    deleteButton.addEventListener("click",()=>{
+        if(targetElement === resultsDiv){
+            resultsDiv.style.display="none";
+            cleanResults()
+        }else{
+            targetElement.remove();
+        }
+    })
+}
 
-function buttonDelete(){
+/*function buttonDelete(){
 //create button for delete 
     const deleteButton=document.createElement("button");
         deleteButton.id = "delete_bt";
@@ -45,12 +63,26 @@ function buttonDelete(){
         deleteButton.classList.add("btn-close");
         deleteButton.setAttribute("aria-label", "Close");
         resultsDiv.appendChild(deleteButton);
-
     deleteButton.addEventListener("click",()=>{
         resultsDiv.style.display="none";
         cleanResults()
     })
 }
+*/
+
+/*
+const deleteButton=document.createElement("button");
+            deleteButton.id = "delete_bt-des";
+            deleteButton.type = "button";
+            deleteButton.classList.add("btn-close");
+            deleteButton.setAttribute("aria-label", "Close");
+            divDescription.appendChild(deleteButton);
+
+            deleteButton.addEventListener("click",()=>{
+                divDescription.remove();
+                //
+*/
+
 
 
 function createInfoIcon(){
@@ -127,7 +159,10 @@ function fetchBookDescription(){
             divDescription.appendChild(pDescription);
             //insert under the title row
             row.after(divDescription);
+            
+            buttonDelete(divDescription);
 
+            /*
             //create button for delete 
             const deleteButton=document.createElement("button");
             deleteButton.id = "delete_bt-des";
@@ -140,6 +175,7 @@ function fetchBookDescription(){
                 divDescription.remove();
                 //deleteButton.remove();
             })
+                */
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
@@ -186,7 +222,7 @@ function CreateDom(data){
             resultsDiv.appendChild(rowDiv);
         });
         //create button for delete 
-        buttonDelete();
+        buttonDelete(resultsDiv);
         //create infobox
         createInfoIcon();
         //make the fetch 
