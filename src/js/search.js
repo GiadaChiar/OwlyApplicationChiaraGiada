@@ -6,7 +6,6 @@ import { setUpMenu } from './menu.js';
 const currentPage = document.body.dataset.currentPage;
 setUpMenu(currentPage);
 const menu_filters = document.getElementById("more-filters");
-//const delete_html_filter= document.getElementById("delete_html_filter");
 const button_filters = document.getElementById("filters");
 //if I click I pass hover mouse  get other informations info
 let selectedLanguage ="en";
@@ -50,7 +49,6 @@ function buttonDelete(){
 
     deleteButton.addEventListener("click",()=>{
         resultsDiv.style.display="none";
-        //risultatiDiv.innerHTML = "";
         cleanResults()
     })
 }
@@ -84,21 +82,28 @@ function createInfoIcon(){
 
 
 function fetchBookDescription(){
-    //if I click I pass hover mouse  get other informations info
+    resultsDiv.addEventListener("click", async(event)=>{
+        const title = event.target.closest(".book-title");
+        if(!title) return; //if I don't click in title exit
+        const row = title.closest(".book-row") //if I click on title
+        if(!row)return;
+    
+    /*
     const bookTitles = document.querySelectorAll(".book-title");
     //when Iclick on titles description
     bookTitles.forEach(title => {
     title.addEventListener("click", async() => {
         const row = title.closest(".book-row");
+        */
         //call another API 
-        //donm't usen encodeURIComponent bacause it trasform / in %
+        //don't usen encodeURIComponent bacause it trasform / in %
         const url =`https://openlibrary.org${title.id}.json`;
         console.log("Url richiesta desc:", url)
         console.log("stampo id:", title.id)
         try{
             const response = await fetch(url);
             if(!response.ok) 
-                throw new Error("Error, fetch failed or book's id not found", error)
+                throw new Error("Error, fetch failed or book's id not found")
                 const data = await response.json();
                 console.log("Risultati descrizione API:",data.description)
             if (!row) 
@@ -151,9 +156,10 @@ function fetchBookDescription(){
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
-        });
+    
     });
 }
+
 
 
 function CreateDom(data){
