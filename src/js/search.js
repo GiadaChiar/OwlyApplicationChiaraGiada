@@ -8,7 +8,7 @@ setUpMenu(currentPage);
 const menu_filters = document.getElementById("more-filters");
 const button_filters = document.getElementById("filters");
 //if I click I pass hover mouse  get other informations info
-let selectedLanguage ="en";
+//let selectedLanguage ="en";
 //default hide menu filters
 menu_filters.style.display ="none";
 //take input category value 
@@ -87,14 +87,6 @@ function fetchBookDescription(){
         if(!title) return; //if I don't click in title exit
         const row = title.closest(".book-row") //if I click on title
         if(!row)return;
-    
-    /*
-    const bookTitles = document.querySelectorAll(".book-title");
-    //when Iclick on titles description
-    bookTitles.forEach(title => {
-    title.addEventListener("click", async() => {
-        const row = title.closest(".book-row");
-        */
         //call another API 
         //don't usen encodeURIComponent bacause it trasform / in %
         const url =`https://openlibrary.org${title.id}.json`;
@@ -102,11 +94,12 @@ function fetchBookDescription(){
         console.log("stampo id:", title.id)
         try{
             const response = await fetch(url);
-            if(!response.ok) 
+            if(!response.ok){
                 throw new Error("Error, fetch failed or book's id not found")
-                const data = await response.json();
-                console.log("Risultati descrizione API:",data.description)
-            if (!row) 
+            }
+            const data = await response.json();
+            console.log("Risultati descrizione API:", data.description);
+                if (!row) 
                 return;
             // see if already exist a description box
             if (row.nextElementSibling?.classList.contains("description-box")) {
@@ -117,14 +110,9 @@ function fetchBookDescription(){
                 //get text if it is a string or an object because we have differents types
                 let rawText = (typeof data.description === "string") ? data.description : (typeof data.description === "object" && data.description.value) 
                 ? data.description.value : "Description not available";
-                // traslate language is it isn't in english
-                if (selectedLanguage !== "en") {
-                    descriptionText = await translateText(rawText, selectedLanguage);
-                    console.log("Descrizione tradotta:", descriptionText);
-                } else {
-                    descriptionText = rawText;
-                }
+                descriptionText = rawText
             }
+
             // create description div when put my informations
             const divDescription = document.createElement("div");
             divDescription.classList.add("description-box");
