@@ -21,7 +21,7 @@ const titleInput = document.getElementById("title");
 const delete_html_filter= document.getElementById("delete_html_filter");
 
 
-//I whant to check if textbox category isn't empty 
+//I want to check if textbox category isn't empty 
 categoryInput.addEventListener("input", () => {
     const category = categoryInput.value.trim();
     if (category !== "") {
@@ -55,40 +55,11 @@ function buttonDelete(targetElement){
     })
 }
 
-/*function buttonDelete(){
-//create button for delete 
-    const deleteButton=document.createElement("button");
-        deleteButton.id = "delete_bt";
-        deleteButton.type = "button";
-        deleteButton.classList.add("btn-close");
-        deleteButton.setAttribute("aria-label", "Close");
-        resultsDiv.appendChild(deleteButton);
-    deleteButton.addEventListener("click",()=>{
-        resultsDiv.style.display="none";
-        cleanResults()
-    })
-}
-*/
-
-/*
-const deleteButton=document.createElement("button");
-            deleteButton.id = "delete_bt-des";
-            deleteButton.type = "button";
-            deleteButton.classList.add("btn-close");
-            deleteButton.setAttribute("aria-label", "Close");
-            divDescription.appendChild(deleteButton);
-
-            deleteButton.addEventListener("click",()=>{
-                divDescription.remove();
-                //
-*/
-
-
 
 function createInfoIcon(){
 //create icone info to information about book
     const infoIcon = document.createElement('i');
-    infoIcon.classList.add('bi', 'bi-info-circle-fill');
+    infoIcon.classList.add('bi','bi-info-circle-fill');
     infoIcon.id = "info_icon";
     resultsDiv.appendChild(infoIcon);
     let infobox = null;
@@ -159,23 +130,7 @@ function fetchBookDescription(){
             divDescription.appendChild(pDescription);
             //insert under the title row
             row.after(divDescription);
-            
             buttonDelete(divDescription);
-
-            /*
-            //create button for delete 
-            const deleteButton=document.createElement("button");
-            deleteButton.id = "delete_bt-des";
-            deleteButton.type = "button";
-            deleteButton.classList.add("btn-close");
-            deleteButton.setAttribute("aria-label", "Close");
-            divDescription.appendChild(deleteButton);
-
-            deleteButton.addEventListener("click",()=>{
-                divDescription.remove();
-                //deleteButton.remove();
-            })
-                */
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
@@ -183,7 +138,82 @@ function fetchBookDescription(){
     });
 }
 
+//create dom is too much long I needed to create a function to help me to create objects 
+function createElements(tag,className,idName,text,fatherElement,attributes = {}){
+    //create element 
+    let constName = document.createElement(tag);
+    if(className) {
+        className.split(' ').forEach(cls => constName.classList.add(cls));
+    }
+    if(idName){
+        constName.id = idName;
+    }
+    if(text){
+        constName.textContent = text;
+    }
+    if(attributes){
+        for(let key in attributes){
+            constName.setAttribute(key,attributes[key]);
+        }
+    }
+    if(fatherElement){
+        fatherElement.appendChild(constName);
+    }else{
+        console.warn("fatherElement not defined")
+    }
+    return constName;
 
+}
+
+
+
+
+
+function CreateDom(data){
+    cleanResults()
+    if(data.numFound==0){
+        cleanResults()
+        alert("No books were found! Try a different search.")
+    }else{
+        data.docs.forEach(doc => {
+            let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv,undefined);
+            let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv,undefined);
+            let titleElement = createElements('a','book-title btn btn-primary',doc.key,undefined,insideRowDiv,{
+                'data-bs-toggle': 'collapse',
+                'href': '#collapseExample',
+                'role': 'button',
+                'aria-expanded': 'false',
+                'aria-controls': 'collapseExample'
+            });
+            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv,undefined);
+        });
+        //create button for delete 
+        buttonDelete(resultsDiv);
+        //create infobox
+        createInfoIcon();
+        //make the fetch 
+        fetchBookDescription();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 function CreateDom(data){
     cleanResults()
@@ -229,7 +259,7 @@ function CreateDom(data){
         fetchBookDescription();
     }
 }
-
+*/
 
 ///change color write if it isn't empty 
 function updateButtomColor(){

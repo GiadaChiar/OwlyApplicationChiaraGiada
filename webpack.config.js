@@ -20,13 +20,19 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
+                //QUANDO HAI FINITO RIMRTTILO E TOGLI QUELLO SOTTO
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                //use: ['style-loader', 'css-loader', 'sass-loader'],
+            
             },
                 {
                 test: /\.css$/i,
+                //QUANDO HAI FINITO RIMRTTILO E TOGLI QUELLO SOTTO
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        //use: ['style-loader', 'css-loader'], 
             },
         ],
+
     },
     plugins: [
         new HtmlWebpackPlugin({
