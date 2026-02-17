@@ -8,7 +8,6 @@ setUpMenu(currentPage);
 const menu_filters = document.getElementById("more-filters");
 const button_filters = document.getElementById("filters");
 //if I click I pass hover mouse  get other informations info
-//let selectedLanguage ="en";
 //default hide menu filters
 menu_filters.style.display ="none";
 //take input category value 
@@ -216,24 +215,19 @@ searchButton.addEventListener("click", async () => {
     const category = categoryInput.value.trim();
     if (!category){
         alert("Please enter a valid category.");
-        return;
+        return;                                     
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
     console.log("URL richiesta:", url); 
     try {
         const response = await fetch(url);
-        if (!response.ok) 
+        if (!response.ok){
             throw new Error("Errore API " + response.status);
-            const data = await response.json();
-            console.log("Risultati API:", data.docs);
-        if(selectedLanguage==="en"){
-            console.log("selectedLanguage:",selectedLanguage)
-            //ViewSearch(data);
-            CreateDom(data)
         }
-        else{
-            console.log("different language")
-        }
+        const data = await response.json();
+        console.log("Risultati API:", data.docs);
+        CreateDom(data)
+        
     } catch (error) {
         console.error("Error,fetch failed or not category found", error);
         alert("Error,fetch failed or not category found, try a different category");
@@ -250,11 +244,6 @@ delete_html_filter.addEventListener("click",async()=>{
     menu_filters.style.display="none";
 });
 
-
-
-/*search with author and title and language if there is also category,
-everything will be work also if there insn't one or more selections.*/
-//language selection:
     
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
@@ -267,8 +256,6 @@ searchButtonFilter.addEventListener("click",async()=>{
     console.log(authorInput.value ? authorInput.value : "author not selected");
     console.log(titleInput.value ? titleInput.value: "title not selected");
     console.log (categoryInput.value ? categoryInput.value : "category not selected");
-    //console.log(languageSelecte.value ? languageSelecte.value : "langiage not selected");
-    console.log("Lingua usata nella ricerca:", selectedLanguage);
     const baseUrl= `https://openlibrary.org/search.json`
     //object for create dynamic url, amazing!
     const params = new URLSearchParams();
@@ -280,7 +267,7 @@ searchButtonFilter.addEventListener("click",async()=>{
     if(authorInput.value){
         params.append("author_name",authorInput.value);
     }
-    //title
+    //titleselectedLanguage
     if(titleInput.value){
         params.append("title",titleInput.value);
     }
