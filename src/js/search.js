@@ -188,7 +188,7 @@ function CreateDom(data){
         data.docs.forEach(doc => {
             let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv);
             let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv);
-            let authorElement= createElements('h3','book-author',doc.key + '-author',doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
+            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
             let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",insideRowDiv,{
                 'data-bs-toggle': 'collapse',
                 'href': '#collapseExample',
