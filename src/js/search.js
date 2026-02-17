@@ -139,7 +139,7 @@ function fetchBookDescription(){
 }
 
 //create dom is too much long I needed to create a function to help me to create objects 
-function createElements(tag,className,idName,text,attributes = {}){
+function createElements(tag,className,idName,text){
     //create element 
     let constName = document.createElement(tag);
     if(className) {
@@ -151,11 +151,11 @@ function createElements(tag,className,idName,text,attributes = {}){
     if(text){
         constName.textContent = text;
     }
-    if(attributes){
+    /*if(attributes){
         for(let key in attributes){
             constName.setAttribute(key,attributes[key]);
         }
-    }
+    }*/
     return constName;
 
 }
@@ -171,15 +171,14 @@ function CreateDom(data){
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
-            let rowDiv = createElements('div','book-row',doc.key,undefined,undefined);
-            let insideRowDiv =createElements('div','inner-row',undefined,undefined,undefined);
-            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",{
-                'data-bs-toggle': 'collapse',
-                'href': '#collapseExample',
-                'role': 'button',
-                'aria-expanded': 'false',
-                'aria-controls': 'collapseExample'
-            });
+            let rowDiv = createElements('div','book-row',doc.key,undefined);
+            let insideRowDiv =createElements('div','inner-row',undefined,undefined);
+            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available");
+            titleElement.setAttribute('data-bs-toggle', 'collapse');
+            titleElement.setAttribute('href', '#collapseExample');
+            titleElement.setAttribute('role', 'button');
+            titleElement.setAttribute('aria-expanded', 'false');
+            titleElement.setAttribute('aria-controls', 'collapseExample');
             let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",undefined);
             //append all elements
             resultsDiv.style.display="block";
