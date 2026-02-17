@@ -64,11 +64,6 @@ function createElements(tag,className,idName,text,fatherName,attributes ={}){
 
 //generic function to targetElement to choose when you want it 
 function buttonDelete(targetElement){
-    //create button for delete 
-    /* const deleteButton=document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.classList.add("btn-close");
-    deleteButton.setAttribute("aria-label", "Close");*/
     let deleteButton = createElements('button','btn-close',undefined,undefined,undefined,{
         "aria-label": "Close"
     })
@@ -88,10 +83,6 @@ function buttonDelete(targetElement){
 
 function createInfoIcon(){
 //create icone info to information about book
-    /*const infoIcon = document.createElement('i');
-    infoIcon.classList.add('bi','bi-info-circle-fill');
-    infoIcon.id = "info_icon";
-    resultsDiv.appendChild(infoIcon);*/
     const infoIcon  = createElements('i','bi bi-info-circle-fill','info_icon',undefined,resultsDiv)
     let infobox = null;
 
@@ -145,22 +136,9 @@ function fetchBookDescription(){
                 ? data.description.value : "Description not available";
                 descriptionText = rawText
             }
-
             // create description div when put my informations
-            /*
-            const divDescription = document.createElement("div");
-            divDescription.classList.add("description-box");
-            const titleDesc= document.createElement("h5")
-            titleDesc.classList.add("desc_title")
-            titleDesc.textContent=" Description:"*/
             const divDescription = createElements('div','description-box',undefined,undefined,undefined)
             const titleDescription = createElements('h5','desc_title"',undefined,' Description:',undefined)
-
-            /*
-            const pDescription= document.createElement("p");
-            pDescription.classList.add("desc_p");
-            pDescription.textContent = descriptionText;
-            */
             const pDescription = createElements('p','desc_p',undefined,descriptionText,undefined)
             //append
             divDescription.appendChild(titleDescription)
@@ -171,11 +149,8 @@ function fetchBookDescription(){
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
-    console.log("holllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     });
 }
-
-
 
 
 
@@ -196,7 +171,6 @@ function CreateDom(data){
                 'aria-expanded': 'false',
                 'aria-controls': 'collapseExample'
             });
-            
             resultsDiv.style.display="block";
         });
         //create button for delete 
@@ -209,9 +183,7 @@ function CreateDom(data){
 }
 
 
-
-
-///change color write if it isn't empty 
+//change color write if it isn't empty 
 function updateButtomColor(){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
@@ -225,13 +197,18 @@ function updateButtomColor(){
 authorInput.addEventListener("input", updateButtomColor);
 titleInput.addEventListener("input", updateButtomColor);
 
+//function to validate input 
+function validateSearchInputs(){
+    alert("Please enter a valid category.");
+        return;  
+}
+
 
 //if I click on search button
 searchButton.addEventListener("click", async () => {
     const category = categoryInput.value.trim();
     if (!category){
-        alert("Please enter a valid category.");
-        return;                                     
+        validateSearchInputs();                                     
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
     console.log("URL richiesta:", url); 
@@ -245,7 +222,7 @@ searchButton.addEventListener("click", async () => {
         CreateDom(data)
         
     } catch (error) {
-        console.error("Error,fetch failed or not category found", error);
+        console.error("Error,fetch failed or not category found");
         alert("Error,fetch failed or not category found, try a different category");
     }
 });
@@ -260,18 +237,8 @@ delete_html_filter.addEventListener("click",async()=>{
     menu_filters.style.display="none";
 });
 
-    
-/*first step get category and all the other choosen*/
-//const categoryInput = document.getElementById('category'); get value
-searchButtonFilter.addEventListener("click",async()=>{
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
-    //function to change color from grey to white to Search button in the filters
-    
-   //same 
-    console.log(authorInput.value ? authorInput.value : "author not selected");
-    console.log(titleInput.value ? titleInput.value: "title not selected");
-    console.log (categoryInput.value ? categoryInput.value : "category not selected");
+
+function CreateFilterFetch(categoryInput,authorInput,titleInput){
     const baseUrl= `https://openlibrary.org/search.json`
     //object for create dynamic url, amazing!
     const params = new URLSearchParams();
@@ -291,6 +258,46 @@ searchButtonFilter.addEventListener("click",async()=>{
     params.append("limit", "20");
     const url = `${baseUrl}?${params.toString()}`;
     console.log(url);
+    return url;
+}
+
+    
+/*first step get category and all the other choosen*/
+//const categoryInput = document.getElementById('category'); get value
+searchButtonFilter.addEventListener("click",async()=>{
+    const authorInput = document.getElementById("author");
+    const titleInput = document.getElementById("title");
+    //function to change color from grey to white to Search button in the filters
+   //same 
+    console.log(authorInput.value ? authorInput.value : "author not selected");
+    console.log(titleInput.value ? titleInput.value: "title not selected");
+    console.log (categoryInput.value ? categoryInput.value : "category not selected");
+    //if you are not a new insert 
+    if(categoryInput.value ==="" && titleInput.value ===""){
+        validateSearchInputs();
+    }
+    /*
+    const baseUrl= `https://openlibrary.org/search.json`
+    //object for create dynamic url, amazing!
+    const params = new URLSearchParams();
+    //category
+    if (categoryInput.value) {
+    params.append("subject", categoryInput.value);
+    }
+    //author
+    if(authorInput.value){
+        params.append("author_name",authorInput.value);
+    }
+    //titleselectedLanguage
+    if(titleInput.value){
+        params.append("title",titleInput.value);
+    }
+    //limit 
+    params.append("limit", "20");
+    const url = `${baseUrl}?${params.toString()}`;
+    console.log(url);*/
+    const url = CreateFilterFetch(categoryInput,authorInput,titleInput);
+
     try{
         const response = await fetch(url);
         if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
