@@ -21,7 +21,7 @@ const titleInput = document.getElementById("title");
 const delete_html_filter= document.getElementById("delete_html_filter");
 
 
-//I want to check if textbox category isn't empty 
+//I want to check if textbox category isn't empty and change color
 categoryInput.addEventListener("input", () => {
     const category = categoryInput.value.trim();
     if (category !== "") {
@@ -38,35 +38,35 @@ function cleanResults(){
 
 
 //create dom is too much long I needed to create a function to help me to create objects 
-function createElements(tag,className,idName,text,fatherName,attributes ={}){
+function createElements({tag,className,id,textContent,parentElement,attributes ={}}){
     //create element 
-    let constName = document.createElement(tag);
+    let element= document.createElement(tag);
     if(className) {
-        className.split(' ').forEach(cls => constName.classList.add(cls));
+        className.split(' ').forEach(cls => element.classList.add(cls));
     }
-    if(idName){
-        constName.id = idName;
+    if(id){
+        element.id = id;
     }
-    if(text){
-        constName.textContent = text;
+    if(textContent){
+        element.textContent = textContent;
     }
     if (attributes && typeof attributes ==='object'){
         for (let key in attributes){
-            constName.setAttribute(key,attributes[key])
+            element.setAttribute(key,attributes[key])
         }
     }
-    if(fatherName){
-        fatherName.appendChild(constName)
+    if(parentElement){
+        parentElement.appendChild(element)
     }
-    return constName;
-
+    return element;
 }
 
+
 //generic function to targetElement to choose when you want it 
-function buttonDelete(targetElement){
-    let deleteButton = createElements('button','btn-close',undefined,undefined,undefined,{
+function createCloseButton(targetElement){
+    let deleteButton = createElements({tag:'button',className:'btn-close',attributes:{
         "aria-label": "Close"
-    })
+    }})
     //to find where you want it
     deleteButton.type = "button";
     targetElement.appendChild(deleteButton)//father=targetElement
@@ -83,7 +83,8 @@ function buttonDelete(targetElement){
 
 function createInfoIcon(){
 //create icone info to information about book
-    const infoIcon  = createElements('i','bi bi-info-circle-fill','info_icon',undefined,resultsDiv)
+    //const infoIcon  = createElements('i','bi bi-info-circle-fill','info_icon',undefined,resultsDiv)
+    const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
     let infobox = null;
 
 //if I pass over the icon show alert with information
@@ -137,15 +138,19 @@ function fetchBookDescription(){
                 descriptionText = rawText
             }
             // create description div when put my informations
-            const divDescription = createElements('div','description-box',undefined,undefined,undefined)
-            const titleDescription = createElements('h5','desc_title"',undefined,' Description:',undefined)
+            /*const divDescription = createElements('div','description-box',undefined,undefined,undefined)
+            const titleDescription = createElements('h5','desc_title',undefined,' Description:',undefined)
             const pDescription = createElements('p','desc_p',undefined,descriptionText,undefined)
+            */
+            const divDescription = createElements({tag:'div',className:'description-box'})
+            const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
+            const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
             //append
             divDescription.appendChild(titleDescription)
             divDescription.appendChild(pDescription);
             //insert under the title row
             row.after(divDescription);
-            buttonDelete(divDescription);
+            createCloseButton(divDescription);
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
@@ -161,7 +166,7 @@ function CreateDom(data){
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
-            let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv);
+            /*let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv);
             let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv);
             let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
             let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",insideRowDiv,{
@@ -171,10 +176,21 @@ function CreateDom(data){
                 'aria-expanded': 'false',
                 'aria-controls': 'collapseExample'
             });
+            */
+            let rowDiv = createElements({tag:'div',className:'book-row',id:doc.key,parentElement:resultsDiv});
+            let insideRowDiv =createElements({tag:'div',className:'inner-row',parentElement: rowDiv});
+            let authorElement= createElements({tag:'h3',className:'book-author',id:doc.key,textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv});
+            let titleElement = createElements({tag:'a',className:'book-title btn btn-primary',id:doc.key,textContent:doc.title ?? "Title not available",parentElement:insideRowDiv,attributes:{
+                'data-bs-toggle': 'collapse',
+                'href': '#collapseExample',
+                'role':'button',
+                'aria-expanded': 'false',
+                'aria-controls': 'collapseExample'
+            }});
             resultsDiv.style.display="block";
         });
         //create button for delete 
-        buttonDelete(resultsDiv);
+        createCloseButton(resultsDiv);
         //create infobox
         createInfoIcon();
         //make the fetch 
@@ -208,7 +224,8 @@ function validateSearchInputs(){
 searchButton.addEventListener("click", async () => {
     const category = categoryInput.value.trim();
     if (!category){
-        validateSearchInputs();                                     
+        validateSearchInputs();  
+        return;                                   
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
     console.log("URL richiesta:", url); 
@@ -240,7 +257,6 @@ delete_html_filter.addEventListener("click",async()=>{
 
 function CreateFilterFetch(categoryInput,authorInput,titleInput){
     const baseUrl= `https://openlibrary.org/search.json`
-    //object for create dynamic url, amazing!
     const params = new URLSearchParams();
     //category
     if (categoryInput.value) {
@@ -273,31 +289,11 @@ searchButtonFilter.addEventListener("click",async()=>{
     console.log(titleInput.value ? titleInput.value: "title not selected");
     console.log (categoryInput.value ? categoryInput.value : "category not selected");
     //if you are not a new insert 
-    if(categoryInput.value ==="" && titleInput.value ===""){
+    if(authorInput.value ==="" && titleInput.value ===""){
         validateSearchInputs();
+        return;
     }
-    /*
-    const baseUrl= `https://openlibrary.org/search.json`
-    //object for create dynamic url, amazing!
-    const params = new URLSearchParams();
-    //category
-    if (categoryInput.value) {
-    params.append("subject", categoryInput.value);
-    }
-    //author
-    if(authorInput.value){
-        params.append("author_name",authorInput.value);
-    }
-    //titleselectedLanguage
-    if(titleInput.value){
-        params.append("title",titleInput.value);
-    }
-    //limit 
-    params.append("limit", "20");
-    const url = `${baseUrl}?${params.toString()}`;
-    console.log(url);*/
     const url = CreateFilterFetch(categoryInput,authorInput,titleInput);
-
     try{
         const response = await fetch(url);
         if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
