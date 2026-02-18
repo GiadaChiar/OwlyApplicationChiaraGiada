@@ -36,10 +36,15 @@ function updateButtomColor(){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
     const category = categoryInput.value.trim();
-    if (author !== "" || title !== "" || category !== "") {
+    if (author !== "" || title !== "") {
         searchButtonFilter.style.color = "white";
-    } else {
+    }
+    if(category !== ""){
+        searchButton.style.color = "white";
+    }
+    else {
         searchButtonFilter.style.color = "grey";
+        searchButton.style.color = "grey";
     }
 }
 
