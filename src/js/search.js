@@ -38,12 +38,13 @@ function updateButtomColor(){
     const category = categoryInput.value.trim();
     if (author !== "" || title !== "") {
         searchButtonFilter.style.color = "white";
+    }else {
+        searchButtonFilter.style.color = "grey";
     }
     if(category !== ""){
         searchButton.style.color = "white";
     }
     else {
-        searchButtonFilter.style.color = "grey";
         searchButton.style.color = "grey";
     }
 }
