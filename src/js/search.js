@@ -83,17 +83,18 @@ function createCloseButton(targetElement){
 
 function createInfoIcon(){
 //create icone info to information about book
-    //const infoIcon  = createElements('i','bi bi-info-circle-fill','info_icon',undefined,resultsDiv)
     const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
     let infobox = null;
 
 //if I pass over the icon show alert with information
     infoIcon.addEventListener("mouseover", () => {
         if (infobox) return;
-        infobox =document.createElement("div");
+        /*infobox =document.createElement("div");
         infobox.id="info_box";
         infobox.textContent = "List of books with authors and titles based on the selected category.";
-    resultsDiv.appendChild(infobox);
+    resultsDiv.appendChild(infobox);*/
+        let infobox = createElements({tag:"div",id:"info_box",textContent:"List of books with authors and titles based on the selected category.",parentElement:resultsDiv})
+
     });
 
     //if I exit from icon the infobox disappear
@@ -137,11 +138,6 @@ function fetchBookDescription(){
                 ? data.description.value : "Description not available";
                 descriptionText = rawText
             }
-            // create description div when put my informations
-            /*const divDescription = createElements('div','description-box',undefined,undefined,undefined)
-            const titleDescription = createElements('h5','desc_title',undefined,' Description:',undefined)
-            const pDescription = createElements('p','desc_p',undefined,descriptionText,undefined)
-            */
             const divDescription = createElements({tag:'div',className:'description-box'})
             const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
             const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
@@ -166,17 +162,6 @@ function CreateDom(data){
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
-            /*let rowDiv = createElements('div','book-row',doc.key,undefined,resultsDiv);
-            let insideRowDiv =createElements('div','inner-row',undefined,undefined,rowDiv);
-            let authorElement= createElements('h3','book-author',doc.key,doc.author_name ? doc.author_name.join(", ") : "Author unknown",insideRowDiv);
-            let titleElement = createElements('a','book-title btn btn-primary',doc.key,doc.title ?? "Title not available",insideRowDiv,{
-                'data-bs-toggle': 'collapse',
-                'href': '#collapseExample',
-                'role':'button',
-                'aria-expanded': 'false',
-                'aria-controls': 'collapseExample'
-            });
-            */
             let rowDiv = createElements({tag:'div',className:'book-row',id:doc.key,parentElement:resultsDiv});
             let insideRowDiv =createElements({tag:'div',className:'inner-row',parentElement: rowDiv});
             let authorElement= createElements({tag:'h3',className:'book-author',id:doc.key,textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv});
