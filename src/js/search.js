@@ -89,11 +89,11 @@ function createInfoIcon(){
 //if I pass over the icon show alert with information
     infoIcon.addEventListener("mouseover", () => {
         if (infobox) return;
-        /*infobox =document.createElement("div");
+        infobox =document.createElement("div");
         infobox.id="info_box";
         infobox.textContent = "List of books with authors and titles based on the selected category.";
-    resultsDiv.appendChild(infobox);*/
-        const infobox = createElements({tag:"div",id:"info_box",textContent:"List of books with authors and titles based on the selected category.",parentElement:resultsDiv})
+    resultsDiv.appendChild(infobox);
+       /* const infobox = createElements({tag:"div",id:"info_box",textContent:"List of books with authors and titles based on the selected category.",parentElement:resultsDiv})*/
     });
 
     //if I exit from icon the infobox disappear
