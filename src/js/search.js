@@ -20,7 +20,7 @@ const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
 const delete_html_filter= document.getElementById("delete_html_filter");
 
-
+/*
 //I want to check if textbox category isn't empty and change color
 categoryInput.addEventListener("input", () => {
     const category = categoryInput.value.trim();
@@ -30,7 +30,24 @@ categoryInput.addEventListener("input", () => {
         searchButton.style.color = "grey";
     }
 });
+*/
+//change color write if it isn't empty 
+function updateButtomColor(){
+    const author=authorInput.value.trim();
+    const title = titleInput.value.trim();
+    const category = categoryInput.value.trim();
+    if (author !== "" || title !== "" || category !== "") {
+        searchButtonFilter.style.color = "white";
+    } else {
+        searchButtonFilter.style.color = "grey";
+    }
+}
 
+//recall function
+authorInput.addEventListener("input", updateButtomColor);
+titleInput.addEventListener("input", updateButtomColor);
+categoryInput.addEventListener("input", updateButtomColor);
+updateButtomColor();//first state
 
 function cleanResults(){
     resultsDiv.innerHTML = ""; 
@@ -178,7 +195,7 @@ function CreateDom(data){
     }
 }
 
-
+/*
 //change color write if it isn't empty 
 function updateButtomColor(){
     const author=authorInput.value.trim();
@@ -189,9 +206,7 @@ function updateButtomColor(){
         searchButtonFilter.style.color = "grey";
     }
 }
-//recall function
-authorInput.addEventListener("input", updateButtomColor);
-titleInput.addEventListener("input", updateButtomColor);
+    */
 
 //function to validate input 
 function validateSearchInputs(){
