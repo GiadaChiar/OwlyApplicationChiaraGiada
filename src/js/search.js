@@ -93,8 +93,7 @@ function createInfoIcon(){
         infobox.id="info_box";
         infobox.textContent = "List of books with authors and titles based on the selected category.";
     resultsDiv.appendChild(infobox);*/
-        let infobox = createElements({tag:"div",id:"info_box",textContent:"List of books with authors and titles based on the selected category.",parentElement:resultsDiv})
-
+        const infobox = createElements({tag:"div",id:"info_box",textContent:"List of books with authors and titles based on the selected category.",parentElement:resultsDiv})
     });
 
     //if I exit from icon the infobox disappear
