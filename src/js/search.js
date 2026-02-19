@@ -76,6 +76,24 @@ function createElements({tag,className,id,textContent,parentElement,attributes =
 }
 
 
+//listener CloseButton
+//listener clean recall function
+function initCloseButtonListener(){
+    resultsDiv.addEventListener("click",handleCloseButtonClick);
+}
+
+function handleCloseButtonClick(event){
+    const button = event.target.closest(".btn-close");//near parent
+    if (!button) return;//if you click on another element exit
+    const targetElement = button.parentElement;
+        if(targetElement === resultsDiv){
+            resultsDiv.style.display="none";
+            cleanResults()
+        }else{
+            targetElement.remove();
+        }
+}
+
 //generic function to targetElement to choose when you want it 
 function createCloseButton(targetElement){
     let deleteButton = createElements({tag:'button',className:'btn-close',attributes:{
@@ -84,15 +102,17 @@ function createCloseButton(targetElement){
     //to find where you want it
     deleteButton.type = "button";
     targetElement.appendChild(deleteButton)//father=targetElement
-    deleteButton.addEventListener("click",()=>{
+    /*deleteButton.addEventListener("click",()=>{
         if(targetElement === resultsDiv){
             resultsDiv.style.display="none";
             cleanResults()
         }else{
             targetElement.remove();
         }
-    })
+    })*/
 }
+//recall function
+initCloseButtonListener();
 
 
 function createInfoIcon(){
@@ -151,20 +171,6 @@ async function fetchBookData(titleId,row){
         const url =`https://openlibrary.org${titleId}.json`;
         console.log("Url request description:", url)
         console.log("print id:", titleId)
-        /*
-        try{
-            const response = await fetch(url);
-            if(!response.ok){
-                throw new Error("Error, fetch failed or book's id not found")
-            }
-            const data = await response.json();
-            console.log("Description API:", data.description);
-                if (!row) 
-                return;
-            createDomBookDescription(data,row);
-        }catch(error){
-            console.error("Error to create or insert text to description section",error)
-        }*/
         try{
             const data = await fetchJson(url);
             console.log("Description API:", data.description);
@@ -200,9 +206,6 @@ function createDomBookDescription(data,row){
             createCloseButton(divDescription);
 }
 
-
-//call function 
-initBookDescriptionListener();
 
 
 function createDom(data){
@@ -250,20 +253,6 @@ searchButton.addEventListener("click", async () => {
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
     console.log("URL request:", url); 
-    /*
-    try {
-        const response = await fetch(url);
-        if (!response.ok){
-            throw new Error("Error API " + response.status);
-        }
-        const data = await response.json();
-        console.log("request API:", data.docs);
-        createDom(data)
-        
-    } catch (error) {
-        console.error("Error,fetch failed or not category found");
-        alert("Error,fetch failed or not category found, try a different category");
-    }*/
     try{
         const data = await fetchJson(url);
         console.log("request API:", data.docs);
@@ -310,26 +299,12 @@ function createFilterFetch (categoryInput,authorInput,titleInput){
 /*first step get category and all the other choosen*/
 //const categoryInput = document.getElementById('category'); get value
 searchButtonFilter.addEventListener("click",async()=>{
-    const authorInput = document.getElementById("author");
-    const titleInput = document.getElementById("title");
     //if you are not a new insert 
     if(authorInput.value ==="" && titleInput.value ===""){
         validateSearchInputs();
         return;
     }
     const url = createFilterFetch (categoryInput,authorInput,titleInput);
-    /*
-    try{
-        const response = await fetch(url);
-        if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
-            const data = await response.json();
-        console.log(data);
-        //call function
-        createDom(data)
-    }catch(error){
-        console.error("Error, creation filter Dom failed or insert",error)
-        alert("Data entry error, please try again")
-    }*/
     try{
         const data = await fetchJson(url);
         console.log(data);
