@@ -20,19 +20,10 @@ const authorInput = document.getElementById("author");
 const titleInput = document.getElementById("title");
 const delete_html_filter= document.getElementById("delete_html_filter");
 
-/*
-//I want to check if textbox category isn't empty and change color
-categoryInput.addEventListener("input", () => {
-    const category = categoryInput.value.trim();
-    if (category !== "") {
-        searchButton.style.color = "white";
-    } else {
-        searchButton.style.color = "grey";
-    }
-});
-*/
+
+
 //change color write if it isn't empty 
-function updateButtomColor(){
+function updateButtonColor(){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
     const category = categoryInput.value.trim();
@@ -50,10 +41,10 @@ function updateButtomColor(){
 }
 
 //recall function
-authorInput.addEventListener("input", updateButtomColor);
-titleInput.addEventListener("input", updateButtomColor);
-categoryInput.addEventListener("input", updateButtomColor);
-updateButtomColor();//first state
+authorInput.addEventListener("input", updateButtonColor);
+titleInput.addEventListener("input", updateButtonColor);
+categoryInput.addEventListener("input", updateButtonColor);
+updateButtonColor();//first state
 
 function cleanResults(){
     resultsDiv.innerHTML = ""; 
@@ -134,15 +125,15 @@ function fetchBookDescription(){
         //call another API 
         //don't usen encodeURIComponent bacause it trasform / in %
         const url =`https://openlibrary.org${title.id}.json`;
-        console.log("Url richiesta desc:", url)
-        console.log("stampo id:", title.id)
+        console.log("Url request description:", url)
+        console.log("print id:", title.id)
         try{
             const response = await fetch(url);
             if(!response.ok){
                 throw new Error("Error, fetch failed or book's id not found")
             }
             const data = await response.json();
-            console.log("Risultati descrizione API:", data.description);
+            console.log("Description API:", data.description);
                 if (!row) 
                 return;
             // see if already exist a description box
@@ -194,25 +185,15 @@ function CreateDom(data){
         });
         //create button for delete 
         createCloseButton(resultsDiv);
-        //create infobox
+        //create infobox if isn't
+        if (!document.getElementById("info_icon")) {
         createInfoIcon();
+        }
         //make the fetch 
-        fetchBookDescription();
+        //fetchBookDescription();
     }
 }
 
-/*
-//change color write if it isn't empty 
-function updateButtomColor(){
-    const author=authorInput.value.trim();
-    const title = titleInput.value.trim();
-    if (author !== "" || title !== "") {
-        searchButtonFilter.style.color = "white";
-    } else {
-        searchButtonFilter.style.color = "grey";
-    }
-}
-    */
 
 //function to validate input 
 function validateSearchInputs(){
@@ -229,14 +210,14 @@ searchButton.addEventListener("click", async () => {
         return;                                   
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
-    console.log("URL richiesta:", url); 
+    console.log("URL request:", url); 
     try {
         const response = await fetch(url);
         if (!response.ok){
             throw new Error("Errore API " + response.status);
         }
         const data = await response.json();
-        console.log("Risultati API:", data.docs);
+        console.log("request API:", data.docs);
         CreateDom(data)
         
     } catch (error) {
@@ -274,7 +255,6 @@ function CreateFilterFetch(categoryInput,authorInput,titleInput){
     //limit 
     params.append("limit", "20");
     const url = `${baseUrl}?${params.toString()}`;
-    console.log(url);
     return url;
 }
 
@@ -284,11 +264,6 @@ function CreateFilterFetch(categoryInput,authorInput,titleInput){
 searchButtonFilter.addEventListener("click",async()=>{
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
-    //function to change color from grey to white to Search button in the filters
-   //same 
-    console.log(authorInput.value ? authorInput.value : "author not selected");
-    console.log(titleInput.value ? titleInput.value: "title not selected");
-    console.log (categoryInput.value ? categoryInput.value : "category not selected");
     //if you are not a new insert 
     if(authorInput.value ==="" && titleInput.value ===""){
         validateSearchInputs();
@@ -307,3 +282,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         alert("Data entry error, please try again")
     }
 });
+
+
+//call function with listener about title
+fetchBookDescription();
