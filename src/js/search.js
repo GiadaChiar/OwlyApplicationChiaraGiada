@@ -134,6 +134,71 @@ function createInfoIcon(){
 }
 
 
+
+//listener clean recall function
+function initBookDescriptionListener(){
+    resultsDiv.addEventListener("click",handleBookClick);
+}
+
+//async function handleBookClick
+function handleBookClick(event){
+    const title = event.target.closest(".book-title");
+        if(!title) return; //if I don't click in title exit
+        const row = title.closest(".book-row") //if I click on title
+        if(!row)return;
+        let titleId= title.id;
+        fetchBookData(titleId);
+}
+
+//API
+async function fetchBookData(titleId){
+    //call another API 
+        //don't usen encodeURIComponent bacause it trasform / in %
+        const url =`https://openlibrary.org${titleId}.json`;
+        console.log("Url request description:", url)
+        console.log("print id:", title.id)
+        try{
+            const response = await fetch(url);
+            if(!response.ok){
+                throw new Error("Error, fetch failed or book's id not found")
+            }
+            const data = await response.json();
+            console.log("Description API:", data.description);
+                if (!row) 
+                return;
+            createDomBookDescription();
+        }catch(error){
+            console.error("Error to create or insert text to description section",error)
+        }
+}
+
+//controll description
+
+
+function createDomBookDescription(){
+    let descriptionText = "Description not available";
+            if (data.description) {
+                //get text if it is a string or an object because we have differents types
+                let rawText = (typeof data.description === "string") ? data.description : (typeof data.description === "object" && data.description.value) 
+                ? data.description.value : "Description not available";
+                descriptionText = rawText
+            }
+            const divDescription = createElements({tag:'div',className:'description-box'})
+            const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
+            const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
+            //append
+            divDescription.appendChild(titleDescription)
+            divDescription.appendChild(pDescription);
+            //insert under the title row
+            row.after(divDescription);
+            createCloseButton(divDescription);
+}
+
+
+//call function 
+initBookDescriptionListener();
+
+/*
 function fetchBookDescription(){
     resultsDiv.addEventListener("click", async(event)=>{
         const title = event.target.closest(".book-title");
@@ -179,8 +244,56 @@ function fetchBookDescription(){
         }
     });
 }
+*/
 
 
+/*
+function fetchBookDescription(){
+    resultsDiv.addEventListener("click", async(event)=>{
+        const title = event.target.closest(".book-title");
+        if(!title) return; //if I don't click in title exit
+        const row = title.closest(".book-row") //if I click on title
+        if(!row)return;
+        //call another API 
+        //don't usen encodeURIComponent bacause it trasform / in %
+        const url =`https://openlibrary.org${title.id}.json`;
+        console.log("Url request description:", url)
+        console.log("print id:", title.id)
+        try{
+            const response = await fetch(url);
+            if(!response.ok){
+                throw new Error("Error, fetch failed or book's id not found")
+            }
+            const data = await response.json();
+            console.log("Description API:", data.description);
+                if (!row) 
+                return;
+            // see if already exist a description box
+            if (row.nextElementSibling?.classList.contains("description-box")) {
+                return;// not duplicate 
+            }
+            let descriptionText = "Description not available";
+            if (data.description) {
+                //get text if it is a string or an object because we have differents types
+                let rawText = (typeof data.description === "string") ? data.description : (typeof data.description === "object" && data.description.value) 
+                ? data.description.value : "Description not available";
+                descriptionText = rawText
+            }
+            const divDescription = createElements({tag:'div',className:'description-box'})
+            const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
+            const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
+            //append
+            divDescription.appendChild(titleDescription)
+            divDescription.appendChild(pDescription);
+            //insert under the title row
+            row.after(divDescription);
+            createCloseButton(divDescription);
+        }catch(error){
+            console.error("Error to create or insert text to description section",error)
+        }
+    });
+}
+*/
 
 function createDom(data){
     cleanResults()
@@ -298,6 +411,12 @@ searchButtonFilter.addEventListener("click",async()=>{
         alert("Data entry error, please try again")
     }
 });
+
+
+
+
+
+
 
 
 //call function with listener about title
