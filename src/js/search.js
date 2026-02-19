@@ -3,6 +3,24 @@ import '../style/search.css';
 import { setUpMenu } from './menu.js';
 
 
+// ======================
+// DOM REFERENCES
+// ======================
+
+// ======================
+// EVENT LISTENERS
+// ======================
+
+// ======================
+// API FUNCTIONS
+// ======================
+
+// ======================
+// RENDER FUNCTIONS
+// ======================
+
+
+
 const currentPage = document.body.dataset.currentPage;
 setUpMenu(currentPage);
 const menu_filters = document.getElementById("more-filters");
@@ -164,7 +182,7 @@ function fetchBookDescription(){
 
 
 
-function CreateDom(data){
+function createDom(data){
     cleanResults()
     if(data.numFound==0){
         cleanResults()
@@ -189,8 +207,6 @@ function CreateDom(data){
         if (!document.getElementById("info_icon")) {
         createInfoIcon();
         }
-        //make the fetch 
-        //fetchBookDescription();
     }
 }
 
@@ -218,7 +234,7 @@ searchButton.addEventListener("click", async () => {
         }
         const data = await response.json();
         console.log("request API:", data.docs);
-        CreateDom(data)
+        createDom(data)
         
     } catch (error) {
         console.error("Error,fetch failed or not category found");
@@ -237,7 +253,7 @@ delete_html_filter.addEventListener("click",async()=>{
 });
 
 
-function CreateFilterFetch(categoryInput,authorInput,titleInput){
+function createFilterFetch (categoryInput,authorInput,titleInput){
     const baseUrl= `https://openlibrary.org/search.json`
     const params = new URLSearchParams();
     //category
@@ -269,14 +285,14 @@ searchButtonFilter.addEventListener("click",async()=>{
         validateSearchInputs();
         return;
     }
-    const url = CreateFilterFetch(categoryInput,authorInput,titleInput);
+    const url = createFilterFetch (categoryInput,authorInput,titleInput);
     try{
         const response = await fetch(url);
         if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
             const data = await response.json();
         console.log(data);
         //call function
-        CreateDom(data)
+        createDom(data)
     }catch(error){
         console.error("Error, creation filter Dom failed or insert",error)
         alert("Data entry error, please try again")
