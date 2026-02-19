@@ -141,22 +141,22 @@ function initBookDescriptionListener(){
 }
 
 //async function handleBookClick
-function handleBookClick(event){
+async function handleBookClick(event){
     const title = event.target.closest(".book-title");
         if(!title) return; //if I don't click in title exit
         const row = title.closest(".book-row") //if I click on title
         if(!row)return;
         let titleId= title.id;
-        fetchBookData(titleId);
+        await fetchBookData(titleId,row);
 }
 
 //API
-async function fetchBookData(titleId){
+async function fetchBookData(titleId,row){
     //call another API 
         //don't usen encodeURIComponent bacause it trasform / in %
         const url =`https://openlibrary.org${titleId}.json`;
         console.log("Url request description:", url)
-        console.log("print id:", title.id)
+        console.log("print id:", titleId)
         try{
             const response = await fetch(url);
             if(!response.ok){
@@ -166,7 +166,7 @@ async function fetchBookData(titleId){
             console.log("Description API:", data.description);
                 if (!row) 
                 return;
-            createDomBookDescription();
+            createDomBookDescription(data,row);
         }catch(error){
             console.error("Error to create or insert text to description section",error)
         }
@@ -175,7 +175,8 @@ async function fetchBookData(titleId){
 //controll description
 
 
-function createDomBookDescription(){
+function createDomBookDescription(data,row){
+    if (row.nextElementSibling?.classList.contains("description-box")) return;// not duplicate 
     let descriptionText = "Description not available";
             if (data.description) {
                 //get text if it is a string or an object because we have differents types
