@@ -138,9 +138,10 @@ async function handleBookClick(event){
 async function fetchJson(url){
         const response = await fetch(url);
         if(!response.ok){
-            throw new Error("Error, fetch failed or book's id not found")
+            throw new Error(`Error, fetch failed or book's id not found: ${response.status}`)
         }
         const data = await response.json();
+        return data;
 }
 
 //API
@@ -165,7 +166,7 @@ async function fetchBookData(titleId,row){
             console.error("Error to create or insert text to description section",error)
         }*/
         try{
-            fetchJson(url);
+            const data = await fetchJson(url);
             console.log("Description API:", data.description);
                 if (!row) 
                 return;
@@ -264,7 +265,7 @@ searchButton.addEventListener("click", async () => {
         alert("Error,fetch failed or not category found, try a different category");
     }*/
     try{
-        fetchJson(url);
+        const data = await fetchJson(url);
         console.log("request API:", data.docs);
         createDom(data);
     } catch (error) {
@@ -330,7 +331,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         alert("Data entry error, please try again")
     }*/
     try{
-        fetchJson(url);
+        const data = await fetchJson(url);
         console.log(data);
         //call function
         createDom(data);
@@ -343,4 +344,4 @@ searchButtonFilter.addEventListener("click",async()=>{
 
 
 //call function with listener about title
-fetchBookDescription();
+initBookDescriptionListener();
