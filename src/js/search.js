@@ -134,6 +134,15 @@ async function handleBookClick(event){
         await fetchBookData(titleId,row);
 }
 
+
+async function fetchJson(url){
+        const response = await fetch(url);
+        if(!response.ok){
+            throw new Error("Error, fetch failed or book's id not found")
+        }
+        const data = await response.json();
+}
+
 //API
 async function fetchBookData(titleId,row){
     //call another API 
@@ -141,6 +150,7 @@ async function fetchBookData(titleId,row){
         const url =`https://openlibrary.org${titleId}.json`;
         console.log("Url request description:", url)
         console.log("print id:", titleId)
+        /*
         try{
             const response = await fetch(url);
             if(!response.ok){
@@ -153,7 +163,17 @@ async function fetchBookData(titleId,row){
             createDomBookDescription(data,row);
         }catch(error){
             console.error("Error to create or insert text to description section",error)
+        }*/
+        try{
+            fetchJson(url);
+            console.log("Description API:", data.description);
+                if (!row) 
+                return;
+            createDomBookDescription(data,row);
+        }catch(error){
+            console.error("Error to create or insert text to description section",error)
         }
+        
 }
 
 //controll description
@@ -201,16 +221,6 @@ function createDom(data){
                 'aria-expanded': 'false',
                 'aria-controls': 'collapseExample'
             }});
-            /*
-            let authorElement= createElements({tag:'h3',className:'book-author',id:doc.key,textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv});
-            let titleElement = createElements({tag:'a',className:'book-title btn btn-primary',id:doc.key,textContent:doc.title ?? "Title not available",parentElement:insideRowDiv,attributes:{
-                'data-bs-toggle': 'collapse',
-                'href': '#collapseExample',
-                'role':'button',
-                'aria-expanded': 'false',
-                'aria-controls': 'collapseExample'
-            }});
-            */
             resultsDiv.style.display="block";
         });
         //create button for delete 
@@ -239,6 +249,7 @@ searchButton.addEventListener("click", async () => {
     };
     const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
     console.log("URL request:", url); 
+    /*
     try {
         const response = await fetch(url);
         if (!response.ok){
@@ -248,6 +259,14 @@ searchButton.addEventListener("click", async () => {
         console.log("request API:", data.docs);
         createDom(data)
         
+    } catch (error) {
+        console.error("Error,fetch failed or not category found");
+        alert("Error,fetch failed or not category found, try a different category");
+    }*/
+    try{
+        fetchJson(url);
+        console.log("request API:", data.docs);
+        createDom(data);
     } catch (error) {
         console.error("Error,fetch failed or not category found");
         alert("Error,fetch failed or not category found, try a different category");
@@ -298,6 +317,7 @@ searchButtonFilter.addEventListener("click",async()=>{
         return;
     }
     const url = createFilterFetch (categoryInput,authorInput,titleInput);
+    /*
     try{
         const response = await fetch(url);
         if(!response.ok) throw new Error("Error, filters fetch failed try differt search or review fetch",error)
@@ -305,6 +325,15 @@ searchButtonFilter.addEventListener("click",async()=>{
         console.log(data);
         //call function
         createDom(data)
+    }catch(error){
+        console.error("Error, creation filter Dom failed or insert",error)
+        alert("Data entry error, please try again")
+    }*/
+    try{
+        fetchJson(url);
+        console.log(data);
+        //call function
+        createDom(data);
     }catch(error){
         console.error("Error, creation filter Dom failed or insert",error)
         alert("Data entry error, please try again")
