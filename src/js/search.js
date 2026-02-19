@@ -101,18 +101,12 @@ function createCloseButton(targetElement){
     }})
     //to find where you want it
     deleteButton.type = "button";
-    targetElement.appendChild(deleteButton)//father=targetElement
-    /*deleteButton.addEventListener("click",()=>{
-        if(targetElement === resultsDiv){
-            resultsDiv.style.display="none";
-            cleanResults()
-        }else{
-            targetElement.remove();
-        }
-    })*/
+    targetElement.appendChild(deleteButton)
 }
+
 //recall function
 initCloseButtonListener();
+
 
 
 function createInfoIcon(){
@@ -121,11 +115,12 @@ function createInfoIcon(){
     let infobox = null;
 
 //if I pass over the icon show alert with information
+
     infoIcon.addEventListener("mouseover", () => {
         if (infobox) return;
         infobox = createElements({tag:"div",id:"info_box",textContent: "List of books with authors and titles based on the selected category.",parentElement: resultsDiv});
     });
-
+    
     //if I exit from icon the infobox disappear
     infoIcon.addEventListener("mouseleave",()=>{
         if (infobox) {
