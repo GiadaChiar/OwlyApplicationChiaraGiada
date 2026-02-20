@@ -39,15 +39,20 @@ export function updateButtonColor(categoryInput,authorInput,titleInput,searchBut
 }
 
 
-
+/*
 //clean results
 function cleanResults(){
+    resultsDiv.innerHTML = ""; 
+}
+*/
+
+export function cleanResults(resultsDiv){
     resultsDiv.innerHTML = ""; 
 }
 
 
 //function to help me to create elements
-function createElements({tag,className,id,textContent,parentElement,attributes ={}}){
+export function createElements({tag,className,id,textContent,parentElement,attributes ={}}){
     //create element 
     let element= document.createElement(tag);
     if(className) {
@@ -72,7 +77,7 @@ function createElements({tag,className,id,textContent,parentElement,attributes =
 
 
 //generic function to targetElement to choose when you want it 
-function createCloseButton(targetElement){
+export function createCloseButton(targetElement){
     let deleteButton = createElements({tag:'button',className:'btn-close',attributes:{
         "aria-label": "Close"
     }})
@@ -81,8 +86,31 @@ function createCloseButton(targetElement){
     targetElement.appendChild(deleteButton)
 }
 
+/*
 //create and function to InfoIcon
 function createInfoIcon(){
+//create icone info to information about book
+    const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
+    let infobox = null;
+
+//if I pass over the icon show alert with information
+
+    infoIcon.addEventListener("mouseover", () => {
+        if (infobox) return;
+        infobox = createElements({tag:"div",id:"info_box",textContent: "List of books with authors and titles based on the selected category.",parentElement: resultsDiv});
+    });
+    
+    //if I exit from icon the infobox disappear
+    infoIcon.addEventListener("mouseleave",()=>{
+        if (infobox) {
+            infobox.remove();
+            infobox = null;
+        }
+    });
+}
+*/
+//create and function to InfoIcon
+export function createInfoIcon(resultsDiv){
 //create icone info to information about book
     const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
     let infobox = null;
@@ -105,7 +133,7 @@ function createInfoIcon(){
 
 
 //create section about Description Book 
-function createDomBookDescription(data,row){
+export function createDomBookDescription(data,row){
     if (row.nextElementSibling?.classList.contains("description-box")) return;// not duplicate 
     let descriptionText = "Description not available";
             if (data.description) {

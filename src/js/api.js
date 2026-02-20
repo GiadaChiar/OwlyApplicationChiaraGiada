@@ -1,7 +1,7 @@
 //function for API calls
 
 //standard response error
-async function fetchJson(url){
+export async function fetchJson(url){
         const response = await fetch(url);
         if(!response.ok){
             throw new Error(`Error, fetch failed or book's id not found: ${response.status}`)
@@ -12,7 +12,7 @@ async function fetchJson(url){
 
 
 //fetch description title 
-async function fetchBookData(titleId,row){
+export async function fetchBookData(titleId,row){
     //call another API 
         //don't usen encodeURIComponent bacause it trasform / in %
         const url =`https://openlibrary.org${titleId}.json`;
@@ -32,7 +32,7 @@ async function fetchBookData(titleId,row){
 
 
 // create fetch filter 
-function createFilterFetch (categoryInput,authorInput,titleInput){
+export function createFilterFetch (categoryInput,authorInput,titleInput){
     const baseUrl= `https://openlibrary.org/search.json`
     const params = new URLSearchParams();
     //category

@@ -32,9 +32,9 @@ initCloseButtonListener();
 
 
 function createDom(data){
-    cleanResults()
+    cleanResults(resultsDiv)
     if(data.numFound==0){
-        cleanResults()
+        cleanResults(resultsDiv)
         alert("No books were found! Try a different search.")
     }else{
         data.docs.forEach(doc => {
@@ -54,7 +54,7 @@ function createDom(data){
         createCloseButton(resultsDiv);
         //create infobox if isn't
         if (!document.getElementById("info_icon")) {
-        createInfoIcon();
+        createInfoIcon(resultsDiv);
         }
     }
 }
