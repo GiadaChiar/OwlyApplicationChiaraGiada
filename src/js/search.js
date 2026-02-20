@@ -1,7 +1,9 @@
 
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
-
+import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
+import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
+import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";
 
 const currentPage = document.body.dataset.currentPage;
 setUpMenu(currentPage);
@@ -21,185 +23,11 @@ const titleInput = document.getElementById("title");
 const delete_html_filter= document.getElementById("delete_html_filter");
 
 
+updateButtonColor(categoryInput,authorInput,titleInput,searchButton,searchButtonFilter);//first state
 
-//change color write if it isn't empty 
-function updateButtonColor(){
-    const author=authorInput.value.trim();
-    const title = titleInput.value.trim();
-    const category = categoryInput.value.trim();
-    if (author !== "" || title !== "") {
-        searchButtonFilter.style.color = "white";
-    }else {
-        searchButtonFilter.style.color = "grey";
-    }
-    if(category !== ""){
-        searchButton.style.color = "white";
-    }
-    else {
-        searchButton.style.color = "grey";
-    }
-}
-
-//recall function
-authorInput.addEventListener("input", updateButtonColor);
-titleInput.addEventListener("input", updateButtonColor);
-categoryInput.addEventListener("input", updateButtonColor);
-updateButtonColor();//first state
-
-function cleanResults(){
-    resultsDiv.innerHTML = ""; 
-}
-
-
-//create dom is too much long I needed to create a function to help me to create objects 
-function createElements({tag,className,id,textContent,parentElement,attributes ={}}){
-    //create element 
-    let element= document.createElement(tag);
-    if(className) {
-        className.split(' ').forEach(cls => element.classList.add(cls));
-    }
-    if(id){
-        element.id = id;
-    }
-    if(textContent){
-        element.textContent = textContent;
-    }
-    if (attributes && typeof attributes ==='object'){
-        for (let key in attributes){
-            element.setAttribute(key,attributes[key])
-        }
-    }
-    if(parentElement){
-        parentElement.appendChild(element)
-    }
-    return element;
-}
-
-
-//listener CloseButton
-//listener clean recall function
-function initCloseButtonListener(){
-    resultsDiv.addEventListener("click",handleCloseButtonClick);
-}
-
-function handleCloseButtonClick(event){
-    const button = event.target.closest(".btn-close");//near parent
-    if (!button) return;//if you click on another element exit
-    const targetElement = button.parentElement;
-        if(targetElement === resultsDiv){
-            resultsDiv.style.display="none";
-            cleanResults()
-        }else{
-            targetElement.remove();
-        }
-}
-
-//generic function to targetElement to choose when you want it 
-function createCloseButton(targetElement){
-    let deleteButton = createElements({tag:'button',className:'btn-close',attributes:{
-        "aria-label": "Close"
-    }})
-    //to find where you want it
-    deleteButton.type = "button";
-    targetElement.appendChild(deleteButton)
-}
 
 //recall function
 initCloseButtonListener();
-
-
-
-function createInfoIcon(){
-//create icone info to information about book
-    const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
-    let infobox = null;
-
-//if I pass over the icon show alert with information
-
-    infoIcon.addEventListener("mouseover", () => {
-        if (infobox) return;
-        infobox = createElements({tag:"div",id:"info_box",textContent: "List of books with authors and titles based on the selected category.",parentElement: resultsDiv});
-    });
-    
-    //if I exit from icon the infobox disappear
-    infoIcon.addEventListener("mouseleave",()=>{
-        if (infobox) {
-            infobox.remove();
-            infobox = null;
-        }
-    });
-}
-
-
-
-//listener clean recall function
-function initBookDescriptionListener(){
-    resultsDiv.addEventListener("click",handleBookClick);
-}
-
-//async function handleBookClick
-async function handleBookClick(event){
-    const title = event.target.closest(".book-title");
-        if(!title) return; //if I don't click in title exit
-        const row = title.closest(".book-row") //if I click on title
-        if(!row)return;
-        let fulltitle =title.id;
-        let titleId = fulltitle.replace("-title", "");
-        console.log(title);
-        await fetchBookData(titleId,row);
-}
-
-
-async function fetchJson(url){
-        const response = await fetch(url);
-        if(!response.ok){
-            throw new Error(`Error, fetch failed or book's id not found: ${response.status}`)
-        }
-        const data = await response.json();
-        return data;
-}
-
-//API
-async function fetchBookData(titleId,row){
-    //call another API 
-        //don't usen encodeURIComponent bacause it trasform / in %
-        const url =`https://openlibrary.org${titleId}.json`;
-        console.log("Url request description:", url)
-        console.log("print id:", titleId)
-        try{
-            const data = await fetchJson(url);
-            console.log("Description API:", data.description);
-                if (!row) 
-                return;
-            createDomBookDescription(data,row);
-        }catch(error){
-            console.error("Error to create or insert text to description section",error)
-        }
-        
-}
-
-//controll description
-
-
-function createDomBookDescription(data,row){
-    if (row.nextElementSibling?.classList.contains("description-box")) return;// not duplicate 
-    let descriptionText = "Description not available";
-            if (data.description) {
-                //get text if it is a string or an object because we have differents types
-                let rawText = (typeof data.description === "string") ? data.description : (typeof data.description === "object" && data.description.value) 
-                ? data.description.value : "Description not available";
-                descriptionText = rawText
-            }
-            const divDescription = createElements({tag:'div',className:'description-box'})
-            const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
-            const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
-            //append
-            divDescription.appendChild(titleDescription)
-            divDescription.appendChild(pDescription);
-            //insert under the title row
-            row.after(divDescription);
-            createCloseButton(divDescription);
-}
 
 
 
@@ -269,26 +97,6 @@ delete_html_filter.addEventListener("click",async()=>{
 });
 
 
-function createFilterFetch (categoryInput,authorInput,titleInput){
-    const baseUrl= `https://openlibrary.org/search.json`
-    const params = new URLSearchParams();
-    //category
-    if (categoryInput.value) {
-    params.append("subject", categoryInput.value);
-    }
-    //author
-    if(authorInput.value){
-        params.append("author_name",authorInput.value);
-    }
-    //titleselectedLanguage
-    if(titleInput.value){
-        params.append("title",titleInput.value);
-    }
-    //limit 
-    params.append("limit", "20");
-    const url = `${baseUrl}?${params.toString()}`;
-    return url;
-}
 
     
 /*first step get category and all the other choosen*/
@@ -301,7 +109,7 @@ searchButtonFilter.addEventListener("click",async()=>{
     }
     const url = createFilterFetch (categoryInput,authorInput,titleInput);
     try{
-        const data = await fetchJson(url);
+        const data = await fetchJson(url); 
         console.log(data);
         //call function
         createDom(data);
