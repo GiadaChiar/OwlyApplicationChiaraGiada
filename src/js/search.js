@@ -3,6 +3,23 @@ import '../style/search.css';
 //import { setUpMenu } from './menu.js';
 import { updateButtonColor } from "./dom.js";
 
+const currentPage = document.body.dataset.currentPage;
+setUpMenu(currentPage);
+const menu_filters = document.getElementById("more-filters");
+const button_filters = document.getElementById("filters");
+//if I click I pass hover mouse  get other informations info
+//default hide menu filters
+menu_filters.style.display ="none";
+//take input category value 
+const searchButton = document.getElementById('search');
+const categoryInput = document.getElementById('category');
+const resultsDiv = document.getElementById('results');
+resultsDiv.style.display = "none";
+const searchButtonFilter = document.getElementById("search_filter");
+const authorInput = document.getElementById("author");
+const titleInput = document.getElementById("title");
+const delete_html_filter= document.getElementById("delete_html_filter");
+
 
 
 /*
