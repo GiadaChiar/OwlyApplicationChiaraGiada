@@ -21,7 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById("title");
     const delete_html_filter = document.getElementById("delete_html_filter");
 
-    updateButtonColor(categoryInput,authorInput,titleInput,searchButton,searchButtonFilter);//first state
+    updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
+    [categoryInput, authorInput, titleInput].forEach(input => {
+        input.addEventListener('input', () => {
+            updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);
+        });
+    });
 
     /*
     import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
