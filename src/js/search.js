@@ -1,6 +1,7 @@
 
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
+/*
 import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
 import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";
@@ -96,10 +97,8 @@ delete_html_filter.addEventListener("click",async()=>{
     menu_filters.style.display="none";
 });
 
-
-
     
-/*first step get category and all the other choosen*/
+//first step get category and all the other choosen
 //const categoryInput = document.getElementById('category'); get value
 searchButtonFilter.addEventListener("click",async()=>{
     //if you are not a new insert 
@@ -123,3 +122,4 @@ searchButtonFilter.addEventListener("click",async()=>{
 
 //call function with listener about title
 initBookDescriptionListener();
+*/
