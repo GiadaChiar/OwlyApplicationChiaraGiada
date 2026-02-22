@@ -12,8 +12,8 @@ module.exports = {
         //add news
         api:'./src/js/api.js',
         dom:'./src/js/dom.js',
-        event:'./src/js/event.js',
-        menu:'./src/js/menu.js'
+        event:'./src/js/event.js'
+       // menu:'./src/js/menu.js'
     },
     output: {
         filename: '[name].bundle.js',
