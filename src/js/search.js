@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById("title");
     const delete_html_filter = document.getElementById("delete_html_filter");
 
-
+    updateButtonColor(categoryInput,authorInput,titleInput,searchButton,searchButtonFilter);//first state
 
     /*
     import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
