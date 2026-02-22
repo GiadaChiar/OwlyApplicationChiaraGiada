@@ -1,11 +1,13 @@
 
 import '../style/search.css';
-//import { setUpMenu } from './menu.js';
+import { setUpMenu } from './menu.js';
 import { updateButtonColor } from "./dom.js";
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     setUpMenu(currentPage);
+    
     const menu_filters = document.getElementById("more-filters");
     const button_filters = document.getElementById("filters");
     //if I click I pass hover mouse  get other informations info
