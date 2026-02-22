@@ -1,7 +1,6 @@
 
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
-/*
 import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
 import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";
@@ -122,4 +121,3 @@ searchButtonFilter.addEventListener("click",async()=>{
 
 //call function with listener about title
 initBookDescriptionListener();
-*/
