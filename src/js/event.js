@@ -1,9 +1,10 @@
-import { cleanResults } from "./dom";
+
 
 //Events 
-authorInput.addEventListener("input", updateButtonColor);
+/*authorInput.addEventListener("input", updateButtonColor);
 titleInput.addEventListener("input", updateButtonColor);
 categoryInput.addEventListener("input", updateButtonColor);
+*/
 
 
 
