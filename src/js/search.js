@@ -3,7 +3,7 @@ import '../style/search.css';
 import { setUpMenu } from './menu.js';
 import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom } from "./dom.js";
 import { fetchJson } from "./api.js";
-import { initCloseButtonListener } from "./event.js";
+import { initCloseButtonListener } from "./event_old.js";
 /*import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
 import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";*/
