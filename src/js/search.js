@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const button_filters = document.getElementById("filters");
     //if I click I pass hover mouse  get other informations info
     //default hide menu filters
-    menu_filters.style.display = "none";
+    //menu_filters.style.display = "none";
     //take input category value 
     const searchButton = document.getElementById('search');
     const categoryInput = document.getElementById('category');
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //call function with listener about title
     initBookDescriptionListener();
-
+*/
     /*
     import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
     import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
