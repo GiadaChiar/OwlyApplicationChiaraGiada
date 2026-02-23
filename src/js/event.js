@@ -1,12 +1,6 @@
 
 
 //Events 
-/*authorInput.addEventListener("input", updateButtonColor);
-titleInput.addEventListener("input", updateButtonColor);
-categoryInput.addEventListener("input", updateButtonColor);
-*/
-
-
 
 /*
 function handleCloseButtonClick(event){
