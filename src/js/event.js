@@ -40,7 +40,7 @@ function handleCloseButtonClick(event,resultsDiv,cleanResults){
 /*export function initCloseButtonListener(){
     resultsDiv.addEventListener("click",handleCloseButtonClick);
 }*/
-/*
+
 //listener CloseButton
 //listener clean recall function
 export function initCloseButtonListener(resultsDiv,cleanResults){
@@ -49,8 +49,6 @@ export function initCloseButtonListener(resultsDiv,cleanResults){
     });
 }
 
-
-*/
 
 
 
