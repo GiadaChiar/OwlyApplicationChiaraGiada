@@ -132,6 +132,38 @@ export function createInfoIcon(resultsDiv){
 }
 
 
+
+
+
+export function createDom(data,resultsDiv){
+    cleanResults(resultsDiv)
+    if(data.numFound==0){
+        alert("No books were found! Try a different search.")
+        return;
+    }else{
+        data.docs.forEach(doc => {
+            let rowDiv = createElements({tag:'div',className:'book-row',id:doc.key,parentElement:resultsDiv});
+            let insideRowDiv =createElements({tag:'div',className:'inner-row',parentElement: rowDiv});
+            let authorElement= createElements({tag:'h3',className:'book-author',id:doc.key + "-author",textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv});
+            let titleElement = createElements({tag:'a',className:'book-title btn btn-primary',id:doc.key + "-title",textContent:doc.title ?? "Title not available",parentElement:insideRowDiv,attributes:{
+                'data-bs-toggle': 'collapse',
+                'href': '#collapseExample',
+                'role':'button',
+                'aria-expanded': 'false',
+                'aria-controls': 'collapseExample'
+            }});
+            resultsDiv.style.display="block";
+        });
+        //create button for delete 
+        createCloseButton(resultsDiv);
+        //create infobox if isn't
+        if (!document.getElementById("info_icon")) {
+        createInfoIcon(resultsDiv);
+        }
+    }
+}
+
+
 //create section about Description Book 
 export function createDomBookDescription(data,row){
     if (row.nextElementSibling?.classList.contains("description-box")) return;// not duplicate 

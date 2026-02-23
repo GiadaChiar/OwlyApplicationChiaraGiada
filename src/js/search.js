@@ -1,7 +1,8 @@
 
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
-import { updateButtonColor } from "./dom.js";
+import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom } from "./dom.js";
+import { fetchJson }from "./api.js";
 /*import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
 import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";*/
@@ -32,6 +33,37 @@ document.addEventListener('DOMContentLoaded', () => {
             updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);
         });
     });
+    
+
+    //CHANGE UNE POINT--------------------------------------------------------------------
+     //function to validate input 
+    function validateSearchInputs(){
+        alert("Please enter a valid category.");
+            return;  
+    }
+
+
+    //if I click on search button
+    searchButton.addEventListener("click", async () => {
+        const category = categoryInput.value.trim();
+        if (!category){
+            validateSearchInputs();  
+            return;                                   
+        };
+        const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
+        console.log("URL request:", url); 
+        try{
+            const data = await fetchJson(url);
+            console.log("request API:", data.docs);
+            createDom(data,resultsDiv);
+        } catch (error) {
+            console.error("Error,fetch failed or not category found");
+            alert("Error,fetch failed or not category found, try a different category");
+        }
+    });
+    
+})
+
 
     /*
     //recall function
@@ -254,4 +286,3 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     */
-})
