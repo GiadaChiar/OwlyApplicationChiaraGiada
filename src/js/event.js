@@ -40,7 +40,7 @@ function handleCloseButtonClick(event,resultsDiv,cleanResults){
 /*export function initCloseButtonListener(){
     resultsDiv.addEventListener("click",handleCloseButtonClick);
 }*/
-
+/*
 //listener CloseButton
 //listener clean recall function
 export function initCloseButtonListener(resultsDiv,cleanResults){
@@ -49,6 +49,12 @@ export function initCloseButtonListener(resultsDiv,cleanResults){
     });
 }
 
+
+*/
+
+
+
+/*
 
 //async function handleBookClick
 async function handleBookClick(event,fetchBookData){
@@ -68,3 +74,4 @@ export function initBookDescriptionListener(resultsDiv,fetchBookData){
         handleBookClick(event,fetchBookData);
     });
 }
+    */
