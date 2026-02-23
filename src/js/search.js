@@ -44,7 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // X buttons 
-    initCloseButtonListener(resultsDiv,cleanResults);
+    initCloseButtonListener(resultsDiv, cleanResults);
+    
+     //call fiunction if I click on title
+    initBookDescriptionListener(resultsDiv, fetchBookData);
 
     //if I click on search button
     searchButton.addEventListener("click", async () => {
@@ -64,11 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Error,fetch failed or not category found, try a different category");
         }
     });
+
     
 })
 
-//call fiunction if I click on title
-initBookDescriptionListener(resultsDiv, fetchBookData);
 
 
     /*
