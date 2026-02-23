@@ -1,10 +1,10 @@
 
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
-//import { updateButtonColor } from "./dom.js";
-import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
+import { updateButtonColor } from "./dom.js";
+/*import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
-import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";
+import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";*/
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    
+    /*
     //recall function
     initCloseButtonListener();
     
