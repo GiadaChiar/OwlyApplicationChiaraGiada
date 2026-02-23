@@ -2,7 +2,8 @@
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
 import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom } from "./dom.js";
-import { fetchJson }from "./api.js";
+import { fetchJson } from "./api.js";
+import { initCloseButtonListener } from "./event.js";
 /*import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
 import { initBookDescriptionListener,initCloseButtonListener} from "./event.js";*/
@@ -43,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    initCloseButtonListener(resultsDiv,cleanResults);
+
     //if I click on search button
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
@@ -63,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
 })
+
 
 
     /*

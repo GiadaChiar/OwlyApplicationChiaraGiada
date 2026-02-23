@@ -21,7 +21,7 @@ function handleCloseButtonClick(event){
 }
 */
 
-function handleCloseButtonClick(event, resultsDiv,cleanResults){
+function handleCloseButtonClick(event,resultsDiv,cleanResults){
     const button = event.target.closest(".btn-close");//near parent
     if (!button) return;//if you click on another element exit
     const targetElement = button.parentElement;
