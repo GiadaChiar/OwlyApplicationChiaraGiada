@@ -1,26 +1,6 @@
 //Create Dom and elements
 
 //change color if you write into input
-/*function updateButtonColor(){
-    const author=authorInput.value.trim();
-    const title = titleInput.value.trim();
-    const category = categoryInput.value.trim();
-    if (author !== "" || title !== "") {
-        searchButtonFilter.style.color = "white";
-    }else {
-        searchButtonFilter.style.color = "grey";
-    }
-    if(category !== ""){
-        searchButton.style.color = "white";
-    }
-    else {
-        searchButton.style.color = "grey";
-    }
-}
-*/
-
-
-//change color if you write into input
 export function updateButtonColor(categoryInput,authorInput,titleInput,searchButton,searchButtonFilter){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
@@ -39,12 +19,6 @@ export function updateButtonColor(categoryInput,authorInput,titleInput,searchBut
 }
 
 
-/*
-//clean results
-function cleanResults(){
-    resultsDiv.innerHTML = ""; 
-}
-*/
 
 export function cleanResults(resultsDiv){
     resultsDiv.innerHTML = ""; 
@@ -86,29 +60,6 @@ export function createCloseButton(targetElement){
     targetElement.appendChild(deleteButton)
 }
 
-/*
-//create and function to InfoIcon
-function createInfoIcon(){
-//create icone info to information about book
-    const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
-    let infobox = null;
-
-//if I pass over the icon show alert with information
-
-    infoIcon.addEventListener("mouseover", () => {
-        if (infobox) return;
-        infobox = createElements({tag:"div",id:"info_box",textContent: "List of books with authors and titles based on the selected category.",parentElement: resultsDiv});
-    });
-    
-    //if I exit from icon the infobox disappear
-    infoIcon.addEventListener("mouseleave",()=>{
-        if (infobox) {
-            infobox.remove();
-            infobox = null;
-        }
-    });
-}
-*/
 //create and function to InfoIcon
 export function createInfoIcon(resultsDiv){
 //create icone info to information about book
