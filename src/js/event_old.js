@@ -46,7 +46,7 @@ export function initCloseButtonListener(resultsDiv,cleanResults){
 
 
 
-/*
+
 
 //async function handleBookClick
 async function handleBookClick(event,fetchBookData){
@@ -66,4 +66,4 @@ export function initBookDescriptionListener(resultsDiv,fetchBookData){
         handleBookClick(event,fetchBookData);
     });
 }
-    */
+    
