@@ -13,9 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     setUpMenu(currentPage);
 
-    button_filters.addEventListener("click", () => {
-        menu_filters.style.display = menu_filters.style.display === "block" ? "none" : "block"
-    });
+   
 
     //if I click I pass hover mouse  get other informations info
     //default hide menu filters
@@ -59,6 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
      //call fiunction if I click on title
     initBookDescriptionListener(resultsDiv, fetchBookData);
+
+    //if I click on more filters show menu filter
+    button_filters.addEventListener("click",()=>{
+        menu_filters.style.display="block";
+    })
+    //add x to close menu filter (part in html)
+    delete_html_filter.addEventListener("click",async()=>{
+        menu_filters.style.display="none";
+    });
+    
 
     //if I click on search button
     searchButton.addEventListener("click", async () => {
