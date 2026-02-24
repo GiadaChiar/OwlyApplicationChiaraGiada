@@ -660,14 +660,6 @@ section about us*/
 /*!**********************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./src/style/menu.css ***!
   \**********************************************************************/
-#header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
 nav {
   padding: 1rem;
   width: 100%;
