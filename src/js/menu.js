@@ -21,7 +21,6 @@ function disableLinkCurrentPage(header,currentPage){
     link.classList.remove("disable");
     if (link.dataset.page === currentPage) {
         link.classList.add("disable");
-        console.log("link disabilitato");
         }
     });
 }
@@ -56,15 +55,11 @@ hamMenu.addEventListener('click', () => {
 function changeLinkNavigation(header, currentPage) {
     if (currentPage !== "index.html") {
         const links = header.querySelectorAll("a[data-page]")
-        console.log("Numero link trovati:", links.length);
         links.forEach(link => {
             const hrefLink = link.getAttribute("href");
-            console.log("Link trovato:",hrefLink)
             if (hrefLink.startsWith("#")) {
-                console.log("Il link inizia con #",hrefLink)
                 const newhref = "index.html" + hrefLink ;
                 link.setAttribute("href", newhref);
-                console.log(newhref);
             }
         })
     }
@@ -75,7 +70,6 @@ function changeLinkNavigation(header, currentPage) {
 export function setUpMenu(currentPage){
     fetchMenu()
         .then(header => {
-        console.log("menu caricato")
         disableLinkCurrentPage(header, currentPage);
         changeLinkNavigation(header, currentPage);
         activateToggleMenu(header);
