@@ -29,10 +29,12 @@ export function fetchMenu(){
 
 function disableLinkCurrentPage(header, currentPage) {
     const links = header.querySelectorAll("a[data-page]")
+    console.log("Presa la funzione in carica", currentPage)
     links.forEach(link => {
         link.classList.remove("disable");
         const hrefLink = link.getAttribute("href");
-    if ( hrefLink === currentPage) {
+        if (hrefLink === currentPage) {
+        console.log("La pagina corrente è :", currentPage)
         link.classList.add("disable");
         console.log("aggiunto disable page:", currentPage)
         }
