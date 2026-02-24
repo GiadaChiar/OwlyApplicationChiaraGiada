@@ -50,8 +50,8 @@ hamMenu.addEventListener('click', () => {
     });
 }
 
-//function to chjange # into index.html/
 
+//function add index.html into # if current page is different to index.html
 function changeLinkNavigation(header, currentPage) {
     if (currentPage !== "index.html") {
         const links = header.querySelectorAll("a[data-page]")
