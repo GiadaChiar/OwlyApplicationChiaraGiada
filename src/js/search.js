@@ -2,7 +2,7 @@
 import '../style/search.css';
 import { setUpMenu } from './menu.js';
 import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom,createDomBookDescription} from "./dom.js";
-import { fetchJson,fetchBookData } from "./api.js";
+import { fetchJson,fetchBookData,createFilterFetch } from "./api.js";
 import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
 /*import { fetchJson, fetchBookData, createFilterFetch } from "./api.js";
 import { createElements,createCloseButton,createInfoIcon,cleanResults,updateButtonColor,createDomBookDescription} from "./dom.js";
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             validateSearchInputs();
             return;
         }
-        const url = createFilterFetch (categoryInput,authorInput,titleInput);
+        const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
             console.log(data);
