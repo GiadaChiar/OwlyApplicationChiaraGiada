@@ -1,6 +1,20 @@
 
+//MENU LOGIC
+//create a fetch to get menu in menu.html
+//const currentPage = document.body.dataset.currentPage;
 
-/*
+//function to load and add header(menu) to html file
+export function fetchMenu(){
+    return fetch("menu.html")
+    .then(res =>res.text()) //then response in text form
+    .then(html=>{ 
+        const header = document.getElementById("header");
+        header.innerHTML = html;
+        return header
+    })
+}
+
+
 //function to remuve disable class and add it to current page (link a)
 function disableLinkCurrentPage(header,currentPage){
     header.querySelectorAll("a[data-page]").forEach(link => {
@@ -10,7 +24,7 @@ function disableLinkCurrentPage(header,currentPage){
         }
     });
 }
-*/
+
 
 //function to activate all toggle manu 
 function activateToggleMenu(header){
@@ -35,24 +49,12 @@ hamMenu.addEventListener('click', () => {
     });
 }
 
-/*
-//change link a if I am in a different page from index.html
-function changeLinkNavigation(header,currentPage) {
-    if (currentPage !== "index") {
-        header.querySelectorAll("a[data-page]").forEach(link => {
-            if(link.getAttribute(href) !== currentPage & link.getAttribute)
-            link.href = "/index" + link.getAttribute(href)
-        });
-
-    }
-}
-*/
-
 
 // function to recall all the functions about header(menu)
 export function setUpMenu(currentPage){
     fetchMenu()
     .then(header=>{disableLinkCurrentPage(header,currentPage);
-    activateToggleMenu(header);
+        activateToggleMenu(header);
+        changeLinkNavigation(header, currentPage);
     })
 }
