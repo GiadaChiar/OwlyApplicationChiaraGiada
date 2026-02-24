@@ -1,6 +1,6 @@
 
 
-
+/*
 //function to remuve disable class and add it to current page (link a)
 function disableLinkCurrentPage(header,currentPage){
     header.querySelectorAll("a[data-page]").forEach(link => {
@@ -10,7 +10,7 @@ function disableLinkCurrentPage(header,currentPage){
         }
     });
 }
-
+*/
 
 //function to activate all toggle manu 
 function activateToggleMenu(header){
