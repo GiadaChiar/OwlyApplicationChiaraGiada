@@ -28,6 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //if I click I pass hover mouse  get other informations info
     //default hide menu filters
     menu_filters.style.display = "none";
+
+    buttonFilter.addEventListener("click",()=>{
+        menu_filters.style.display="block";
+    })
+    //add x to close menu filter (part in html)
+    deleteButtonFilter.addEventListener("click",async()=>{
+        menu_filters.style.display="none";
+    });
     
     updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
     [categoryInput, authorInput, titleInput].forEach(input => {
@@ -49,16 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
      //call fiunction if I click on title
     initBookDescriptionListener(resultsDiv, fetchBookData);
-
-    //if I click on more filters show menu filter
-    buttonFilter.addEventListener("click",()=>{
-        menu_filters.style.display="block";
-    })
-    //add x to close menu filter (part in html)
-    deleteButtonFilter.addEventListener("click",async()=>{
-        menu_filters.style.display="none";
-    });
-    
 
     //if I click on search button
     searchButton.addEventListener("click", async () => {
