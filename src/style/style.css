@@ -52,120 +52,6 @@ body.no-scroll {
   width: auto;
 }
 
-/*
-nav {
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    background-color: vars.$background2;
-
-    .ham-menu {
-        margin-top: 20px;
-        margin-left: 10px;;
-        height: 30px;
-        width: 30px;
-        position: relative;
-
-        // hamburger menu first bar
-        span {
-            height: 5px;
-            width: 100%;
-            background-color: vars.$background1;
-            border-radius: 25px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: .3s ease;
-
-            //seconda barra
-            &:nth-child(1) {
-                top: 25%;
-            }
-
-            &:nth-child(3) {
-                top: 75%;
-            }
-        }
-
-    }
-}
-
-//quando lo attivo il menu
-//creao la x ruoto le due barre e nascondo quella in mezzo
-.ham-menu.active span {
-
-
-
-    &:nth-last-child(1) {
-
-        top: 50%;
-        transform: translate(-50%, 50%) rotate(45deg);
-
-    }
-
-    &:nth-last-child(2) {
-        opacity: 0;
-
-    }
-
-    &:nth-last-child(3) {
-        top: 50%;
-        transform: translate(-50%, 50%) rotate(-45deg);
-
-    }
-
-}
-
-
-.off-screen-menu {
-    background-color: vars.$background2-transparent;
-    height: 100vh;
-    width: 50%;
-    max-width: 450px;
-    position: fixed;
-    right: -450px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0%;
-    font-size: 1.1rem;
-    transition: .3s ease;
-    text-align: center;
-    justify-content: center;
-    border: 2px solid vars.$background1;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-
-
-    h3 a {
-        color: vars.$background1;
-        text-decoration: double;
-        font-family: vars.$font-text2;
-        border-bottom: 2px solid vars.$background2;
-
-
-        &:hover {
-            border-bottom: 2px solid vars.$background1;
-        }
-
-    }
-    .disable{
-        color: blue;
-        &:hover {
-            border-bottom: none;
-        }
-
-    }
-}
-
-
-.off-screen-menu.active {
-    left: 0;
-}
-
-*/
 /*first page section*/
 #firstPage {
   margin: 0%;
@@ -496,23 +382,25 @@ section about us*/
 @media (max-width: 414px) {
   html, body {
     background-size: contain;
-  }
-  html .top-page .ham-menu, body .top-page .ham-menu {
-    height: 20px;
-    width: 20px;
-  }
-  html .top-page .ham-menu span, body .top-page .ham-menu span {
-    height: 3px;
-  }
-  html .top-page img, body .top-page img {
-    height: 35px;
-    width: 20px;
-  }
-  html .off-screen-menu, body .off-screen-menu {
-    width: 80%;
-  }
-  html .off-screen-menu h3 a, body .off-screen-menu h3 a {
-    font-size: 1rem;
+    /*.top-page{
+            .ham-menu{
+                height: 20px;
+                width: 20px;
+                span{
+                    height: 3px;
+                }
+            }
+            img{
+                height: 35px;
+                width: 20px;
+            }
+        }
+        .off-screen-menu{
+            width: 80%;
+            h3 a { 
+            font-size: vars.$font-sizeh3;
+        }
+    }*/
   }
   html #firstPage, body #firstPage {
     display: flex;
@@ -579,49 +467,6 @@ section about us*/
   .SecondPage .container-aboutus #ony_large {
     display: none;
   }
-  /*
-  #thirtPage{
-      margin-top: 20px;
-      height: 30vh; 
-
-      h1{
-          margin-top:10px;
-          font-size: 2rem;
-      }
-      .services {
-      grid-template-columns: 1fr;
-
-      }
-
-      .service {
-      h3 {
-          text-align: center;
-          font-size: 1.5rem;
-          }
-      }
-
-      .img-title{
-              display: flex;
-              flex-direction: row;
-              justify-content: center;
-              gap:15px;
-              img{
-              height:7vh;
-          }
-      }
-      .box{
-          height:2vh;
-
-      }
-
-
-  }
-
-  #fourthPage{
-      margin-top: 100px;
-      height: 45vh;
-  }
-  */
   #thirtPage {
     height: auto;
     margin-bottom: 100px;

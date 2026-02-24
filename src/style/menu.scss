@@ -102,3 +102,42 @@ nav {
 .off-screen-menu.active {
     left: 0;
 }
+
+@media (min-width: 1024px) {
+    .ham-menu {
+        height: 40px;
+        width: 40px;
+        span {
+            height: 8px;
+        }
+    }
+
+    .off-screen-menu {
+        h3 a {
+            font-size: vars.$font-sizeh1;
+        }
+    }
+}
+
+
+@media (max-width: 414px) {
+    .top-page{
+        .ham-menu{
+            height: 20px;
+            width: 20px;
+            span{
+                height: 3px;
+            }
+        }
+        img{
+            height: 35px;
+            width: 20px;
+        }
+    }
+    .off-screen-menu{
+        width: 80%;
+        h3 a { 
+        font-size: vars.$font-sizeh3;
+        }
+    }
+}

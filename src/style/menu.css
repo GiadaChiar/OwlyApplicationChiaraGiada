@@ -84,4 +84,36 @@ nav .ham-menu span:nth-child(3) {
 
 .off-screen-menu.active {
   left: 0;
+}
+
+@media (min-width: 1024px) {
+  .ham-menu {
+    height: 40px;
+    width: 40px;
+  }
+  .ham-menu span {
+    height: 8px;
+  }
+  .off-screen-menu h3 a {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 414px) {
+  .top-page .ham-menu {
+    height: 20px;
+    width: 20px;
+  }
+  .top-page .ham-menu span {
+    height: 3px;
+  }
+  .top-page img {
+    height: 35px;
+    width: 20px;
+  }
+  .off-screen-menu {
+    width: 80%;
+  }
+  .off-screen-menu h3 a {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=menu.css.map */
