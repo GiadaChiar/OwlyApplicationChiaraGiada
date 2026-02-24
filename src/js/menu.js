@@ -55,6 +55,6 @@ export function setUpMenu(currentPage){
     fetchMenu()
     .then(header=>{disableLinkCurrentPage(header,currentPage);
         activateToggleMenu(header);
-        changeLinkNavigation(header, currentPage);
+        //changeLinkNavigation(header, currentPage);
     })
 }
