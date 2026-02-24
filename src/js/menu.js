@@ -72,6 +72,7 @@ function changeLinkNavigation(header, currentPage) {
 export function setUpMenu(currentPage){
     fetchMenu()
         .then(header => {
+        console.log("menu caricato")
         disableLinkCurrentPage(header, currentPage);
         changeLinkNavigation(header, currentPage);
         activateToggleMenu(header);
