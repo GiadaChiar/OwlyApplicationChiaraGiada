@@ -159,7 +159,7 @@ body.no-scroll {
     }
 }
 
-
+/*
 nav {
     padding: 1rem;
     width: 100%;
@@ -173,7 +173,7 @@ nav {
         width: 30px;
         position: relative;
 
-        /*menu ad hamburger prima barra*/
+        //menu ad hamburger prima barra
         span {
             height: 5px;
             width: 100%;
@@ -185,7 +185,7 @@ nav {
             transform: translate(-50%, -50%);
             transition: .3s ease;
 
-            /*seconda barra*/
+            //seconda barra
             &:nth-child(1) {
                 top: 25%;
             }
@@ -198,8 +198,8 @@ nav {
     }
 }
 
-/*quando lo attivo il menu*/
-/*creao la x ruoto le due barre e nascondo quella in mezzo*/
+//quando lo attivo il menu
+//creao la x ruoto le due barre e nascondo quella in mezzo
 .ham-menu.active span {
     z-index: 9999;
 
@@ -272,7 +272,7 @@ nav {
 .off-screen-menu.active {
     left: 0;
 }
-
+*/
 /*section to add-filter*/
 
 #more-filters{
