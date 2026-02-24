@@ -21,6 +21,7 @@ function disableLinkCurrentPage(header,currentPage){
     link.classList.remove("disable");
     if (link.dataset.page === currentPage) {
         link.classList.add("disable");
+        console.log("link disabilitato");
         }
     });
 }
@@ -45,6 +46,7 @@ hamMenu.addEventListener('click', () => {
             offScreenMenu.classList.toggle('active');//hidden menu
             hamMenu.classList.toggle('active');  // anable and disable X
             document.body.classList.toggle('no-scroll');//if it was blocked I active it
+            console.log("toggle menu ok")
         });
     });
 }
@@ -54,6 +56,7 @@ hamMenu.addEventListener('click', () => {
 function changeLinkNavigation(header, currentPage) {
     if (currentPage !== "index.html") {
         const links = header.querySelectorAll("a[data-page]")
+        console.log("Numero link trovati:", links.length);
         links.forEach(link => {
             const hrefLink = link.getAttribute("href");
             console.log("Link trovato:",hrefLink)
