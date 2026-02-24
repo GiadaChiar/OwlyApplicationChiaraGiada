@@ -21,6 +21,7 @@ function disableLinkCurrentPage(header,currentPage){
     link.classList.remove("disable");
     if (link.dataset.page === currentPage) {
         link.classList.add("disable");
+        console.log("aggiunto disable page:", currentPage)
         }
     });
 }
