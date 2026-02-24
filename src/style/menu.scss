@@ -88,7 +88,7 @@ nav {
             border-bottom: 2px solid vars.$background1;
         }
 
-        .disable {
+        &.disable {
             color: blue;
 
             &:hover {
