@@ -13,8 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     setUpMenu(currentPage);
 
-    const menu_filters = document.getElementById("more-filters");
-    const button_filters = document.getElementById("filters");
+    button_filters.addEventListener("click", () => {
+        menu_filters.style.display = menu_filters.style.display === "block" ? "none" : "block"
+    });
+
     //if I click I pass hover mouse  get other informations info
     //default hide menu filters
     menu_filters.style.display = "none";
