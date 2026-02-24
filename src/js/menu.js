@@ -3,6 +3,8 @@
 //create a fetch to get menu in menu.html
 //const currentPage = document.body.dataset.currentPage;
 
+import { getCompilationHooks } from "mini-css-extract-plugin";
+
 //function to load and add header(menu) to html file
 export function fetchMenu(){
     return fetch("menu.html")
@@ -49,11 +51,29 @@ hamMenu.addEventListener('click', () => {
     });
 }
 
+//for navigation page for index elements
+function changeLinkNavigation(header, currentPage) {
+    if (currentPage !== "index") {
+        header.querySelectorAll("a").forEach(link => {
+            const href = link.getAttribute("href");
+
+            // Ignora gli anchor interni
+            if (href.startsWith("#") || href.startsWith("/")) return;
+
+            // Se non è già prefissato da /index, aggiungi
+            if (!href.startsWith("/index/")) {
+                link.href = "/index/" + href;
+            }
+        });
+    }
+}
+
 
 // function to recall all the functions about header(menu)
 export function setUpMenu(currentPage){
     fetchMenu()
     .then(header=>{disableLinkCurrentPage(header,currentPage);
-    activateToggleMenu(header);
+        activateToggleMenu(header);
+        changeLinkNavigation(header, currentPage);
     })
 }
