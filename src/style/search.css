@@ -37,12 +37,12 @@ body #results {
   border: 5px solid #004aad;
   position: relative;
 }
-body #results #delete_bt {
+body #results .btn-close {
   position: absolute;
   top: 10px;
   right: 10px;
 }
-body #results #delete_bt:hover {
+body #results .btn-close:hover {
   color: #004aad;
 }
 body #results #info_icon {
@@ -118,7 +118,7 @@ body .description-box .desc_p {
   margin-right: 5px;
   font-family: "Arial", " Helvetica ", sans-serif;
 }
-body .description-box #delete_bt-des {
+body .description-box .btn-closes {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -256,55 +256,6 @@ nav .ham-menu span:nth-child(3) {
   position: absolute;
   top: 8px;
   right: 10px;
-}
-#more-filters .in-line {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  margin-top: 15px;
-  gap: 10px;
-}
-#more-filters .in-line .btn, #more-filters .in-line .btn-secondary.dropdown-toggle {
-  background-color: #004aad !important;
-  color: white !important;
-  border: 2px solid white !important;
-}
-#more-filters .in-line li {
-  margin-bottom: 1px;
-  text-align: center;
-}
-#more-filters .in-line #italiano {
-  background: linear-gradient(90deg, rgb(32, 122, 32), rgb(244, 243, 243), rgb(220, 88, 88));
-  margin-top: -6px;
-}
-#more-filters .in-line #italiano:hover {
-  background: linear-gradient(90deg, rgb(11, 94, 11), rgb(175, 172, 172), rgb(135, 12, 12));
-}
-#more-filters .in-line #francese {
-  background: linear-gradient(90deg, rgb(14, 34, 112), rgb(244, 243, 243), rgb(220, 88, 88));
-}
-#more-filters .in-line #francese:hover {
-  background: linear-gradient(90deg, rgb(4, 17, 68), rgb(175, 172, 172), rgb(135, 12, 12));
-}
-#more-filters .in-line #spagnolo {
-  background: linear-gradient(rgb(220, 88, 88), rgb(238, 238, 44), rgb(220, 88, 88));
-}
-#more-filters .in-line #spagnolo:hover {
-  background: linear-gradient(rgb(135, 12, 12), rgb(222, 222, 9), rgb(135, 12, 12));
-}
-#more-filters .in-line #inglese {
-  background: linear-gradient(90deg, rgb(14, 34, 112), rgb(220, 88, 88), rgb(244, 243, 243));
-}
-#more-filters .in-line #inglese:hover {
-  background: linear-gradient(90deg, rgb(4, 17, 68), rgb(135, 12, 12), rgb(175, 172, 172));
-}
-#more-filters .in-line #tutte {
-  background: rgb(244, 243, 243);
-  margin-bottom: -6px;
-}
-#more-filters .in-line #tutte:hover {
-  background: rgb(175, 172, 172);
 }
 
 /*375*414 Iphone
