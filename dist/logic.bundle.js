@@ -16,7 +16,7 @@
   \*************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../style/style.css */ \"./src/style/style.css\");\n/* harmony import */ var _style_menu_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/menu.css */ \"./src/style/menu.css\");\n/* harmony import */ var _menu_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu.js */ \"./src/js/menu.js\");\n\r\n\r\n\r\n\r\n\r\nconst currentPage = document.body.dataset.currentPage;\r\n(0,_menu_js__WEBPACK_IMPORTED_MODULE_2__.setUpMenu)(currentPage);\r\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/js/logic.js?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../style/style.scss */ \"./src/style/style.scss\");\n/* harmony import */ var _style_menu_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../style/menu.scss */ \"./src/style/menu.scss\");\n/* harmony import */ var _menu_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./menu.js */ \"./src/js/menu.js\");\n\r\n\r\n\r\n\r\n\r\nconst currentPage = document.body.dataset.currentPage;\r\n(0,_menu_js__WEBPACK_IMPORTED_MODULE_2__.setUpMenu)(currentPage);\r\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/js/logic.js?\n}");
 
 /***/ },
 
@@ -30,23 +30,23 @@ eval("{__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpa
 
 /***/ },
 
-/***/ "./src/style/menu.css"
-/*!****************************!*\
-  !*** ./src/style/menu.css ***!
-  \****************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("{__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/style/menu.css?\n}");
-
-/***/ },
-
-/***/ "./src/style/style.css"
+/***/ "./src/style/menu.scss"
 /*!*****************************!*\
-  !*** ./src/style/style.css ***!
+  !*** ./src/style/menu.scss ***!
   \*****************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("{__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/style/style.css?\n}");
+eval("{__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/style/menu.scss?\n}");
+
+/***/ },
+
+/***/ "./src/style/style.scss"
+/*!******************************!*\
+  !*** ./src/style/style.scss ***!
+  \******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("{__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://owlyapplicationchiaragiada/./src/style/style.scss?\n}");
 
 /***/ }
 

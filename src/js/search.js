@@ -1,6 +1,6 @@
 
-import '../style/search.css';
-import '../style/menu.css';
+import '../style/search.scss';
+import '../style/menu.scss';
 import { setUpMenu } from './menu.js';
 import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom,createDomBookDescription} from "./dom.js";
 import { fetchJson,fetchBookData,createFilterFetch } from "./api.js";

@@ -1,6 +1,6 @@
-/*!***********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/style/style.css ***!
-  \***********************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/style.scss ***!
+  \***************************************************************************************************************/
 html, body {
   width: 100%;
   overflow-x: hidden;
@@ -657,9 +657,9 @@ section about us*/
     font-size: 1.5rem;
   }
 }
-/*!**********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/style/menu.css ***!
-  \**********************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/menu.scss ***!
+  \**************************************************************************************************************/
 nav {
   padding: 1rem;
   width: 100%;
@@ -729,8 +729,7 @@ nav .ham-menu span:nth-child(3) {
 }
 .off-screen-menu h3 a {
   color: white;
-  -webkit-text-decoration: double;
-          text-decoration: double;
+  text-decoration: double;
   font-family: "Arial", " Helvetica ", sans-serif;
   border-bottom: 2px solid #004aad;
 }

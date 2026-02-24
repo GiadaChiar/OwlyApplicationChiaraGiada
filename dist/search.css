@@ -1,6 +1,6 @@
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/style/search.css ***!
-  \************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/search.scss ***!
+  \****************************************************************************************************************/
 html, body {
   min-height: 100vh;
   background-image: url(a562964323a5b1cc696e.jpg);
@@ -68,7 +68,6 @@ body #results #info_box {
   padding: 5px;
   border-radius: 5px;
   font-size: 0.9rem;
-  width: -moz-max-content;
   width: max-content;
   max-width: 200px;
 }
@@ -304,9 +303,9 @@ nav {
     font-size: 1rem;
   }
 }
-/*!**********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./src/style/menu.css ***!
-  \**********************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/style/menu.scss ***!
+  \**************************************************************************************************************/
 nav {
   padding: 1rem;
   width: 100%;
@@ -376,8 +375,7 @@ nav .ham-menu span:nth-child(3) {
 }
 .off-screen-menu h3 a {
   color: white;
-  -webkit-text-decoration: double;
-          text-decoration: double;
+  text-decoration: double;
   font-family: "Arial", " Helvetica ", sans-serif;
   border-bottom: 2px solid #004aad;
 }
