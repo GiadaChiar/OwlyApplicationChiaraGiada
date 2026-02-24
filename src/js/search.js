@@ -8,7 +8,8 @@ import { initCloseButtonListener,initBookDescriptionListener } from "./event.js"
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = document.header.dataset.currentPage;
+    //const currentPage = document.header.dataset.currentPage;
+    const currentPage = window.location.pathname.split("/").pop();
     setUpMenu(currentPage);
 
     //take input category value
