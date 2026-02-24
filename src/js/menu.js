@@ -58,7 +58,8 @@ function changeLinkNavigation(header, currentPage) {
             const hrefLink = link.getAttribute("href");
             if (hrefLink.startsWith("#")){
                 const newhref = "index.html" + hrefLink ;
-                link.setAttribute("href",newhref)
+                link.setAttribute("href", newhref);
+                console.log(newhref);
             }
         })
     }
