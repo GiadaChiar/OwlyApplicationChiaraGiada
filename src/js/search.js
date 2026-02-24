@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     setUpMenu(currentPage);
 
-   
-
     //if I click I pass hover mouse  get other informations info
     //default hide menu filters
     menu_filters.style.display = "none";
@@ -26,15 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButtonFilter = document.getElementById("search_filter");
     const authorInput = document.getElementById("author");
     const titleInput = document.getElementById("title");
-    const delete_html_filter = document.getElementById("delete_html_filter");
-
-    button_filters.addEventListener("click",()=>{
-        menu_filters.style.display="block";
-    })
-    //add x to close menu filter (part in html)
-    delete_html_filter.addEventListener("click",async()=>{
-        menu_filters.style.display="none";
-    });
+    const deleteButtonFilter = document.getElementById("delete_html_filter");
+    const buttonFilters = document.getElementById("filters");
     
 
     updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
@@ -59,11 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initBookDescriptionListener(resultsDiv, fetchBookData);
 
     //if I click on more filters show menu filter
-    button_filters.addEventListener("click",()=>{
+    buttonFilters.addEventListener("click",()=>{
         menu_filters.style.display="block";
     })
     //add x to close menu filter (part in html)
-    delete_html_filter.addEventListener("click",async()=>{
+    deleteButtonFilter.addEventListener("click",async()=>{
         menu_filters.style.display="none";
     });
     
