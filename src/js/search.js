@@ -28,6 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById("title");
     const delete_html_filter = document.getElementById("delete_html_filter");
 
+    button_filters.addEventListener("click",()=>{
+        menu_filters.style.display="block";
+    })
+    //add x to close menu filter (part in html)
+    delete_html_filter.addEventListener("click",async()=>{
+        menu_filters.style.display="none";
+    });
+    
+
     updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
     [categoryInput, authorInput, titleInput].forEach(input => {
         input.addEventListener('input', () => {
