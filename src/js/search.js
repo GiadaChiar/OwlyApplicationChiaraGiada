@@ -13,10 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     setUpMenu(currentPage);
 
-    //if I click I pass hover mouse  get other informations info
-    //default hide menu filters
-    menu_filters.style.display = "none";
-    //take input category value 
+    //take input category value
+    const menu_filters = document.getElementById("more-filters")
     const searchButton = document.getElementById('search');
     const categoryInput = document.getElementById('category');
     const resultsDiv = document.getElementById('results');
@@ -26,8 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById("title");
     const deleteButtonFilter = document.getElementById("delete_html_filter");
     const buttonFilter = document.getElementById("filters");
-    
 
+    //if I click I pass hover mouse  get other informations info
+    //default hide menu filters
+    menu_filters.style.display = "none";
+    
     updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
     [categoryInput, authorInput, titleInput].forEach(input => {
         input.addEventListener('input', () => {
