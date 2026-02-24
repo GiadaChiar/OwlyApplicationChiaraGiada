@@ -96,7 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Data entry error, please try again")
         }
     });
-
-    
 })
 
