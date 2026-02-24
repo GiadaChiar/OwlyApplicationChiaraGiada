@@ -87,13 +87,13 @@ nav {
         &:hover {
             border-bottom: 2px solid vars.$background1;
         }
-    }
 
-    .disable {
-        color: blue;
+        .disable {
+            color: blue;
 
-        &:hover {
-            border-bottom: none;
+            &:hover {
+                border-bottom: none;
+            }
         }
     }
 }
@@ -143,7 +143,7 @@ nav {
 
     .off-screen-menu{
         width: 80%;
-        
+
         h3 a { 
         font-size: vars.$font-sizeh3;
         }
