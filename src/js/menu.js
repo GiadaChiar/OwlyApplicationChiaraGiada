@@ -53,10 +53,14 @@ hamMenu.addEventListener('click', () => {
 
 function changeLinkNavigation(header, currentPage) {
     if (currentPage !== "index.html") {
-        const link = header.querySelectorAll("a[data-page]").getAttribute("href");
-        if (link.startWith == "#") {
-            link.replace("#", "index.html/");
-        }
+        const links = header.querySelectorAll("a[data-page]")
+        links.forEach(link => {
+            const hrefLink = link.getAttribute("href");
+            if (hrefLink.startsWith("#")){
+                const newhref = "index.html" + hrefLink ;
+                link.setAttribute("href",newhref)
+            }
+        })
     }
 }
 
@@ -64,8 +68,9 @@ function changeLinkNavigation(header, currentPage) {
 // function to recall all the functions about header(menu)
 export function setUpMenu(currentPage){
     fetchMenu()
-    .then(header=>{disableLinkCurrentPage(header,currentPage);
-        activateToggleMenu(header);
+        .then(header => {
+        disableLinkCurrentPage(header, currentPage);
         changeLinkNavigation(header, currentPage);
+        activateToggleMenu(header);
     })
 }
