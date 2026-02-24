@@ -56,7 +56,9 @@ function changeLinkNavigation(header, currentPage) {
         const links = header.querySelectorAll("a[data-page]")
         links.forEach(link => {
             const hrefLink = link.getAttribute("href");
-            if (hrefLink.startsWith("#")){
+            console.log("Link trovato:",hrefLink)
+            if (hrefLink.startsWith("#")) {
+                console.log("Il link inizia con #",hrefLink)
                 const newhref = "index.html" + hrefLink ;
                 link.setAttribute("href", newhref);
                 console.log(newhref);
