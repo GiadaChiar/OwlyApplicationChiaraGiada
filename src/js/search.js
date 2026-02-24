@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
      //call fiunction if I click on title
     initBookDescriptionListener(resultsDiv, fetchBookData);
 
-    //if I click on search button
+    //if I click on search button only category
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
         if (!category){
@@ -74,6 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error("Error,fetch failed or not category found");
             alert("Error,fetch failed or not category found, try a different category");
+        }
+    });
+
+
+    //if I click on Search but for title and author 
+    searchButtonFilter.addEventListener("click",async()=>{
+        //if you are not a new insert 
+        if(authorInput.value ==="" && titleInput.value ===""){
+            validateSearchInputs();
+            return;
+        }
+        const url = createFilterFetch (categoryInput,authorInput,titleInput);
+        try{
+            const data = await fetchJson(url); 
+            console.log(data);
+            //call function
+            createDom(data,resultsDiv);
+        }catch(error){
+            console.error("Error, creation filter Dom failed or insert",error)
+            alert("Data entry error, please try again")
         }
     });
 
