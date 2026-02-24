@@ -87,17 +87,24 @@ nav {
         &:hover {
             border-bottom: 2px solid vars.$background1;
         }
-
+/*
         &.disable {
             color: blue !important;
 
             &:hover {
                 border-bottom: none !important;
             }
-        }
+        }*/
     }
 }
 
+.disable{
+    color: blue !important;
+    &:hover {
+            border-bottom: none !important;
+        }
+
+}
 
 .off-screen-menu.active {
     left: 0;
