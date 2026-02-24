@@ -89,10 +89,10 @@ nav {
         }
 
         &.disable {
-            color: blue;
+            color: blue !important;
 
             &:hover {
-                border-bottom: none;
+                border-bottom: none !important;
             }
         }
     }

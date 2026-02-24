@@ -76,10 +76,10 @@ nav .ham-menu span:nth-child(3) {
   border-bottom: 2px solid white;
 }
 .off-screen-menu h3 a.disable {
-  color: blue;
+  color: blue !important;
 }
 .off-screen-menu h3 a.disable:hover {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .off-screen-menu.active {
