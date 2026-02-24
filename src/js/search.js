@@ -8,7 +8,7 @@ import { initCloseButtonListener,initBookDescriptionListener } from "./event.js"
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = document.body.dataset.currentPage;
+    const currentPage = document.header.dataset.currentPage;
     setUpMenu(currentPage);
 
     //take input category value
