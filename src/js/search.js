@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "No Results!",
             message: "lease enter at least one search field."
         });
-        //alert("Please enter at least one search field.");
         return false;
     }
     return true;
@@ -82,17 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "No category found!",
             message: "fetch failed or not category found, try a different category"
             });
-            //alert("Error,fetch failed or not category found, try a different category");
         }
     });
 
 
     //if I click on Search but for title and author 
     searchButtonFilter.addEventListener("click",async()=>{
-        //if you are not a new insert
-        /*if(authorInput.value ==="" && titleInput.value ===""){
-            validateSearchInputs();
-            return;*/
         if (!validateSearchInputs(
             categoryInput.value.trim(),
             authorInput.value.trim(),
