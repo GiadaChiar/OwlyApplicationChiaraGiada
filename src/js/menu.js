@@ -15,17 +15,6 @@ export function fetchMenu(){
 }
 
 
-//function to remuve disable class and add it to current page (link a)
-/*function disableLinkCurrentPage(header,currentPage){
-    header.querySelectorAll("a[data-page]").forEach(link => {
-    link.classList.remove("disable");
-    if (link.dataset.page === currentPage) {
-        link.classList.add("disable");
-        console.log("aggiunto disable page:", currentPage)
-        }
-    });
-}
-*/
 
 function disableLinkCurrentPage(header, currentPage) {
     const links = header.querySelectorAll("a[data-page]")

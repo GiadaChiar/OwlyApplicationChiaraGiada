@@ -46,10 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //CHANGE UNE POINT--------------------------------------------------------------------
      //function to validate input 
-    function validateSearchInputs(){
+    /*function validateSearchInputs(){
         alert("Please enter a valid category.");
             return;  
+    }*/
+    function validateSearchInputs(category, author, title){
+    if (!category && !author && !title) {
+        alert("Please enter at least one search field.");
+        return false;
     }
+    return true;
+}
 
     // X buttons 
     initCloseButtonListener(resultsDiv, cleanResults);
