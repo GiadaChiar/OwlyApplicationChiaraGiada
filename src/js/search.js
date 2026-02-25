@@ -73,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("URL request:", url); 
         try{
             const data = await fetchJson(url);
-            console.log("request API:", data.docs);
+            // Rimuove popup di loading se esiste
+            const loadingPopup = document.querySelector("#loading-popup");
+            if (loadingPopup) loadingPopup.remove();
             createDom(data, resultsDiv);
-            const existing = document.getElementById("loading-popup");
-            if (existing) existing.remove();
         } catch (error) {
             console.error("Error,fetch failed or not category found");
             createPopUp({
@@ -103,10 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
+            // Rimuove popup di loading se esiste
+            const loadingPopup = document.querySelector("#loading-popup");
+            if (loadingPopup) loadingPopup.remove();
             //call function
             createDom(data, resultsDiv);
-            const existing = document.getElementById("loading-popup");
-            if (existing) existing.remove();
         }catch(error){
             createPopUp({
             title: "Error!",
