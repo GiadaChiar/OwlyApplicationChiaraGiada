@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try{
             const data = await fetchJson(url);
             console.log("request API:", data.docs);
+            const existing = document.getElementById("custom-popup");
+            if (existing) existing.remove();
             createDom(data,resultsDiv);
         } catch (error) {
             console.error("Error,fetch failed or not category found");
@@ -99,6 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
+            const existing = document.getElementById("custom-popup");
+            if (existing) existing.remove();
             //call function
             createDom(data,resultsDiv);
         }catch(error){
