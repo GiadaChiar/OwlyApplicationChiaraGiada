@@ -38,6 +38,5 @@ export function createFilterFetch (categoryInput,authorInput,titleInput){
     //limit 
     params.append("limit", "20");
     const url = `${baseUrl}?${params.toString()}`;
-    console.log("Url author", url)
     return url;
 }

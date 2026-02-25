@@ -1,7 +1,6 @@
 
 //MENU LOGIC
 //create a fetch to get menu in menu.html
-//const currentPage = document.body.dataset.currentPage;
 
 //function to load and add header(menu) to html file
 export function fetchMenu(){
@@ -18,14 +17,11 @@ export function fetchMenu(){
 
 function disableLinkCurrentPage(header, currentPage) {
     const links = header.querySelectorAll("a[data-page]")
-    console.log("Presa la funzione in carica", currentPage)
     links.forEach(link => {
         link.classList.remove("disable");
         const hrefLink = link.getAttribute("href");
         if (hrefLink === currentPage) {
-        console.log("La pagina corrente è :", currentPage)
         link.classList.add("disable");
-        console.log("aggiunto disable page:", currentPage)
         }
     });
 }
@@ -36,12 +32,11 @@ function disableLinkCurrentPage(header, currentPage) {
 function activateToggleMenu(header){
 const hamMenu = header.querySelector('.ham-menu');
 const offScreenMenu = header.querySelector('.off-screen-menu');
-const menuLinks= header.querySelectorAll('.off-screen-menu h3 a');// all
+const menuLinks= header.querySelectorAll('.off-screen-menu h3 a');
 
 hamMenu.addEventListener('click', () => {
         hamMenu.classList.toggle('active');  // anable and disable X
         offScreenMenu.classList.toggle('active'); // show/hidden menu
-        // block scrolling when menu is open
         document.body.classList.toggle('no-scroll');
     })
 
@@ -51,7 +46,6 @@ hamMenu.addEventListener('click', () => {
             offScreenMenu.classList.toggle('active');//hidden menu
             hamMenu.classList.toggle('active');  // anable and disable X
             document.body.classList.toggle('no-scroll');//if it was blocked I active it
-            console.log("toggle menu ok")
         });
     });
 }
