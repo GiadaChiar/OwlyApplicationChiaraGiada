@@ -260,6 +260,7 @@ nav .ham-menu span {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.3s ease;
+  z-index: 999;
   /*second bar*/
 }
 nav .ham-menu span:nth-child(1) {
