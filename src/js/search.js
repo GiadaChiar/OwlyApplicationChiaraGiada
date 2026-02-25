@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
     return true;
-}
+    }
+
+    if (!validateSearchInputs(category, "", "")) return;
 
     // X buttons 
     initCloseButtonListener(resultsDiv, cleanResults);
