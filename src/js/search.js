@@ -7,7 +7,6 @@ import { fetchJson,createFilterFetch } from "./api.js";
 import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    //const currentPage = document.header.dataset.currentPage;
     const currentPage = window.location.pathname.split("/").pop();
     setUpMenu(currentPage);
 
@@ -64,10 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //if I click on search button only category
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
-        /* if (!category){
-            validateSearchInputs();  
-            return;                                   
-        };*/
         if (!validateSearchInputs(category, "", "")) return;
         createPopUp({
             title: "Loading ...",
@@ -104,11 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
-            console.log(data);
             //call function
             createDom(data,resultsDiv);
         }catch(error){
-            console.error("Error, creation filter Dom failed or insert", error)
             createPopUp({
             title: "Error!",
             message: "Data entry error, please try again"

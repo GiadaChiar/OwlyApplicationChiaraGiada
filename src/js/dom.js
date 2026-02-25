@@ -65,14 +65,11 @@ export function createInfoIcon(resultsDiv){
 //create icone info to information about book
     const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
     let infobox = null;
-
 //if I pass over the icon show alert with information
-
     infoIcon.addEventListener("mouseover", () => {
         if (infobox) return;
         infobox = createElements({tag:"div",id:"info_box",textContent: "List of books with authors and titles based on the selected category.",parentElement: resultsDiv});
     });
-    
     //if I exit from icon the infobox disappear
     infoIcon.addEventListener("mouseleave",()=>{
         if (infobox) {
@@ -83,13 +80,9 @@ export function createInfoIcon(resultsDiv){
 }
 
 
-
-
-
 export function createDom(data,resultsDiv){
     cleanResults(resultsDiv)
     if(data.numFound==0){
-        //alert("No books were found! Try a different search.")
         createPopUp({
             title: "No books were found!",
             message: "Try a different search."
@@ -142,24 +135,21 @@ export function createDomBookDescription(data,row){
 
 
 
-
-
-
-// Funzione per creare un pop-up standard con close button
+// Function to create pop-up
 export function createPopUp({title = "Allert", message = ""}) {
     // Rimuove eventuale popup precedente
     const existing = document.getElementById("custom-popup");
     if (existing) existing.remove();
     //create elements popUp
     const overlay = createElements({tag: "div",id: "custom-popup",className: "popup-overlay",parentElement: document.body});
-    const popupBox = createElements({tag: "div",className: "popup-box",parentElement: overlay});
+    const popupBox = createElements({ tag: "div", className: "popup-box", parentElement: overlay, attributes: { "role": "alert" }});
     createElements({tag: "h4",textContent: title,parentElement: popupBox});
     createElements({ tag: "p", textContent: message, parentElement: popupBox });
-    // close button 
+    //recall function 
     createCloseButton(popupBox);
     const closeBtn = popupBox.querySelector(".btn-close");
     closeBtn.addEventListener("click", () => overlay.remove());
-    // Chiude cliccando fuori dal box
+    // close when I click outside 
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.remove();
     });
