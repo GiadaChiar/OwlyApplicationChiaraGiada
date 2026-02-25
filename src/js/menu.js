@@ -36,7 +36,7 @@ function disableLinkCurrentPage(header, currentPage) {
 function activateToggleMenu(header){
 const hamMenu = header.querySelector('.ham-menu');
 const offScreenMenu = header.querySelector('.off-screen-menu');
-const elencMenu= header.querySelectorAll('.off-screen-menu h3 a');// all
+const menuLinks= header.querySelectorAll('.off-screen-menu h3 a');// all
 
 hamMenu.addEventListener('click', () => {
         hamMenu.classList.toggle('active');  // anable and disable X
@@ -46,7 +46,7 @@ hamMenu.addEventListener('click', () => {
     })
 
     //if you clink in every other part
-    elencMenu.forEach(link => {
+    menuLinks.forEach(link => {
         link.addEventListener('click', ()=>{
             offScreenMenu.classList.toggle('active');//hidden menu
             hamMenu.classList.toggle('active');  // anable and disable X

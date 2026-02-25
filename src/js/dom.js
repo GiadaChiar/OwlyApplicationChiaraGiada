@@ -103,8 +103,8 @@ export function createDom(data,resultsDiv){
                 'aria-expanded': 'false',
                 'aria-controls': 'collapseExample'
             }});
-            resultsDiv.style.display="block";
         });
+        resultsDiv.style.display="block";
         //create button for delete 
         createCloseButton(resultsDiv);
         //create infobox if isn't
