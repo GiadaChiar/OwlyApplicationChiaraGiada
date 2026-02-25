@@ -204,6 +204,7 @@ body.no-scroll {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   border-color: #004aad;
   position: relative;
+  border: 1px solid #004aad;
 }
 #custom-popup .popup-box h4 {
   margin-bottom: 20px;
