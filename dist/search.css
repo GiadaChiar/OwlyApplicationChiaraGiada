@@ -161,14 +161,18 @@ body.no-scroll {
   justify-content: center;
   padding: 10px;
 }
+#more-filters h5 {
+  text-align: center;
+}
+#more-filters .input-group-append #search_filter {
+  align-items: center;
+}
 #more-filters #delete_html_filter {
   position: absolute;
   top: 8px;
   right: 10px;
 }
 
-/*375*414 Iphone
-@media (max-width: 414px) { }*/
 @media (max-width: 414px) {
   html .top-page .ham-menu, body .top-page .ham-menu {
     height: 20px;
