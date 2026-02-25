@@ -2,7 +2,7 @@
 import '../style/search.scss';
 import '../style/menu.scss';
 import { setUpMenu } from './menu.js';
-import { updateButtonColor, cleanResults,createDom} from "./dom.js";
+import { updateButtonColor, cleanResults,createDom,createPopUp} from "./dom.js";
 import { fetchJson,createFilterFetch } from "./api.js";
 import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
 
@@ -44,8 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
     function validateSearchInputs(category, author, title){
-    if (!category && !author && !title) {
-        alert("Please enter at least one search field.");
+        if (!category && !author && !title) {
+        createPopUp({
+            title: "No Results!",
+            message: "lease enter at least one search field."
+        });
+        //alert("Please enter at least one search field.");
         return false;
     }
     return true;
@@ -74,7 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
             createDom(data,resultsDiv);
         } catch (error) {
             console.error("Error,fetch failed or not category found");
-            alert("Error,fetch failed or not category found, try a different category");
+            createPopUp({
+            title: "No category found!",
+            message: "fetch failed or not category found, try a different category"
+            });
+            //alert("Error,fetch failed or not category found, try a different category");
         }
     });
 
@@ -98,8 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
             //call function
             createDom(data,resultsDiv);
         }catch(error){
-            console.error("Error, creation filter Dom failed or insert",error)
-            alert("Data entry error, please try again")
+            console.error("Error, creation filter Dom failed or insert", error)
+            createPopUp({
+            title: "Error!",
+            message: "Data entry error, please try again"
+            });
         }
     });
 })
