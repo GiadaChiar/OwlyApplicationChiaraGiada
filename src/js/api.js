@@ -1,6 +1,4 @@
 //function for API calls
-//import { createDomBookDescription } from './dom.js';
-
 
 
 //standard response error
@@ -19,26 +17,6 @@ export async function fetchBookData(titleId){
     return await fetchJson(url);
 }
 
-/*
-//fetch description title 
-export async function fetchBookData(titleId,row){
-    //call another API 
-        //don't usen encodeURIComponent bacause it trasform / in %
-        const url =`https://openlibrary.org${titleId}.json`;
-        console.log("Url request description:", url)
-        console.log("print id:", titleId)
-        try{
-            const data = await fetchJson(url);
-            console.log("Description API:", data.description);
-                if (!row) 
-                return;
-            createDomBookDescription(data,row);
-        }catch(error){
-            console.error("Error to create or insert text to description section",error)
-        }
-        
-}
-*/
 
 // create fetch filter 
 export function createFilterFetch (categoryInput,authorInput,titleInput){
@@ -50,7 +28,8 @@ export function createFilterFetch (categoryInput,authorInput,titleInput){
     }
     //author
     if(authorInput.value){
-        params.append("author_name",authorInput.value);
+        params.append("author_name", authorInput.value);
+        console.log("nome autore",authorInput.value)
     }
     //titleselectedLanguage
     if(titleInput.value){
