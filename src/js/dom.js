@@ -136,21 +136,20 @@ export function createDomBookDescription(data,row){
 
 
 // Function to create pop-up
-export function createPopUp({title = "Allert", message = "", id="custom-popup"}) {
-    const existing = document.getElementById("custom-popup");
+export function createPopUp({ title = "Alert", message = "", id = "custom-popup" }) {
+    const existing = document.getElementById(id);
     if (existing) existing.remove();
-    //create elements popUp
-    const overlay = createElements({tag: "div",id: "custom-popup",className: "popup-overlay",parentElement: document.body});
-    const popupBox = createElements({ tag: "div", className: "popup-box", parentElement: overlay, attributes: { "role": "alert" }});
-    createElements({tag: "h4",textContent: title,parentElement: popupBox});
+    const overlay = createElements({tag: "div",id: id,className: "popup-overlay",parentElement: document.body});
+    const popupBox = createElements({tag: "div",className: "popup-box",parentElement: overlay,attributes: { "role": "alert" }});
+    createElements({ tag: "h4", textContent: title, parentElement: popupBox });
     createElements({ tag: "p", textContent: message, parentElement: popupBox });
-    //recall function 
+    //reacall function closeButton
     createCloseButton(popupBox);
     const closeBtn = popupBox.querySelector(".btn-close");
     closeBtn.addEventListener("click", () => overlay.remove());
-    // close when I click outside 
+
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.remove();
-        return overlay;
     });
+    return overlay;
 }
