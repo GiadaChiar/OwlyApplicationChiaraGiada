@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
-            const existing = document.getElementById("loading-ppoup");
+            const existing = document.getElementById("loading-popup");
             if (existing) existing.remove();
             //call function
             createDom(data,resultsDiv);
