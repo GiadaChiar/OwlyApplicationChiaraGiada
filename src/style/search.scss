@@ -206,9 +206,7 @@ body.no-scroll {
 //custom pop-up
 #custom-popup{
     position: fixed;
-    top: 10px;
-    left: 0;
-    right: 0;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -224,10 +222,11 @@ body.no-scroll {
         background: vars.$background3;
         padding-top: 15px;
         padding-bottom: 15px;
-        padding-left: 35px;
-        padding-right: 35px;
+        margin-left: 30px;
+        margin-right: 30px;
         border-radius: 8px;
-        width: 300px;
+        width: auto;
+        height: auto;
         max-width: 90%;
         text-align: center;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -235,7 +234,7 @@ body.no-scroll {
         position: relative;
 
         h4{
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color:vars.$background2;
         }
 
