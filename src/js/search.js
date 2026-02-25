@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
         if (!validateSearchInputs(category, "", "")) return;
-        const loadingPopup = createPopUp({
+            createPopUp({
             title: "Loading ...",
             message: "Please wait the results.",
             id:"loading-popup"
@@ -74,7 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try{
             const data = await fetchJson(url);
             // Rimuove popup di loading se esiste
-            if (loadingPopup) loadingPopup.remove();
+            const popupToRemove = document.getElementById("loading-popup");
+            if (popupToRemove) popupToRemove.remove();
             createDom(data, resultsDiv);
         } catch (error) {
             console.error("Error,fetch failed or not category found");
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             authorInput.value.trim(),
             titleInput.value.trim()
         )) return;
-        const loadingPopup = createPopUp({
+        createPopUp({
             title: "Loading ...",
             message: "Please wait the results.",
             id:"loading-popup"
@@ -102,8 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
-            // Rimuove popup di loading se esiste
-            if (loadingPopup) loadingPopup.remove();
+            //remuve pop-up
+            const popupToRemove = document.getElementById("loading-popup");
+            if (popupToRemove) popupToRemove.remove();
             //call function
             createDom(data, resultsDiv);
         }catch(error){
