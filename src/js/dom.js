@@ -151,5 +151,6 @@ export function createPopUp({title = "Allert", message = ""}) {
     // close when I click outside 
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.remove();
+        return overlay;
     });
 }

@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
         if (!validateSearchInputs(category, "", "")) return;
-        createPopUp({
+        const loadingPopup = createPopUp({
             title: "Loading ...",
             message: "Please wait the results.",
             id:"loading-popup"
@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         try{
             const data = await fetchJson(url);
             // Rimuove popup di loading se esiste
-            const loadingPopup = document.querySelector("#loading-popup");
             if (loadingPopup) loadingPopup.remove();
             createDom(data, resultsDiv);
         } catch (error) {
@@ -94,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             authorInput.value.trim(),
             titleInput.value.trim()
         )) return;
-        createPopUp({
+        const loadingPopup = createPopUp({
             title: "Loading ...",
             message: "Please wait the results.",
             id:"loading-popup"
@@ -104,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
         try{
             const data = await fetchJson(url); 
             // Rimuove popup di loading se esiste
-            const loadingPopup = document.querySelector("#loading-popup");
             if (loadingPopup) loadingPopup.remove();
             //call function
             createDom(data, resultsDiv);
