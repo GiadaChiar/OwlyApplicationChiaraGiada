@@ -77,6 +77,7 @@ nav {
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9998;
 
     h3 a {
         color: vars.$background1;
