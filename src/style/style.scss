@@ -72,6 +72,7 @@ body.no-scroll {
     margin-bottom: 100px;
 
     #firstLeft{
+
         img{
             //margin-top: -0.5%;
             height: 75vh;
@@ -80,21 +81,24 @@ body.no-scroll {
             margin-left:0%;
         }
     }
+
     #firstRight{
         margin-right: 2rem;
+
         h1,h2{
             color: vars.$font-color2;
             font-family: vars.$font-text1;
             text-align: center;
         }
+
         h1 {
                 font-size: vars.$font-sizeh1;
                 text-decoration: underline;
                 color: vars.$font-color2;
                 margin-bottom: 10px;
                 margin-top: 20px;
-
             }
+
         h2 {
                     font-size: vars.$font-sizeh2;
             }
@@ -115,15 +119,18 @@ body.no-scroll {
                     text-align: right;
                     margin-right: 10%;
                 }
-        }   
+        }
+        
         #SecondInsideFirstRight{
             margin-top:60px;
             margin-bottom: 21px;
+            
             p{
                 color: vars.$font-color2;
                 font-size: vars.$font-sizeh3;
                 font-family: vars.$font-text2;
             }
+
             img{
                 height: 5vh;
                 width: auto;
@@ -131,6 +138,7 @@ body.no-scroll {
             }
         }
     }
+
     hr{
         margin-right: 0%;
         margin-left: 0%;
@@ -138,6 +146,7 @@ body.no-scroll {
         width: 100%;
     }
 }
+
 /*Second page section 
 section about us*/
 .SecondPage{
@@ -220,6 +229,7 @@ section about us*/
     height: auto;
     margin-left: 10px;
     margin-right: 10px;
+
     h1{
         color: vars.$font-color2;
         font-family: vars.$font-text1;
@@ -285,7 +295,6 @@ section about us*/
 }
 
 
-
 //fourth page section
 #fourthPage{
     //margin-top:-15%;
@@ -333,6 +342,7 @@ section about us*/
             padding-left: 2rem;
             padding-right: 2rem;
             margin-bottom: 20px;
+
             &:hover{
                 border-color:vars.$background1;
                 color:vars.$background2-transparent
@@ -342,58 +352,68 @@ section about us*/
 }
 
 
-//----------------------------------------------------
 /*adact to the biggest screen
 1024-1440 laptop monitor
 */
-
 @media (min-width: 1024px) {
+
     html, body {
         background-size: contain;
-    //first page okay
+
         .ham-menu{
             height: 40px;
             width: 40px;
+
             span{
                 height: 8px;
             }
         }
+
         .off-screen-menu{
+
             h3 a { 
             font-size: vars.$font-sizeh1;
         }
     }
 
         #firstPage{
+
             #firstRight{
+
                 h1{
                     margin-bottom: 80px;
                     margin-top: 30px;
                 }
+
                 h2{
                     margin-bottom: 100px;
                 }
+
                 #insideFirstRight{
                     margin-bottom: 150px;
+
                     p{
                         font-size: larger;
                     }
                 }
             }
-        }
-            
+        }    
     }
-    //end firt page
 
     //second page
     .SecondPage{
+
         #titleDiv{
+
             h1{
                 font-size: 3.5rem;
         }
         }
+
         .container-aboutus{
+
             .container{
+
                 p{
                     font-size: 1rem;
                 }
@@ -403,28 +423,33 @@ section about us*/
 }
 
 
-//---------------------------------------------
-
 /*768-834 tablet
 @media (max-width: 768px) { }*/
 @media (max-width: 768px) {
+
     .SecondPage{
         margin-bottom: 100px;
+
         .container-aboutus{
             justify-content: center;
             align-items: center;
+
             .container{
                 height: 60vh;
+
                     p{
                     font-size: 1rem;
                     }  
+
             &:nth-child(2)  {
                 margin-top: 10px;
             }    
             }
+
             #ony_large{
                 display: none;
             }
+
             #girlRead{
                 height: auto;
                 width: 90%;
@@ -434,15 +459,19 @@ section about us*/
 //page 3 
     #thirtPage{
         margin-bottom: 100px;
+
         .services {
         grid-template-columns: 1fr;
         }
+
         .service {
         align-items: stretch;
+
         h3 {
             text-align: center;
             }
         }
+
         .img-title{
                 display: flex;
                 flex-direction: row;
@@ -456,31 +485,11 @@ section about us*/
 }
 
 
-/*375*414 Iphone
-@media (max-width: 414px) { }*/
-
+//375*414 Iphone
 @media (max-width: 414px) {
         html, body {
         background-size: contain;
-        /*.top-page{
-            .ham-menu{
-                height: 20px;
-                width: 20px;
-                span{
-                    height: 3px;
-                }
-            }
-            img{
-                height: 35px;
-                width: 20px;
-            }
-        }
-        .off-screen-menu{
-            width: 80%;
-            h3 a { 
-            font-size: vars.$font-sizeh3;
-        }
-    }*/
+
         #firstPage{
             display: flex;
             justify-content: center;
@@ -490,6 +499,7 @@ section about us*/
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+
             #firstLeft{
             display: none;
                 }
@@ -503,13 +513,16 @@ section about us*/
                         font-size: 1.3rem;
 
                     }
+
                 h2{
                         font-size: 1rem;
                         margin-left: 3px;
                     }
+
                 #insideFirstRight{
                     margin-bottom: 150px;
                     background-color:rgba(203, 208, 215, 0.8);
+
                     p{
                             font-size:0.5rem;
                             color: vars.$font-color2;
@@ -520,7 +533,7 @@ section about us*/
                     background-color:rgba(203, 208, 215, 0.8);
                     width: 100%;
                     margin: 0px;
-                    //margin-right: -100px;
+                    
                     p{
                         font-size: small;
                         color: vars.$font-color2;
@@ -534,7 +547,9 @@ section about us*/
     //second page
     .SecondPage{
         height: auto;
+
         #titleDiv{
+
             h1{
                 font-size: 1.5rem;
                 margin-top: 30px;
@@ -543,7 +558,9 @@ section about us*/
         
         .container-aboutus{
             flex-direction: column;
+
             .container{
+
                 &:first-child {
                     display: none;
                     }
@@ -551,12 +568,14 @@ section about us*/
                 &:nth-child(2) {
                     height: auto;
                     margin-top: 0px;
+
                     p{
                     margin-top: -2px;
                     font-size: 1rem;
                     }       
                 }
             }
+
             #ony_large{
                 display: none;
             }
@@ -566,36 +585,42 @@ section about us*/
     #thirtPage {
         height: auto;
         margin-bottom: 100px;
+
         h1{
             margin-top:20px;
             font-size: 2rem;
         }
+
         .box {
             height: auto;
             padding: 20px;
         }
+
         .service {
+
         h3 {
             text-align: center;
             font-size: 1.5rem;
             }
         }
+
         .img-title{
             display: flex;
             flex-direction: row;
             justify-content: center;
             gap:15px;
+
             img{
             height:7vh;
         }
     }
     }
 
-
-
     #fourthPage {
     margin-top:100px;
+
         #titleDiv{
+            
             h1{
                 font-size: 1.5rem;
             }
