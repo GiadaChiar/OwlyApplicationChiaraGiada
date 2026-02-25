@@ -173,6 +173,34 @@ body.no-scroll {
   right: 10px;
 }
 
+#custom-popup {
+  position: fixed;
+  top: 200px;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+#custom-popup .popup-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+#custom-popup .popup-box h4 {
+  margin-bottom: 10px;
+}
+#custom-popup .popup-box p {
+  margin-bottom: 15px;
+}
+
 @media (max-width: 414px) {
   html .top-page .ham-menu, body .top-page .ham-menu {
     height: 20px;
