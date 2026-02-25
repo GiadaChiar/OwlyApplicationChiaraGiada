@@ -176,6 +176,8 @@ body.no-scroll {
 #custom-popup {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,8 +190,10 @@ body.no-scroll {
 }
 #custom-popup .popup-box {
   background: rgb(221, 231, 237);
-  padding-top: 15px;
+  padding-top: 35px;
   padding-bottom: 15px;
+  padding-right: 50px;
+  padding-left: 50px;
   margin-left: 30px;
   margin-right: 30px;
   border-radius: 8px;
