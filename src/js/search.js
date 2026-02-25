@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!category && !author && !title) {
         createPopUp({
             title: "No Results!",
-            message: "lease enter at least one search field."
+            message: "Please enter at least one search field."
         });
         return false;
     }
@@ -69,6 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;                                   
         };*/
         if (!validateSearchInputs(category, "", "")) return;
+        createPopUp({
+            title: "Loading ...",
+            message: "Please wait the results."
+        });
         const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
         console.log("URL request:", url); 
         try{
@@ -92,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
             authorInput.value.trim(),
             titleInput.value.trim()
         )) return;
+        createPopUp({
+            title: "Loading ...",
+            message: "Please wait the results."
+        });
 
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
