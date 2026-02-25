@@ -150,66 +150,15 @@ export function createPopUp({title = "Allert", message = ""}) {
     // Rimuove eventuale popup precedente
     const existing = document.getElementById("custom-popup");
     if (existing) existing.remove();
-
-    // Overlay
-    const overlay = createElements({
-        tag: "div",
-        id: "custom-popup",
-        className: "popup-overlay",
-        parentElement: document.body,
-        /*attributes: {
-            style: `
-                position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background-color: rgba(0,0,0,0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999;
-            `
-        }*/
-    });
-
-    // Box del pop-up
-    const popupBox = createElements({
-        tag: "div",
-        className: "popup-box",
-        parentElement: overlay,
-        /*attributes: {
-            style: `
-                background: white;
-                padding: 20px;
-                border-radius: 8px;
-                width: 300px;
-                max-width: 90%;
-                text-align: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-                position: relative;
-            `
-        }*/
-    });
-
-    // Bottone close (usa la tua funzione)
+    //create elements popUp
+    const overlay = createElements({tag: "div",id: "custom-popup",className: "popup-overlay",parentElement: document.body});
+    const popupBox = createElements({tag: "div",className: "popup-box",parentElement: overlay});
+    createElements({tag: "h4",textContent: title,parentElement: popupBox});
+    createElements({ tag: "p", textContent: message, parentElement: popupBox });
+    // close button 
     createCloseButton(popupBox);
     const closeBtn = popupBox.querySelector(".btn-close");
     closeBtn.addEventListener("click", () => overlay.remove());
-
-    // Titolo
-    createElements({
-        tag: "h4",
-        textContent: title,
-        parentElement: popupBox,
-        //attributes: { style: "margin-bottom: 10px;" }
-    });
-
-    // Messaggio
-    createElements({
-        tag: "p",
-        textContent: message,
-        parentElement: popupBox,
-        //attributes: { style: "margin-bottom: 15px;" }
-    });
-
     // Chiude cliccando fuori dal box
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.remove();
