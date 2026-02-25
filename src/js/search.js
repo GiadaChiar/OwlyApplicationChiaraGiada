@@ -2,10 +2,15 @@
 import '../style/search.scss';
 import '../style/menu.scss';
 import { setUpMenu } from './menu.js';
+import { updateButtonColor, cleanResults,createDom} from "./dom.js";
+import { fetchJson,createFilterFetch } from "./api.js";
+import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
+
+/*
 import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom,createDomBookDescription} from "./dom.js";
 import { fetchJson,fetchBookData,createFilterFetch } from "./api.js";
 import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
-
+*/
 
 document.addEventListener('DOMContentLoaded', () => {
     //const currentPage = document.header.dataset.currentPage;
@@ -44,12 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
 
-    //CHANGE UNE POINT--------------------------------------------------------------------
-     //function to validate input 
-    /*function validateSearchInputs(){
-        alert("Please enter a valid category.");
-            return;  
-    }*/
     function validateSearchInputs(category, author, title){
     if (!category && !author && !title) {
         alert("Please enter at least one search field.");
@@ -58,21 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
     }
 
-    if (!validateSearchInputs(category, "", "")) return;
 
     // X buttons 
     initCloseButtonListener(resultsDiv, cleanResults);
     
      //call fiunction if I click on title
-    initBookDescriptionListener(resultsDiv, fetchBookData);
+    initBookDescriptionListener(resultsDiv);
 
     //if I click on search button only category
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
-        if (!category){
+        /* if (!category){
             validateSearchInputs();  
             return;                                   
-        };
+        };*/
+        if (!validateSearchInputs(category, "", "")) return;
         const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
         console.log("URL request:", url); 
         try{
@@ -88,11 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //if I click on Search but for title and author 
     searchButtonFilter.addEventListener("click",async()=>{
-        //if you are not a new insert 
-        if(authorInput.value ==="" && titleInput.value ===""){
+        //if you are not a new insert
+        /*if(authorInput.value ==="" && titleInput.value ===""){
             validateSearchInputs();
-            return;
-        }
+            return;*/
+        if (!validateSearchInputs(
+            categoryInput.value.trim(),
+            authorInput.value.trim(),
+            titleInput.value.trim()
+        )) return;
+
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 

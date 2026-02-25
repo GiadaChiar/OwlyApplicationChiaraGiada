@@ -1,5 +1,7 @@
 //function for API calls
-import { createDomBookDescription } from './dom.js';
+//import { createDomBookDescription } from './dom.js';
+
+
 
 //standard response error
 export async function fetchJson(url){
@@ -12,6 +14,12 @@ export async function fetchJson(url){
 }
 
 
+export async function fetchBookData(titleId){
+    const url = `https://openlibrary.org${titleId}.json`;
+    return await fetchJson(url);
+}
+
+/*
 //fetch description title 
 export async function fetchBookData(titleId,row){
     //call another API 
@@ -30,7 +38,7 @@ export async function fetchBookData(titleId,row){
         }
         
 }
-
+*/
 
 // create fetch filter 
 export function createFilterFetch (categoryInput,authorInput,titleInput){

@@ -1,5 +1,9 @@
 
 
+import { fetchBookData } from "./api.js";
+import { createDomBookDescription } from "./dom.js";
+
+
 //CLOSE BUTTON
 
 function handleCloseButtonClick(event,resultsDiv,cleanResults){
@@ -26,20 +30,25 @@ export function initCloseButtonListener(resultsDiv,cleanResults){
 
 //BOOK TITLE
 //async function handleBookClick
-async function handleBookClick(event,fetchBookData){
+async function handleBookClick(event){
     const title = event.target.closest(".book-title");
         if(!title) return; //if I don't click in title exit
         const row = title.closest(".book-row") //if I click on title
         if(!row)return;
         let fulltitle =title.id;
         let titleId = fulltitle.replace("-title", "");
-        console.log(title);
-        await fetchBookData(titleId,row);
+        try {
+        const data = await fetchBookData(titleId);
+        createDomBookDescription(data, row);
+    } catch (error) {
+        console.error("Error fetching book description", error);
+    }
 }
 
 //listener clean recall function
-export function initBookDescriptionListener(resultsDiv,fetchBookData){
-    resultsDiv.addEventListener("click",(event)=>{
-        handleBookClick(event,fetchBookData);
-    });
+export function initBookDescriptionListener(resultsDiv){
+    resultsDiv.addEventListener("click",handleBookClick);
+    
 }
+
+
