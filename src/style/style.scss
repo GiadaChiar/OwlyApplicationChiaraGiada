@@ -2,7 +2,7 @@
 
 html, body {
     width: 100%;
-    overflow-x: hidden;  // elimina qualunque scroll orizzontale
+    overflow-x: hidden;  
     scrollbar-gutter: stable;
 }
 
@@ -49,7 +49,6 @@ body.no-scroll {
     width: 100%;
     height: 5vh;
     margin-bottom: 5px;
-    //margin-top: -15px;
     background-color: vars.$background2;
     
     img{
@@ -74,7 +73,6 @@ body.no-scroll {
     #firstLeft{
 
         img{
-            //margin-top: -0.5%;
             height: 75vh;
             width: 50vh;
             margin-left: 2.3rem;
@@ -114,7 +112,6 @@ body.no-scroll {
                     color: vars.$font-color1;
                     font-size: vars.$font-sizeh3;
                     font-family: vars.$font-text2;
-                    //margin-top: -1rem;
                     padding: 8%;
                     text-align: right;
                     margin-right: 10%;
@@ -297,7 +294,6 @@ section about us*/
 
 //fourth page section
 #fourthPage{
-    //margin-top:-15%;
     padding-top:0%;
     
     #titleDiv{
@@ -423,8 +419,7 @@ section about us*/
 }
 
 
-/*768-834 tablet
-@media (max-width: 768px) { }*/
+//768-834 tablet
 @media (max-width: 768px) {
 
     .SecondPage{
@@ -620,7 +615,7 @@ section about us*/
     margin-top:100px;
 
         #titleDiv{
-            
+
             h1{
                 font-size: 1.5rem;
             }

@@ -332,8 +332,6 @@ section about us*/
     font-size: 1rem;
   }
 }
-/*768-834 tablet
-@media (max-width: 768px) { }*/
 @media (max-width: 768px) {
   .SecondPage {
     margin-bottom: 100px;

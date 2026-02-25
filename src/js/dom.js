@@ -137,7 +137,6 @@ export function createDomBookDescription(data,row){
 
 // Function to create pop-up
 export function createPopUp({title = "Allert", message = ""}) {
-    // Rimuove eventuale popup precedente
     const existing = document.getElementById("custom-popup");
     if (existing) existing.remove();
     //create elements popUp
