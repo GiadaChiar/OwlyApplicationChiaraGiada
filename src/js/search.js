@@ -6,12 +6,6 @@ import { updateButtonColor, cleanResults,createDom} from "./dom.js";
 import { fetchJson,createFilterFetch } from "./api.js";
 import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
 
-/*
-import { updateButtonColor, cleanResults, createElements, createCloseButton, createInfoIcon, createDom,createDomBookDescription} from "./dom.js";
-import { fetchJson,fetchBookData,createFilterFetch } from "./api.js";
-import { initCloseButtonListener,initBookDescriptionListener } from "./event.js";
-*/
-
 document.addEventListener('DOMContentLoaded', () => {
     //const currentPage = document.header.dataset.currentPage;
     const currentPage = window.location.pathname.split("/").pop();

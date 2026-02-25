@@ -28,7 +28,7 @@ export function createFilterFetch (categoryInput,authorInput,titleInput){
     }
     //author
     if(authorInput.value){
-        params.append("author_name", authorInput.value);
+        params.append("author", authorInput.value);
         console.log("nome autore",authorInput.value)
     }
     //titleselectedLanguage
