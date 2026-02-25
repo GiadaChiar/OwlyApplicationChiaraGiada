@@ -66,14 +66,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validateSearchInputs(category, "", "")) return;
         createPopUp({
             title: "Loading ...",
-            message: "Please wait the results."
+            message: "Please wait the results.",
+            id:"loading-popup"
         });
         const url = `https://openlibrary.org/search.json?subject=${encodeURIComponent(category)}` +"&limit=20";
         console.log("URL request:", url); 
         try{
             const data = await fetchJson(url);
             console.log("request API:", data.docs);
-            const existing = document.getElementById("custom-popup");
+            const existing = document.getElementById("loading-popup");
             if (existing) existing.remove();
             createDom(data,resultsDiv);
         } catch (error) {
@@ -95,13 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
         )) return;
         createPopUp({
             title: "Loading ...",
-            message: "Please wait the results."
+            message: "Please wait the results.",
+            id:"loading-popup"
         });
 
         const url = createFilterFetch(categoryInput,authorInput,titleInput);
         try{
             const data = await fetchJson(url); 
-            const existing = document.getElementById("custom-popup");
+            const existing = document.getElementById("loading-ppoup");
             if (existing) existing.remove();
             //call function
             createDom(data,resultsDiv);
