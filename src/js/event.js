@@ -4,13 +4,12 @@ import { fetchBookData } from "./api.js";
 import { createDomBookDescription } from "./dom.js";
 
 
-//CLOSE BUTTON
-
+//Close button functionality
 function handleCloseButtonClick(event,resultsDiv,cleanResults){
-    const button = event.target.closest(".btn-close");//near parent
-    if (!button) return;//if you click on another element exit
+    const button = event.target.closest(".btn-close");//Find the closest .btn-close element from the clicked target
+    if (!button) return;// Exit if the clicked element is not a close button
     const targetElement = button.parentElement;
-        if(targetElement === resultsDiv){
+        if(targetElement === resultsDiv){ 
             resultsDiv.style.display="none";
             cleanResults(resultsDiv)
         }else{
@@ -18,8 +17,7 @@ function handleCloseButtonClick(event,resultsDiv,cleanResults){
         }
 }
 
-//listener CloseButton
-//listener clean recall function
+//Initialize close button listener
 export function initCloseButtonListener(resultsDiv,cleanResults){
     resultsDiv.addEventListener("click", (event)=>{
         handleCloseButtonClick(event,resultsDiv,cleanResults);
@@ -29,14 +27,14 @@ export function initCloseButtonListener(resultsDiv,cleanResults){
 
 
 //BOOK TITLE
-//async function handleBookClick
+//Handle click on book titles and fetch book data
 async function handleBookClick(event){
     const title = event.target.closest(".book-title");
-        if(!title) return; //if I don't click in title exit
-        const row = title.closest(".book-row") //if I click on title
-        if(!row)return;
-        let fulltitle =title.id;
-        let titleId = fulltitle.replace("-title", "");
+        if(!title) return; //Exit if the clicked element is not a book title
+        const row = title.closest(".book-row") 
+        if(!row)return;// Exit if the book title is not inside a book row
+        let titleId = title.dataset.workId
+        if (!titleId) return;// Get book key from data attribute, exit if missing
         try {
         const data = await fetchBookData(titleId);
         createDomBookDescription(data, row);

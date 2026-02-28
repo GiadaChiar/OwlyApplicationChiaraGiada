@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname.split("/").pop();
     setUpMenu(currentPage);
 
-    //take input category value
+    // DOM elements
     const menu_filters = document.getElementById("more-filters")
     const searchButton = document.getElementById('search');
     const categoryInput = document.getElementById('category');
@@ -22,18 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteButtonFilter = document.getElementById("delete_html_filter");
     const buttonFilter = document.getElementById("filters");
 
-    //if I click I pass hover mouse  get other informations info
-    //default hide menu filters
     menu_filters.style.display = "none";
 
     buttonFilter.addEventListener("click",()=>{
         menu_filters.style.display="block";
     })
-    //add x to close menu filter (part in html)
     deleteButtonFilter.addEventListener("click",async()=>{
         menu_filters.style.display="none";
     });
-    
+    // Update button colors based on input
     updateButtonColor(categoryInput, authorInput, titleInput, searchButton, searchButtonFilter);//first state
     [categoryInput, authorInput, titleInput].forEach(input => {
         input.addEventListener('input', () => {
@@ -41,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-
+    // Validate search inputs
     function validateSearchInputs(category, author, title){
         if (!category && !author && !title) {
         createPopUp({
@@ -54,13 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // X buttons 
+    // Initialize X button and book description listeners
     initCloseButtonListener(resultsDiv, cleanResults);
-    
-     //call fiunction if I click on title
     initBookDescriptionListener(resultsDiv);
 
-    //if I click on search button only category
+    // Search by category only
     searchButton.addEventListener("click", async () => {
         const category = categoryInput.value.trim();
         if (!validateSearchInputs(category, "", "")) return;
@@ -73,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log("URL request:", url); 
         try{
             const data = await fetchJson(url);
-            // Rimuove popup di loading se esiste
             const popupToRemove = document.getElementById("loading-popup");
             if (popupToRemove) popupToRemove.remove();
             createDom(data, resultsDiv);
@@ -87,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    //if I click on Search but for title and author 
+    // Search by category, author, and title
     searchButtonFilter.addEventListener("click",async()=>{
         if (!validateSearchInputs(
             categoryInput.value.trim(),
@@ -106,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //remuve pop-up
             const popupToRemove = document.getElementById("loading-popup");
             if (popupToRemove) popupToRemove.remove();
-            //call function
             createDom(data, resultsDiv);
         }catch(error){
             createPopUp({

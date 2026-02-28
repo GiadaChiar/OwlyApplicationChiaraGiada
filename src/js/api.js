@@ -1,7 +1,6 @@
 //function for API calls
 
-
-//standard response error
+// Standard JSON fetch with error handling
 export async function fetchJson(url){
         const response = await fetch(url);
         if(!response.ok){
@@ -12,13 +11,14 @@ export async function fetchJson(url){
 }
 
 
+// Fetch detailed book data by OpenLibrary work ID
 export async function fetchBookData(titleId){
     const url = `https://openlibrary.org${titleId}.json`;
     return await fetchJson(url);
 }
 
 
-// create fetch filter 
+// Build a search URL based on user inputs (filters)
 export function createFilterFetch (categoryInput,authorInput,titleInput){
     const baseUrl= `https://openlibrary.org/search.json`
     const params = new URLSearchParams();
@@ -30,7 +30,7 @@ export function createFilterFetch (categoryInput,authorInput,titleInput){
     if(authorInput.value){
         params.append("author", authorInput.value);
     }
-    //titleselectedLanguage
+    //title
     if(titleInput.value){
         params.append("title",titleInput.value);
     }

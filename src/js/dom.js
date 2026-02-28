@@ -1,6 +1,5 @@
 //Create Dom and elements
-
-//change color if you write into input
+// Change button color depending on input values
 export function updateButtonColor(categoryInput,authorInput,titleInput,searchButton,searchButtonFilter){
     const author=authorInput.value.trim();
     const title = titleInput.value.trim();
@@ -19,15 +18,14 @@ export function updateButtonColor(categoryInput,authorInput,titleInput,searchBut
 }
 
 
-
+// Clear the results container
 export function cleanResults(resultsDiv){
     resultsDiv.innerHTML = ""; 
 }
 
 
-//function to help me to create elements
+// Helper to create a DOM element
 export function createElements({tag,className,id,textContent,parentElement,attributes ={}}){
-    //create element 
     let element= document.createElement(tag);
     if(className) {
         className.split(' ').forEach(cls => element.classList.add(cls));
@@ -50,19 +48,18 @@ export function createElements({tag,className,id,textContent,parentElement,attri
 }
 
 
-//generic function to targetElement to choose when you want it 
+// Add a close button to a target element
 export function createCloseButton(targetElement){
-    let deleteButton = createElements({tag:'button',className:'btn-close',attributes:{
+    let deleteButton = createElements({tag:'button',className:'btn-close',parentElement:targetElement,attributes:{
         "aria-label": "Close"
     }})
     //to find where you want it
     deleteButton.type = "button";
-    targetElement.appendChild(deleteButton)
 }
 
-//create and function to InfoIcon
+
+// Add an info icon with hover description
 export function createInfoIcon(resultsDiv){
-//create icone info to information about book
     const infoIcon  = createElements({tag:'i',className:'bi bi-info-circle-fill',id:'info_icon',parentElement:resultsDiv})
     let infobox = null;
 //if I pass over the icon show alert with information
@@ -80,6 +77,7 @@ export function createInfoIcon(resultsDiv){
 }
 
 
+// Create the book list in the DOM
 export function createDom(data,resultsDiv){
     cleanResults(resultsDiv)
     if(data.numFound==0){
@@ -90,10 +88,11 @@ export function createDom(data,resultsDiv){
         return;
     }else{
         data.docs.forEach(doc => {
-            let rowDiv = createElements({tag:'div',className:'book-row',id:doc.key,parentElement:resultsDiv});
+            let rowDiv = createElements({tag:'div',className:'book-row',parentElement:resultsDiv, attributes:{'data-work-id': doc.key}});
             let insideRowDiv =createElements({tag:'div',className:'inner-row',parentElement: rowDiv});
-            let authorElement= createElements({tag:'h3',className:'book-author',id:doc.key + "-author",textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv});
-            let titleElement = createElements({tag:'a',className:'book-title btn btn-primary',id:doc.key + "-title",textContent:doc.title ?? "Title not available",parentElement:insideRowDiv,attributes:{
+            let authorElement= createElements({tag:'h3',className:'book-author',textContent:doc.author_name ? doc.author_name.join(", ") : "Author unknown",parentElement:insideRowDiv,attributes:{'data-work-id': doc.key}});
+            let titleElement = createElements({tag:'a',className:'book-title btn btn-primary',textContent:doc.title ?? "Title not available",parentElement:insideRowDiv,attributes:{
+                'data-work-id': doc.key, 
                 'data-bs-toggle': 'collapse',
                 'href': '#collapseExample',
                 'role':'button',
@@ -101,6 +100,7 @@ export function createDom(data,resultsDiv){
                 'aria-controls': 'collapseExample'
             }});
         });
+        
         resultsDiv.style.display="block";
         //create button for delete 
         createCloseButton(resultsDiv);
@@ -112,7 +112,7 @@ export function createDom(data,resultsDiv){
 }
 
 
-//create section about Description Book 
+// Create the book description section under a row
 export function createDomBookDescription(data,row){
     if (row.nextElementSibling?.classList.contains("description-box")) return;// not duplicate 
     let descriptionText = "Description not available";
@@ -125,17 +125,14 @@ export function createDomBookDescription(data,row){
             const divDescription = createElements({tag:'div',className:'description-box'})
             const titleDescription = createElements({tag:'h5',className:'desc_title',textContent:' Description:'})
             const pDescription = createElements({tag:'p',className:'desc_p',textContent: descriptionText})
-            //append
             divDescription.appendChild(titleDescription)
             divDescription.appendChild(pDescription);
-            //insert under the title row
             row.after(divDescription);
             createCloseButton(divDescription);
 }
 
 
-
-// Function to create pop-up
+// Create a popup with title and message
 export function createPopUp({ title = "Alert", message = "", id = "custom-popup" }) {
     const existing = document.getElementById(id);
     if (existing) existing.remove();
@@ -143,11 +140,9 @@ export function createPopUp({ title = "Alert", message = "", id = "custom-popup"
     const popupBox = createElements({tag: "div",className: "popup-box",parentElement: overlay,attributes: { "role": "alert" }});
     createElements({ tag: "h4", textContent: title, parentElement: popupBox });
     createElements({ tag: "p", textContent: message, parentElement: popupBox });
-    //reacall function closeButton
     createCloseButton(popupBox);
     const closeBtn = popupBox.querySelector(".btn-close");
     closeBtn.addEventListener("click", () => overlay.remove());
-
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.remove();
     });

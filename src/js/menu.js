@@ -1,8 +1,7 @@
 
 //MENU LOGIC
-//create a fetch to get menu in menu.html
 
-//function to load and add header(menu) to html file
+// Load menu HTML and insert it into the page
 export function fetchMenu(){
     return fetch("menu.html")
     .then(res =>res.text()) //then response in text form
@@ -14,7 +13,7 @@ export function fetchMenu(){
 }
 
 
-
+// Disable link for the current page
 function disableLinkCurrentPage(header, currentPage) {
     const links = header.querySelectorAll("a[data-page]")
     links.forEach(link => {
@@ -28,7 +27,7 @@ function disableLinkCurrentPage(header, currentPage) {
 
 
 
-//function to activate all toggle manu 
+// Enable toggle menu and handle off-screen menu links
 function activateToggleMenu(header){
 const hamMenu = header.querySelector('.ham-menu');
 const offScreenMenu = header.querySelector('.off-screen-menu');
@@ -40,7 +39,7 @@ hamMenu.addEventListener('click', () => {
         document.body.classList.toggle('no-scroll');
     })
 
-    //if you clink in every other part
+    // Close menu when a link is clicked
     menuLinks.forEach(link => {
         link.addEventListener('click', ()=>{
             offScreenMenu.classList.toggle('active');//hidden menu
@@ -51,7 +50,7 @@ hamMenu.addEventListener('click', () => {
 }
 
 
-//function add index.html into # if current page is different to index.html
+// Update hash links to point to index.html if on another page
 function changeLinkNavigation(header, currentPage) {
     if (currentPage !== "index.html") {
         const links = header.querySelectorAll("a[data-page]")
@@ -66,7 +65,7 @@ function changeLinkNavigation(header, currentPage) {
 }
 
 
-// function to recall all the functions about header(menu)
+// Initialize all menu logic
 export function setUpMenu(currentPage){
     fetchMenu()
         .then(header => {
