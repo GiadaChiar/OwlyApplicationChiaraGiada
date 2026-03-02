@@ -2,12 +2,12 @@
 
 // Standard JSON fetch with error handling
 export async function fetchJson(url){
-        const response = await fetch(url);
-        if(!response.ok){
-            throw new Error(`Error, fetch failed or book's id not found: ${response.status}`)
-        }
-        const data = await response.json();
-        return data;
+    const response = await fetch(url);
+    if(!response.ok){
+        throw new Error(`Error, fetch failed or book's id not found: ${response.status}`)
+    }
+    const data = await response.json();
+    return data;
 }
 
 
