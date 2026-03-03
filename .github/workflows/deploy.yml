@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # deploy automatico solo quando fai push su main
+
 permissions:
   contents: read
   pages: write
@@ -15,7 +16,6 @@ jobs:
 
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       # 1️⃣ Checkout del codice
@@ -29,12 +29,20 @@ jobs:
       # 3️⃣ Installa le dipendenze
       - run: npm install
 
-      # 4️⃣ Esegui la build (genera dist/)
-      - run: npm run build
-      - run: ls -la dist 
+      # 4️⃣ Esegui la build con debug
+      - name: Build project
+        run: |
+          npm run build
+          echo "Contenuto della root:"
+          ls -la
+          echo "Contenuto della cartella dist:"
+          ls -la dist || echo "dist non trovata"
+          echo "Controllo dei file HTML in dist:"
+          ls dist/*.html || echo "Nessun file HTML trovato"
 
       # 5️⃣ Carica dist come artifact per GitHub Pages
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
