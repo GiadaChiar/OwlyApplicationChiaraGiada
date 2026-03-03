@@ -10,27 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout del codice
+      # 1️⃣ Checkout del codice
       - uses: actions/checkout@v3
 
-      # 2Setup Node.js (versione compatibile con la tua, 22)
+      # 2️⃣ Setup Node.js
       - uses: actions/setup-node@v3
         with:
           node-version: '22'
 
-      # 3Installa le dipendenze
+      # 3️⃣ Installa le dipendenze
       - run: npm install
 
-      # 4️ Esegui la build (genera dist/)
+      # 4️⃣ Esegui la build (genera dist/)
       - run: npm run build
 
-      # 5️ Carica dist come artifact per GitHub Pages
+      # 5️⃣ Carica dist come artifact per GitHub Pages
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      # 6️ Deploy su GitHub Pages
+      # 6️⃣ Deploy su GitHub Pages
       - uses: actions/deploy-pages@v1
         with:
-          
           token: ${{ secrets.GITHUB_TOKEN }}
