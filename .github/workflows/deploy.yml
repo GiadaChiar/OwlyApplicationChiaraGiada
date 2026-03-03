@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main  # deploy automatico solo quando fai push su main
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -31,5 +35,3 @@ jobs:
 
       # 6️⃣ Deploy su GitHub Pages
       - uses: actions/deploy-pages@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
