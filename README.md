@@ -17,7 +17,7 @@ Owly is ideal for teachers, students, and parents who want a centralized platfor
 To run Owly on your local machine using Git
 npm install
 npm run build
-npm start
+npm run start
 
 
 ## Clone the repository
