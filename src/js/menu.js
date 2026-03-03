@@ -2,14 +2,14 @@
 //MENU LOGIC
 
 // Load menu HTML and insert it into the page
-export function fetchMenu(){
+export function fetchMenu() {
     return fetch("menu.html")
-    .then(res =>res.text()) //then response in text form
-    .then(html=>{ 
-        const header = document.getElementById("header");
-        header.innerHTML = html;
-        return header
-    })
+        .then(res => res.text()) //then response in text form
+        .then(html => {
+            const header = document.getElementById("header");
+            header.innerHTML = html;
+            return header
+        })
 }
 
 
@@ -20,7 +20,7 @@ function disableLinkCurrentPage(header, currentPage) {
         link.classList.remove("disable");
         const hrefLink = link.getAttribute("href");
         if (hrefLink === currentPage) {
-        link.classList.add("disable");
+            link.classList.add("disable");
         }
     });
 }
@@ -28,12 +28,12 @@ function disableLinkCurrentPage(header, currentPage) {
 
 
 // Enable toggle menu and handle off-screen menu links
-function activateToggleMenu(header){
-const hamMenu = header.querySelector('.ham-menu');
-const offScreenMenu = header.querySelector('.off-screen-menu');
-const menuLinks= header.querySelectorAll('.off-screen-menu h3 a');
+function activateToggleMenu(header) {
+    const hamMenu = header.querySelector('.ham-menu');
+    const offScreenMenu = header.querySelector('.off-screen-menu');
+    const menuLinks = header.querySelectorAll('.off-screen-menu h3 a');
 
-hamMenu.addEventListener('click', () => {
+    hamMenu.addEventListener('click', () => {
         hamMenu.classList.toggle('active');  // anable and disable X
         offScreenMenu.classList.toggle('active'); // show/hidden menu
         document.body.classList.toggle('no-scroll');
@@ -41,7 +41,7 @@ hamMenu.addEventListener('click', () => {
 
     // Close menu when a link is clicked
     menuLinks.forEach(link => {
-        link.addEventListener('click', ()=>{
+        link.addEventListener('click', () => {
             offScreenMenu.classList.toggle('active');//hidden menu
             hamMenu.classList.toggle('active');  // anable and disable X
             document.body.classList.toggle('no-scroll');//if it was blocked I active it
@@ -57,7 +57,7 @@ function changeLinkNavigation(header, currentPage) {
         links.forEach(link => {
             const hrefLink = link.getAttribute("href");
             if (hrefLink.startsWith("#")) {
-                const newhref = "index.html" + hrefLink ;
+                const newhref = "index.html" + hrefLink;
                 link.setAttribute("href", newhref);
             }
         })
@@ -66,11 +66,11 @@ function changeLinkNavigation(header, currentPage) {
 
 
 // Initialize all menu logic
-export function setUpMenu(currentPage){
+export function setUpMenu(currentPage) {
     fetchMenu()
         .then(header => {
-        disableLinkCurrentPage(header, currentPage);
-        changeLinkNavigation(header, currentPage);
-        activateToggleMenu(header);
-    })
+            disableLinkCurrentPage(header, currentPage);
+            changeLinkNavigation(header, currentPage);
+            activateToggleMenu(header);
+        })
 }
