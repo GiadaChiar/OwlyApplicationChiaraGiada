@@ -27,6 +27,7 @@ jobs:
 
       # 4️⃣ Esegui la build (genera dist/)
       - run: npm run build
+      - run: ls -la dist 
 
       # 5️⃣ Carica dist come artifact per GitHub Pages
       - uses: actions/upload-pages-artifact@v3
