@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//to create css file because it will be static in css 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
@@ -20,16 +19,12 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                //QUANDO HAI FINITO RIMRTTILO E TOGLI QUELLO SOTTO
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-                //use: ['style-loader', 'css-loader', 'sass-loader'],
             
             },
                 {
                 test: /\.css$/i,
-                //QUANDO HAI FINITO RIMRTTILO E TOGLI QUELLO SOTTO
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
-        //use: ['style-loader', 'css-loader'], 
             },
         ],
 
@@ -46,7 +41,7 @@ module.exports = {
             chunks: ['search'], 
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css', // nome del file CSS finale
+            filename: '[name].css',
         }),
         new CopyWebpackPlugin({
             patterns: [
