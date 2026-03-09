@@ -52,11 +52,10 @@ export function createElements({ tag, className, id, textContent, parentElement,
 export function createCloseButton(targetElement) {
     let deleteButton = createElements({
         tag: 'button', className: 'btn-close', parentElement: targetElement, attributes: {
-            "aria-label": "Close"
+            "aria-label": "Close",
+            "type":"button"
         }
     })
-    //to find where you want it
-    deleteButton.type = "button";
 }
 
 
@@ -126,11 +125,9 @@ export function createDomBookDescription(data, row) {
             ? data.description.value : "Description not available";
         descriptionText = rawText
     }
-    const divDescription = createElements({ tag: 'div', className: 'description-box' })
-    const titleDescription = createElements({ tag: 'h5', className: 'desc_title', textContent: ' Description:' })
-    const pDescription = createElements({ tag: 'p', className: 'desc_p', textContent: descriptionText })
-    divDescription.appendChild(titleDescription)
-    divDescription.appendChild(pDescription);
+    const divDescription = createElements({ tag: 'div', className: 'description-box'})
+    const titleDescription = createElements({ tag: 'h5', className: 'desc_title', textContent: ' Description:',parentElement: divDescription})
+    const pDescription = createElements({ tag: 'p', className: 'desc_p', textContent: descriptionText,parentElement: divDescription })
     row.after(divDescription);
     createCloseButton(divDescription);
 }
